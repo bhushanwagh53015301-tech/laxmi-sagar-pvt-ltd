@@ -2,9 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { ArrowRight, Briefcase, Clock3, GraduationCap, HeartHandshake, MapPin, TrendingUp, Upload } from "lucide-react";
-import { IMG } from "@/lib/site";
-import { assetsFromCategory, groupBySubPath } from "@/lib/localAssets";
-import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import {
   type CarouselApi,
@@ -30,8 +27,6 @@ export const Route = createFileRoute("/careers")({
         content:
           "Build your career in precision engineering with an ISO 9001:2015 certified automotive manufacturing team.",
       },
-      { property: "og:image", content: IMG.careers },
-      { name: "twitter:image", content: IMG.careers },
     ],
   }),
   component: CareersPage,
@@ -114,23 +109,6 @@ const EMPLOYEE_TESTIMONIALS = [
   },
 ];
 
-const EVENT_PHOTOS = assetsFromCategory("Event Photos");
-const EVENTS_BY_TYPE = groupBySubPath(EVENT_PHOTOS);
-
-function cleanLabel(text: string) {
-  return text
-    .replace(/\.[^.]+$/, "")
-    .replace(/[_-]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function cleanGroupName(groupName: string) {
-  const raw = groupName === "General" ? "Event Highlights" : groupName;
-  return cleanLabel(raw.replace(/^PHOTOS\s*\/\s*/i, ""));
-}
-
 function CareersPage() {
   const [submitting, setSubmitting] = useState(false);
   const [testimonialApi, setTestimonialApi] = useState<CarouselApi>();
@@ -178,12 +156,22 @@ function CareersPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Careers"
-        title="Build Your Career in Precision Engineering"
-        subtitle="Join a team that's been shaping India's automotive industry for over 25 years."
-        image={IMG.careers}
-      />
+      <section className="bg-primary pb-16 pt-28 text-primary-foreground sm:pb-20 sm:pt-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-amber">
+              <span className="h-1 w-1 rounded-full bg-amber" />
+              Careers
+            </div>
+            <h1 className="font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+              Build Your Career in Precision Engineering
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
+              Join a team that's been shaping India's automotive industry for over 25 years.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-background py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -335,41 +323,6 @@ function CareersPage() {
               ))}
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="bg-secondary py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Culture Moments</div>
-            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Life at Laxmi Sagar</h2>
-            <p className="mt-3 max-w-3xl text-muted-foreground">
-              Celebrations, appreciation events, and team moments from across the organization.
-            </p>
-          </Reveal>
-
-          <div className="mt-10 space-y-10">
-            {Object.entries(EVENTS_BY_TYPE).map(([groupName, photos]) => (
-              <div key={groupName}>
-                <div className="flex items-end justify-between gap-4">
-                  <h3 className="font-sans text-xl font-bold text-primary">{cleanGroupName(groupName)}</h3>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{photos.length} photos</p>
-                </div>
-                <div className="relative mt-4">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-secondary to-transparent" />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-secondary to-transparent" />
-                  <div className="flex gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    {photos.map((photo) => (
-                      <figure key={photo.relativePath} className="min-w-[240px] overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)] sm:min-w-[260px]">
-                        <img src={photo.src} alt={photo.filename} className="h-48 w-full object-cover" loading="lazy" />
-                        <figcaption className="border-t border-border p-3 text-xs font-medium text-primary">{cleanLabel(photo.filename)}</figcaption>
-                      </figure>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

@@ -75,7 +75,10 @@ export const Route = createRootRoute({
       },
       { name: "twitter:image", content: IMG.heroForge },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "stylesheet", href: appCss }
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
