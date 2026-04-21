@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Laxmi Sagar Engineers — design system */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-amber: var(--amber);
+  --color-amber-foreground: var(--amber-foreground);
+  --color-steel: var(--steel);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Brand: Deep Navy primary, Industrial Amber accent, Steel Grey body */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.22 0.02 260);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.02 260);
+
+  /* Deep Navy #0f3460 */
+  --primary: oklch(0.31 0.10 258);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-glow: oklch(0.45 0.14 255);
+
+  /* Light steel surface */
+  --secondary: oklch(0.97 0.005 250);
+  --secondary-foreground: oklch(0.22 0.02 260);
+
+  --muted: oklch(0.96 0.005 250);
+  --muted-foreground: oklch(0.5 0.02 260);
+
+  /* Industrial Amber #f5a623 */
+  --amber: oklch(0.78 0.16 70);
+  --amber-foreground: oklch(0.18 0.02 260);
+
+  --accent: oklch(0.78 0.16 70);
+  --accent-foreground: oklch(0.18 0.02 260);
+
+  --steel: oklch(0.32 0.005 260);
+
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.9 0.01 255);
+  --input: oklch(0.9 0.01 255);
+  --ring: oklch(0.45 0.14 255);
+
+  --gradient-hero: linear-gradient(135deg, oklch(0.18 0.06 258) 0%, oklch(0.31 0.10 258) 60%, oklch(0.45 0.14 255) 100%);
+  --gradient-amber: linear-gradient(135deg, oklch(0.78 0.16 70), oklch(0.7 0.18 55));
+  --shadow-elegant: 0 10px 40px -12px color-mix(in oklab, oklch(0.31 0.10 258) 35%, transparent);
+  --shadow-amber: 0 10px 40px -12px color-mix(in oklab, oklch(0.78 0.16 70) 45%, transparent);
+}
+
+.dark {
+  --background: oklch(0.16 0.03 260);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.22 0.03 260);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.22 0.03 260);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.45 0.14 255);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.26 0.03 260);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.26 0.03 260);
+  --muted-foreground: oklch(0.7 0.02 260);
+  --accent: oklch(0.78 0.16 70);
+  --accent-foreground: oklch(0.18 0.02 260);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  #root {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  img, svg, video, canvas {
+    max-width: 100%;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Blueprint grid background */
+.bp-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, currentColor 10%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, currentColor 10%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.bp-grid-fine {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, currentColor 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, currentColor 6%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Metallic sheen on hover */
+.sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+}
+.sheen:hover::after {
+  transform: translateX(100%);
+}
+
+/* Diagonal cut sections */
+.cut-top {
+  clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+}
+.cut-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Pulse ring for WhatsApp */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2); opacity: 0; }
+}
+.pulse-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: oklch(0.7 0.18 145);
+  animation: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  z-index: -1;
+}
+
+/* SVG line draw */
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+/* Full-width desktop layout */
+@media (min-width: 1024px) {
+  .max-w-md,
+  .max-w-2xl,
+  .max-w-3xl,
+  .max-w-5xl,
+  .max-w-7xl {
+    max-width: 100% !important;
+  }
+}
