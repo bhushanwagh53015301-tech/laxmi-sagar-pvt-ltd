@@ -94,7 +94,11 @@ export function Header() {
 
         <button
           onClick={() => setOpen(true)}
-          className={`rounded-md p-3 lg:hidden ${scrolled ? "text-foreground" : "text-white"}`}
+          className={`rounded-md border p-3 shadow-sm backdrop-blur lg:hidden ${
+            scrolled
+              ? "border-border bg-background/90 text-foreground"
+              : "border-white/20 bg-primary/35 text-white"
+          }`}
           aria-label="Open menu"
         >
           <Menu className="h-5 w-5" />
@@ -116,19 +120,21 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 220 }}
-              className="fixed inset-y-0 right-0 z-50 flex w-[88%] max-w-sm flex-col bg-background lg:hidden"
+              className="fixed inset-y-0 right-0 z-50 flex w-[88%] max-w-sm flex-col overflow-hidden border-l border-white/10 bg-primary text-primary-foreground shadow-2xl lg:hidden"
             >
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_24%,rgba(10,26,47,0.94))]" />
+              <div className="bp-grid pointer-events-none absolute inset-0 text-white/15" />
               <div className="flex items-center justify-between border-b border-border p-5">
                 <Logo scrolled />
                 <button
                   onClick={() => setOpen(false)}
-                  className="rounded-md p-2"
+                  className="rounded-md border border-white/15 bg-white/5 p-2 text-white"
                   aria-label="Close menu"
                 >
                   <X className="h-6 w-6" />
                 </button>
               </div>
-              <nav className="flex flex-1 flex-col gap-1 p-5">
+              <nav className="relative flex flex-1 flex-col gap-1 p-5">
                 {NAV.map((item, i) => (
                   <motion.div
                     key={item.to}
@@ -139,15 +145,15 @@ export function Header() {
                     <Link
                       to={item.to}
                       activeOptions={{ exact: item.to === "/" }}
-                      activeProps={{ className: "bg-secondary text-primary" }}
-                      className="block rounded-md px-4 py-3 font-display text-base font-semibold uppercase tracking-wider text-foreground transition-colors hover:bg-secondary"
+                      activeProps={{ className: "border-amber/30 bg-white/12 text-amber" }}
+                      className="block rounded-md border border-transparent px-4 py-3 font-display text-base font-semibold uppercase tracking-wider text-white/90 transition-colors hover:border-white/10 hover:bg-white/8 hover:text-white"
                     >
                       {item.label}
                     </Link>
                   </motion.div>
                 ))}
               </nav>
-              <div className="border-t border-border p-5">
+              <div className="relative border-t border-white/10 p-5">
                 <Link
                   to="/contact"
                   className="block rounded-md bg-amber px-4 py-3 text-center font-display text-sm font-semibold uppercase tracking-wider text-amber-foreground"
