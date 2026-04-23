@@ -6,7 +6,6 @@ import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
-import bannerVideo from "@/assets/banner-video.mp4";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +31,6 @@ export const Route = createFileRoute("/")({
 
 const SLIDES = [
   {
-    video: bannerVideo,
     img: IMG.heroForge,
     eyebrow: "Forging Excellence Since 1980",
     title: "Precision Forged.\nPrecision Machined.",
