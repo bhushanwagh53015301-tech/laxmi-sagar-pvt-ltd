@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Cog, Cpu, Flame, Gauge, Ruler, ShieldCheck, ChevronRight } from "lucide-react";
+import { ArrowRight, Cog, Cpu, Flame, ShieldCheck, ChevronRight } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
@@ -69,20 +69,7 @@ function HeroSlider() {
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
-          {s.video ? (
-            <video
-              className="h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            >
-              <source src={s.video} type="video/mp4" />
-            </video>
-          ) : (
-            <img src={s.img} alt="" className="h-full w-full object-cover" />
-          )}
+          <img src={s.img} alt="" className="h-full w-full object-cover" />
         </motion.div>
       </AnimatePresence>
 
@@ -271,7 +258,7 @@ function StatsStrip() {
     { value: 25, suffix: "+", label: "Years of Engineering Expertise" },
     { value: 25000, suffix: "+ sq.ft.", label: "Manufacturing Facility" },
     { value: 25, suffix: "+", label: "CNC & VMC Machines" },
-    { value: 0, suffix: "", label: "Certified Quality System", staticNumber: "ISO 9001:2015" },
+    { value: 0, suffix: "", suffixClassName: "", label: "Certified Quality System", staticNumber: "ISO 9001:2015" },
   ];
 
   return (
