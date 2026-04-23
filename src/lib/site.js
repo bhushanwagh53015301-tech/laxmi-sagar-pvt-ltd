@@ -6,10 +6,14 @@ export const SITE = {
   legal: "Laxmi Sagar Engineers Pvt Ltd",
   url: "https://www.laxmisagar.in",
   cin: "U28999PN2018PTC176543",
-  phone: "+91 98765 43210",
-  whatsapp: "+919876543210",
-  email: "info@laxmisagar.in",
-  address: "Plot No. 12, MIDC, Kuruli, Tal. Khed, Pune — 410501, Maharashtra, India",
+  phones: ["+91 7620099185", "+91 9326846702"],
+  phone: "+91 7620099185",
+  whatsapp: "+917620099185",
+  email: "laxmisagar.pvtltd@gmail.com",
+  address: "Sr No 622/2, Near Saint Gobain Sekurit Ltd, Village Kuruli, Taluka Khed Pune Pune MH 410501 IN",
+  workingHours: "9:00 AM - 6:00 PM",
+  weeklyOff: "Monday",
+  mapLink: "https://maps.app.goo.gl/KgTpqtXbFzeLWfpJ8",
   established: 1980,
 };
 
@@ -17,7 +21,6 @@ export const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/capabilities", label: "Capabilities" },
-  { to: "/gallery", label: "Gallery" },
   { to: "/quality", label: "Quality" },
   { to: "/careers", label: "Careers" },
   { to: "/contact", label: "Contact" },
@@ -42,3 +45,4 @@ export const IMG = {
   careers: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1600&q=80",
   quality: "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1600&q=80",
 };
+

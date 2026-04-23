@@ -63,7 +63,7 @@
   --secondary-foreground: oklch(0.22 0.02 260);
 
   --muted: oklch(0.96 0.005 250);
-  --muted-foreground: oklch(0.5 0.02 260);
+  --muted-foreground: oklch(0.42 0.02 260);
 
   /* Industrial Amber #f5a623 */
   --amber: oklch(0.78 0.16 70);
@@ -185,6 +185,17 @@
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
+@media (max-width: 640px) {
+  .animate-marquee {
+    animation-duration: 42s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
 
 /* Pulse ring for WhatsApp */
 @keyframes pulse-ring {
@@ -208,14 +219,3 @@
 
 .font-display { font-family: var(--font-display); }
 .font-mono { font-family: var(--font-mono); }
-
-/* Full-width desktop layout */
-@media (min-width: 1024px) {
-  .max-w-md,
-  .max-w-2xl,
-  .max-w-3xl,
-  .max-w-5xl,
-  .max-w-7xl {
-    max-width: 100% !important;
-  }
-}

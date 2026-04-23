@@ -76,7 +76,9 @@ export const Route = createRootRoute({
       { name: "twitter:image", content: IMG.heroForge },
     ],
     links: [
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "icon", href: "/brand-logo.png", type: "image/png" },
+      { rel: "shortcut icon", href: "/brand-logo.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/brand-logo.png" },
       { rel: "stylesheet", href: appCss }
     ],
   }),
@@ -93,12 +95,12 @@ function RootShell({ children }) {
     "@type": "Organization",
     name: SITE.legal,
     url: SITE.url,
-    logo: IMG.heroForge,
+    logo: `${SITE.url}/brand-logo.png`,
     email: SITE.email,
-    telephone: SITE.phone,
+    telephone: SITE.phones.join(", "),
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Plot No. 12, MIDC, Kuruli, Tal. Khed",
+      streetAddress: "Sr No 622/2, Near Saint Gobain Sekurit Ltd, Village Kuruli, Taluka Khed",
       addressLocality: "Pune",
       addressRegion: "Maharashtra",
       postalCode: "410501",

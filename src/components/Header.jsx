@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
-import { NAV, SITE } from "@/lib/site";
+import { Menu, X } from "lucide-react";
+import { NAV } from "@/lib/site";
+import brandLogo from "@/assets/Company Logo/L2_No BG_name.png";
 
-function Logo() {
+function Logo({ scrolled = false }) {
   return (
-    <Link to="/" className="group flex items-center gap-3">
-      <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-md bg-primary text-primary-foreground">
-        <span className="font-display text-xl font-bold tracking-tighter">LS</span>
-        <span className="absolute inset-x-0 bottom-0 h-1 bg-amber" />
-      </div>
-      <div className="hidden flex-col leading-tight sm:flex">
-        <span className="font-display text-lg font-bold tracking-wide text-primary">
-          LAXMI SAGAR
-        </span>
-        <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-          Engineers Pvt Ltd
-        </span>
+    <Link to="/" className="group flex items-center">
+      <div
+        className={`overflow-hidden rounded-md border ${
+          scrolled
+            ? "border-border bg-white"
+            : "border-white/35 bg-white/95 shadow-sm backdrop-blur"
+        }`}
+      >
+        <img
+          src={brandLogo}
+          alt="Laxmi Sagar Engineers"
+          className="h-10 w-auto sm:h-11"
+        />
       </div>
     </Link>
   );
@@ -57,8 +59,8 @@ export function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Logo />
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
+        <Logo scrolled={scrolled} />
 
         <nav className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
@@ -66,8 +68,14 @@ export function Header() {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              activeProps={{ className: "text-primary after:scale-x-100" }}
-              inactiveProps={{ className: "text-foreground/80 hover:text-primary" }}
+              activeProps={{
+                className: `${scrolled ? "text-primary" : "text-amber"} after:scale-x-100`,
+              }}
+              inactiveProps={{
+                className: scrolled
+                  ? "text-foreground/80 hover:text-primary"
+                  : "text-white/85 hover:text-white",
+              }}
               className="relative px-4 py-2 font-display text-sm font-semibold uppercase tracking-wider transition-colors after:absolute after:bottom-1 after:left-4 after:right-4 after:h-0.5 after:origin-left after:scale-x-0 after:bg-amber after:transition-transform after:duration-300 hover:after:scale-x-100"
             >
               {item.label}
@@ -75,14 +83,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
-          <a
-            href={`tel:${SITE.phone}`}
-            className="flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            <Phone className="h-4 w-4" />
-            {SITE.phone}
-          </a>
+        <div className="hidden items-center lg:flex">
           <Link
             to="/contact"
             className="sheen rounded-md bg-amber px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wider text-amber-foreground shadow-[var(--shadow-amber)] transition-transform hover:-translate-y-0.5"
@@ -93,10 +94,10 @@ export function Header() {
 
         <button
           onClick={() => setOpen(true)}
-          className="rounded-md p-2.5 text-foreground lg:hidden"
+          className={`rounded-md p-3 lg:hidden ${scrolled ? "text-foreground" : "text-white"}`}
           aria-label="Open menu"
         >
-          <Menu className="h-6 w-6" />
+          <Menu className="h-5 w-5" />
         </button>
       </div>
 
@@ -115,10 +116,10 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 220 }}
-              className="fixed inset-y-0 right-0 z-50 flex w-[85%] max-w-sm flex-col bg-background lg:hidden"
+              className="fixed inset-y-0 right-0 z-50 flex w-[88%] max-w-sm flex-col bg-background lg:hidden"
             >
               <div className="flex items-center justify-between border-b border-border p-5">
-                <Logo />
+                <Logo scrolled />
                 <button
                   onClick={() => setOpen(false)}
                   className="rounded-md p-2"
@@ -153,12 +154,6 @@ export function Header() {
                 >
                   Request Quote
                 </Link>
-                <a
-                  href={`tel:${SITE.phone}`}
-                  className="mt-3 flex items-center justify-center gap-2 text-sm text-muted-foreground"
-                >
-                  <Phone className="h-4 w-4" /> {SITE.phone}
-                </a>
               </div>
             </motion.aside>
           </>

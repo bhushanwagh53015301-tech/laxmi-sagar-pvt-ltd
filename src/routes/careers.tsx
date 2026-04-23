@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { ArrowRight, Briefcase, Clock3, GraduationCap, HeartHandshake, MapPin, TrendingUp, Upload } from "lucide-react";
+import { assetsFromCategory, groupBySubPath } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import {
   type CarouselApi,
@@ -37,37 +38,21 @@ const ROLES = [
     title: "CNC Operator / Setter",
     exp: "2-6 years",
     loc: "Kuruli, Pune",
-    dept: "Machining",
-    type: "Full-time",
-    shift: "On-site",
-    openings: "Hiring now",
   },
   {
     title: "Machinist",
     exp: "2-5 years",
     loc: "Kuruli, Pune",
-    dept: "Shop Floor",
-    type: "Full-time",
-    shift: "On-site",
-    openings: "Hiring now",
   },
   {
     title: "Quality Inspector (CMM)",
     exp: "2-5 years",
     loc: "Kuruli, Pune",
-    dept: "Quality",
-    type: "Full-time",
-    shift: "On-site",
-    openings: "Hiring now",
   },
   {
     title: "Production Engineer",
     exp: "3-8 years",
     loc: "Kuruli, Pune",
-    dept: "Production",
-    type: "Full-time",
-    shift: "On-site",
-    openings: "Hiring now",
   },
 ];
 
@@ -108,6 +93,25 @@ const EMPLOYEE_TESTIMONIALS = [
     tenure: "5 years at Laxmi Sagar",
   },
 ];
+const EVENT_PHOTOS = assetsFromCategory("Event Photos");
+const CELEBRATION_PHOTOS = EVENT_PHOTOS.filter(
+  (item) => !/apreciation|appreciation/i.test(item.subPath),
+);
+const CELEBRATIONS_BY_TYPE = groupBySubPath(CELEBRATION_PHOTOS);
+
+function cleanLabel(text: string) {
+  return text
+    .replace(/\.[^.]+$/, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function cleanGroupName(groupName: string) {
+  const raw = groupName === "General" ? "Event Highlights" : groupName;
+  return cleanLabel(raw.replace(/^PHOTOS\s*\/\s*/i, ""));
+}
 
 function CareersPage() {
   const [submitting, setSubmitting] = useState(false);
@@ -204,26 +208,12 @@ function CareersPage() {
               Join an ISO 9001:2015 certified manufacturing team trusted by leading automobile OEMs.
             </p>
           </Reveal>
-          <div className="mt-8 inline-flex items-center rounded-full border border-border bg-card px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            {ROLES.length} active roles
-          </div>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <span className="rounded-full border border-border bg-card px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">27+ years expertise</span>
-            <span className="rounded-full border border-border bg-card px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">25+ CNC machines</span>
-            <span className="rounded-full border border-border bg-card px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">25,000+ sq ft plant</span>
-          </div>
-
-          <StaggerGroup className="mt-6 grid gap-5 md:grid-cols-2">
+          <StaggerGroup className="mt-8 grid gap-5 md:grid-cols-2">
             {ROLES.map((r) => (
               <StaggerItem key={r.title}>
                 <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-amber/80 hover:shadow-[var(--shadow-elegant)] sm:p-7">
                   <div className="w-full">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <div className="font-sans text-2xl font-bold text-primary">{r.title}</div>
-                      <span className="rounded-full border border-amber/35 bg-amber/10 px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-amber">
-                        {r.dept}
-                      </span>
-                    </div>
+                    <div className="font-sans text-2xl font-bold text-primary">{r.title}</div>
                     <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
                       <span className="inline-flex items-center gap-1.5">
                         <Clock3 className="h-4 w-4 text-amber" />
@@ -232,17 +222,6 @@ function CareersPage() {
                       <span className="inline-flex items-center gap-1.5">
                         <MapPin className="h-4 w-4 text-amber" />
                         <span>{r.loc}</span>
-                      </span>
-                    </div>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      <span className="rounded-full border border-border bg-background px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                        {r.type}
-                      </span>
-                      <span className="rounded-full border border-border bg-background px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                        {r.shift}
-                      </span>
-                      <span className="rounded-full border border-border bg-background px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                        {r.openings}
                       </span>
                     </div>
                   </div>
@@ -323,6 +302,46 @@ function CareersPage() {
               ))}
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-secondary py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Event Celebrations</div>
+            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Life at Laxmi Sagar</h2>
+            <p className="mt-3 max-w-3xl text-muted-foreground">
+              Team celebrations and workplace moments that reflect our culture.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 space-y-8">
+            {Object.entries(CELEBRATIONS_BY_TYPE).map(([groupName, photos]) => (
+              <div key={groupName}>
+                <div className="mb-4 flex items-end justify-between gap-4">
+                  <h3 className="font-display text-xl font-bold text-primary">{cleanGroupName(groupName)}</h3>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                    {photos.length} photos
+                  </p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {photos.map((photo) => (
+                    <figure
+                      key={photo.relativePath}
+                      className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]"
+                    >
+                      <img
+                        src={photo.src}
+                        alt={`Team celebration at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`}
+                        className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

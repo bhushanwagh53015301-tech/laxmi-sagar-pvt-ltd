@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Cog, Cpu, Flame, Gauge, Ruler, ShieldCheck, ChevronRight } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
-import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
 
@@ -60,7 +59,7 @@ function HeroSlider() {
   const s = SLIDES[i];
 
   return (
-    <section className="relative isolate h-[100svh] min-h-[560px] overflow-hidden bg-primary text-primary-foreground sm:min-h-[640px]">
+    <section className="relative isolate h-[86svh] min-h-[500px] overflow-hidden bg-primary text-primary-foreground sm:h-[100svh] sm:min-h-[640px]">
       <AnimatePresence mode="sync">
         <motion.div
           key={i}
@@ -83,7 +82,7 @@ function HeroSlider() {
       />
       <div className="bp-grid absolute inset-0 text-white/30" />
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-20 pt-28 sm:px-6 sm:pb-24 sm:pt-32 lg:px-8">
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-12 pt-24 sm:px-6 sm:pb-24 sm:pt-32 lg:px-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={i}
@@ -93,17 +92,17 @@ function HeroSlider() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl"
           >
-            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-amber backdrop-blur">
+            <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-amber/40 bg-amber/10 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-amber backdrop-blur sm:mb-5 sm:px-4 sm:text-xs sm:tracking-[0.2em]">
               <span className="h-1.5 w-1.5 rounded-full bg-amber" />
               {s.eyebrow}
             </div>
-            <h1 className="whitespace-pre-line font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="whitespace-pre-line font-display text-3xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               {s.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/85 sm:mt-6 sm:text-lg">
               {s.sub}
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <MagneticButton to="/contact" variant="amber">
                 Request a Quote <ArrowRight className="h-4 w-4" />
               </MagneticButton>
@@ -114,7 +113,7 @@ function HeroSlider() {
           </motion.div>
         </AnimatePresence>
 
-        <div className="mt-12 flex items-center gap-3">
+        <div className="mt-8 flex items-center gap-3 sm:mt-12">
           {SLIDES.map((_, idx) => (
             <button
               key={idx}
@@ -133,7 +132,7 @@ function HeroSlider() {
 
 function IntroSection() {
   return (
-    <section className="relative bg-background py-24 sm:py-32">
+    <section className="relative bg-background py-16 sm:py-32">
       <div className="bp-grid-fine pointer-events-none absolute inset-0 text-primary/40" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 md:grid-cols-2 md:gap-14 lg:gap-20 lg:px-8">
         <Reveal>
@@ -181,30 +180,115 @@ function IntroSection() {
 }
 
 function StatsStrip() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setHasStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  function CountUp({
+    end,
+    start,
+    suffix = "",
+    suffixClassName = "",
+    duration = 1400,
+  }: {
+    end: number;
+    start: boolean;
+    suffix?: string;
+    suffixClassName?: string;
+    duration?: number;
+  }) {
+    const [value, setValue] = useState(0);
+
+    useEffect(() => {
+      if (!start) {
+        setValue(0);
+        return;
+      }
+
+      setValue(0);
+      const startTs = performance.now();
+      const tick = () => {
+        const elapsed = performance.now() - startTs;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const next = Math.round(end * eased);
+        setValue(next);
+
+        if (progress >= 1) {
+          setValue(end);
+          return;
+        }
+
+        rafId = window.requestAnimationFrame(tick);
+      };
+
+      let rafId = window.requestAnimationFrame(tick);
+      return () => window.cancelAnimationFrame(rafId);
+    }, [duration, end, start]);
+
+    const display = end >= 1000 ? value.toLocaleString("en-IN") : String(value);
+
+    return (
+      <span>
+        {display}
+        {suffix ? <span className={suffixClassName}>{suffix}</span> : null}
+      </span>
+    );
+  }
+
   const stats = [
-    { v: 45, suf: "+", label: "Years of Experience" },
-    { v: 50, suf: "+", label: "OEM Customers" },
-    { v: 200, suf: "K+", label: "Components / Year" },
-    { v: 99.6, suf: "%", label: "First-Pass Yield" },
-    { v: 25, suf: "K+", label: "Sq Ft Plant" },
-    { v: 25, suf: "+", label: "CNC Machines" },
+    { value: 25, suffix: "+", label: "Years of Engineering Expertise" },
+    { value: 25000, suffix: "+ sq.ft.", label: "Manufacturing Facility" },
+    { value: 25, suffix: "+", label: "CNC & VMC Machines" },
+    { value: 0, suffix: "", label: "Certified Quality System", staticNumber: "ISO 9001:2015" },
   ];
+
   return (
-    <section className="relative bg-primary py-16 text-primary-foreground sm:py-20">
+    <section ref={sectionRef} className="relative overflow-hidden bg-primary py-12 sm:py-16">
       <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
-      <div className="relative mx-auto grid max-w-7xl grid-cols-2 gap-10 px-4 sm:px-6 lg:grid-cols-6 lg:px-8">
-        {stats.map((s, i) => (
-          <Reveal key={s.label} delay={i * 0.08}>
-            <div>
-              <div className="font-display text-5xl font-bold text-amber sm:text-6xl">
-                <AnimatedCounter to={s.v} suffix={s.suf} />
-              </div>
-              <div className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-white/70">
-                {s.label}
-              </div>
+      <div className="relative mx-auto max-w-[1700px] px-2 sm:px-4 lg:px-6">
+        <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-2 lg:grid-cols-[1fr_1.35fr_1fr_1.25fr]">
+          {stats.map((item, index) => (
+            <div
+              key={item.label}
+              className={`min-w-0 px-2 text-left sm:px-3 lg:px-5 ${index > 0 ? "lg:border-l lg:border-white/10" : ""}`}
+            >
+              <p className="whitespace-nowrap font-mono text-[1.7rem] font-semibold leading-none tracking-[0] text-amber drop-shadow-[0_1px_0_rgba(0,0,0,0.35)] sm:text-[2.1rem] lg:text-[2.7rem]">
+                {item.staticNumber ? (
+                  item.staticNumber
+                ) : (
+                  <CountUp
+                    end={item.value}
+                    start={hasStarted}
+                    suffix={item.suffix}
+                    suffixClassName={item.suffixClassName}
+                  />
+                )}
+              </p>
+              <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.3em] text-white/80 sm:text-xs">
+                {item.label}
+              </p>
             </div>
-          </Reveal>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -239,7 +323,7 @@ const CAPS = [
 
 function CapabilitiesGrid() {
   return (
-    <section className="bg-secondary py-24 sm:py-32">
+    <section className="bg-secondary py-16 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Capabilities</div>
@@ -289,7 +373,7 @@ function CapabilitiesGrid() {
   );
 }
 
-const CLIENT_LOGOS = assetsFromCategory("Company Logo");
+const CLIENT_LOGOS = assetsFromCategory("Client Logos");
 
 function ClientMarquee() {
   const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
@@ -322,7 +406,7 @@ function ClientMarquee() {
 
 function CtaBanner() {
   return (
-    <section className="relative isolate overflow-hidden bg-primary py-24 text-primary-foreground sm:py-32">
+    <section className="relative isolate overflow-hidden bg-primary py-16 text-primary-foreground sm:py-32">
       <div className="absolute inset-0">
         <img src={IMG.parts} alt="" className="h-full w-full object-cover opacity-15" />
         <div

@@ -9,7 +9,7 @@ import { Reveal } from "@/components/Reveal";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Laxmi Sagar Engineers — Get a Quote in 48 Hours" },
+      { title: "Contact Laxmi Sagar Engineers - Get a Quote in 48 Hours" },
       {
         name: "description",
         content:
@@ -27,9 +27,6 @@ export const Route = createFileRoute("/contact")({
   }),
   component: ContactPage,
 });
-
-const BRIEF_ADDRESS =
-  "Sr No 622/2, Near Saint Gobain Sekurit Ltd, Village Kuruli, Taluka Khed, Pune – 410501, Maharashtra, India";
 
 function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
@@ -51,34 +48,35 @@ function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Let's talk about your component."
-        subtitle="Share a drawing or part requirement — we'll respond with a feasibility note and indicative pricing within 48 working hours."
+        subtitle="Share a drawing or part requirement and we will respond with a feasibility note and indicative pricing within 48 working hours."
         image={IMG.contact}
       />
 
       <section className="bg-background py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-[1fr_1.2fr] lg:px-8">
-          {/* Info */}
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Get in Touch</div>
             <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Reach our team</h2>
-            <p className="mt-4 text-muted-foreground">
-              Procurement, engineering or new business — pick the channel that works for you.
-            </p>
+            <p className="mt-4 text-muted-foreground">Procurement, engineering or new business - pick the channel that works for you.</p>
 
             <div className="mt-10 space-y-5">
-              <InfoCard icon={MapPin} title="Visit Us" lines={[SITE.address, BRIEF_ADDRESS]} />
-              <InfoCard icon={Phone} title="Call Us" lines={[SITE.phone]} href={`tel:${SITE.phone}`} />
+              <InfoCard icon={MapPin} title="Visit Us" lines={[SITE.address]} />
+              <InfoCard
+                icon={Phone}
+                title="Call Us"
+                lines={SITE.phones.map((phone) => (
+                  <a key={phone} href={`tel:${phone}`} className="hover:text-primary">
+                    {phone}
+                  </a>
+                ))}
+              />
               <InfoCard icon={Mail} title="Email Us" lines={[SITE.email]} href={`mailto:${SITE.email}`} />
-              <InfoCard icon={Clock} title="Working Hours" lines={["Mon – Sat: 9:00 AM – 6:30 PM", "Mon – Sat: 9:00 AM – 6:00 PM (Brief)", "Sunday: Closed"]} />
+              <InfoCard icon={Clock} title="Working Hours" lines={[`Daily: ${SITE.workingHours}`, `${SITE.weeklyOff}: Off`]} />
             </div>
           </Reveal>
 
-          {/* Form */}
           <Reveal delay={0.1}>
-            <form
-              onSubmit={handleSubmit}
-              className="rounded-2xl border border-border bg-card p-8 shadow-sm sm:p-10"
-            >
+            <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-8 shadow-sm sm:p-10">
               <h3 className="font-sans text-2xl font-bold text-primary">Send an enquiry</h3>
               <p className="mt-1 text-sm text-muted-foreground">All fields marked * are required.</p>
 
@@ -139,7 +137,6 @@ function ContactPage() {
         </div>
       </section>
 
-      {/* Map */}
       <section className="bg-secondary py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
@@ -147,16 +144,16 @@ function ContactPage() {
             <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Our facility in Kuruli, Pune</h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="mt-10 overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-elegant)]">
-              <iframe
-                title="Laxmi Sagar Engineers location"
-                src="https://www.google.com/maps?q=Kuruli,+Khed,+Pune,+Maharashtra&output=embed"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            <div className="mt-10 rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-elegant)]">
+              <p className="text-sm text-muted-foreground">{SITE.address}</p>
+              <a
+                href={SITE.mapLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Open in Google Maps
+              </a>
             </div>
           </Reveal>
         </div>
@@ -166,7 +163,7 @@ function ContactPage() {
 }
 
 /**
- * @param {{ icon: any, title: string, lines: string[], href?: string }} props
+ * @param {{ icon: any, title: string, lines: any[], href?: string }} props
  */
 function InfoCard(props) {
   const { icon: Icon, title, lines, href } = props;
@@ -177,8 +174,8 @@ function InfoCard(props) {
       </div>
       <div>
         <div className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-amber">{title}</div>
-        {lines.map((l) => (
-          <div key={l} className="mt-1 text-sm text-foreground">{l}</div>
+        {lines.map((line, idx) => (
+          <div key={idx} className="mt-1 text-sm text-foreground">{line}</div>
         ))}
       </div>
     </div>
@@ -201,4 +198,3 @@ function Field({ label, name, type = "text", required }) {
     </div>
   );
 }
-

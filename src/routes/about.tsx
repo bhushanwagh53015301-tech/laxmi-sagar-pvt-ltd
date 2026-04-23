@@ -6,6 +6,7 @@ import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
+import ownerPhoto from "@/assets/owner.png";
 import {
   type CarouselApi,
   Carousel,
@@ -61,12 +62,14 @@ const BRIEF_DIRECTOR_MESSAGES = [
   {
     name: "Mr. Dattatray S. Rokhade",
     role: "Founder & Director",
+    photo: ownerPhoto,
     message:
       "A first-generation entrepreneur from Ranibennur who moved to Pune to build a lasting industrial enterprise. He started in maintenance at Paranjpe Engineering Foundry, then established Laxmi Sagar Industries in Bhosari in 1980. Over four decades, his hands-on expertise in operations and industrial processes has shaped the company's culture of discipline and ownership.",
   },
   {
     name: "Mrs. Kasturibai Rokhade",
     role: "Director",
+    photo: IMG.director2,
     message:
       "A key force behind the enterprise since its early years. She founded Reasonable Tools in Bhosari MIDC to support Pune's industrial ecosystem with tooling and consumables. Her entrepreneurial focus and operational support have played an important role in the group's diversified and stable growth.",
   },
@@ -74,6 +77,7 @@ const BRIEF_DIRECTOR_MESSAGES = [
     name: "Mr. Laxmikant D. Rokhade",
     role: "Managing Director",
     education: "Diploma in Mechanical Engineering",
+    photo: IMG.director1,
     message:
       "With deep mechanical expertise and long shop-floor experience, he leads manufacturing operations and strategic direction. His leadership ensures each component meets strict OEM expectations. Under his guidance, the company has scaled from a small job shop into a full-fledged precision machining and forging facility.",
   },
@@ -81,6 +85,7 @@ const BRIEF_DIRECTOR_MESSAGES = [
     name: "Mr. Tejas Rokhade",
     role: "Director",
     education: "MBA in Business Analytics (UK)",
+    photo: IMG.team,
     message:
       "Representing the third generation, he brings a data-driven and globally oriented approach. He is focused on technology-led efficiency, international market expansion, and positioning Laxmi Sagar Engineers as a preferred Tier-1 and Tier-2 supplier. His vision includes Industry 4.0 practices and capacity expansion toward 40,000+ sq ft.",
   },
@@ -92,6 +97,11 @@ const BRIEF_COMPLIANCE = [
   "IEC: AAECL2626A",
   "GST: 27AAECL2626A1ZZ",
   "PAN: AAECL2626A",
+];
+
+const CERTIFICATIONS = [
+  { title: "ISO 9001:2015", file: "/certificates/iso-certificate.pdf" },
+  { title: "ZED Certificate", file: "/certificates/zed-certificate.pdf" },
 ];
 
 const DIRECTORS = [
@@ -111,6 +121,10 @@ const TEAM_MEMBERS = TEAM_PHOTOS.map((item) => ({
   image: item.src,
   role: item.filename.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim(),
 }));
+const EVENT_PHOTOS = assetsFromCategory("Event Photos");
+const APPRECIATION_PHOTOS = EVENT_PHOTOS.filter((item) =>
+  /apreciation|appreciation/i.test(item.subPath),
+);
 
 function cleanLabel(text: string) {
   return text
@@ -218,30 +232,45 @@ function AboutPage() {
             ))}
           </StaggerGroup>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <div className="mt-10 space-y-6">
             <div className="rounded-xl border border-border bg-card p-6">
               <h3 className="font-display text-xl font-bold text-primary">The People Behind the Precision</h3>
-              <div className="mt-4 space-y-4">
+              <div className="mt-6 grid gap-5 md:grid-cols-2">
                 {BRIEF_DIRECTOR_MESSAGES.map((person) => (
-                  <div key={person.name} className="rounded-lg bg-secondary px-4 py-4">
-                    <p className="font-display text-base font-semibold text-primary">{person.name}</p>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                      {person.role}
-                    </p>
-                    {person.education ? (
-                      <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
-                        {person.education}
-                      </p>
-                    ) : null}
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{person.message}</p>
-                  </div>
+                  <article
+                    key={person.name}
+                    className="overflow-hidden rounded-xl border border-border bg-background"
+                  >
+                    <div className="flex items-center gap-4 border-b border-border bg-secondary px-5 py-4">
+                      <div className="h-24 w-20 flex-shrink-0 overflow-hidden rounded-lg border border-border bg-card sm:h-28 sm:w-24">
+                        <img
+                          src={person.photo}
+                          alt={person.name}
+                          className="h-full w-full object-cover object-center"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="truncate font-display text-2xl font-bold text-primary">{person.name}</p>
+                        <p className="font-sans text-base font-semibold text-red-600">{person.role}</p>
+                        {person.education ? (
+                          <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+                            {person.education}
+                          </p>
+                        ) : null}
+                      </div>
+                    </div>
+                    <div className="px-5 py-5">
+                      <p className="text-sm leading-relaxed text-muted-foreground">{person.message}</p>
+                    </div>
+                  </article>
                 ))}
               </div>
             </div>
 
             <div className="rounded-xl border border-border bg-card p-6">
               <h3 className="font-display text-xl font-bold text-primary">Compliance Snapshot (Brief)</h3>
-              <div className="mt-4 space-y-3">
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 {BRIEF_COMPLIANCE.map((item) => (
                   <div key={item} className="rounded-lg bg-secondary px-4 py-3 font-mono text-xs uppercase tracking-[0.12em] text-primary">
                     {item}
@@ -294,13 +323,21 @@ function AboutPage() {
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Recognised & Certified</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Certifications</h2>
           </Reveal>
-          <StaggerGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {["ISO 9001:2015", "Udyam MSME", "Pune MIDC Registered", "OEM Vendor Code Approved"].map((c) => (
-              <StaggerItem key={c}>
-                <div className="flex items-center gap-4 rounded-xl border border-border bg-card p-6">
+          <StaggerGroup className="mt-12 grid gap-5 sm:grid-cols-2">
+            {CERTIFICATIONS.map((cert) => (
+              <StaggerItem key={cert.title}>
+                <a
+                  href={cert.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]"
+                >
                   <Award className="h-10 w-10 flex-shrink-0 text-amber" />
-                  <div className="font-display text-sm font-semibold uppercase tracking-wide text-primary">{c}</div>
-                </div>
+                  <div>
+                    <div className="font-display text-sm font-semibold uppercase tracking-wide text-primary">{cert.title}</div>
+                    <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Open PDF</div>
+                  </div>
+                </a>
               </StaggerItem>
             ))}
           </StaggerGroup>
@@ -380,6 +417,34 @@ function AboutPage() {
         </div>
       </section>
 
+      <section className="bg-background py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Appreciation</div>
+            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Recognition moments</h2>
+            <p className="mt-3 max-w-3xl text-muted-foreground">
+              A quick look at employee appreciation highlights from our shop-floor teams.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {APPRECIATION_PHOTOS.map((photo) => (
+              <figure
+                key={photo.relativePath}
+                className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]"
+              >
+                <img
+                  src={photo.src}
+                  alt={`Appreciation event at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`}
+                  className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* <section className="bg-secondary py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -435,4 +500,3 @@ function AboutPage() {
     </>
   );
 }
-

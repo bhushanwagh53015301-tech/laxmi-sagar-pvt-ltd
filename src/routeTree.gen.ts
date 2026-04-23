@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as QualityRouteImport } from './routes/quality'
-import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as CapabilitiesRouteImport } from './routes/capabilities'
@@ -20,11 +19,6 @@ import { Route as IndexRouteImport } from './routes/index'
 const QualityRoute = QualityRouteImport.update({
   id: '/quality',
   path: '/quality',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -59,7 +53,6 @@ export interface FileRoutesByFullPath {
   '/capabilities': typeof CapabilitiesRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
-  '/gallery': typeof GalleryRoute
   '/quality': typeof QualityRoute
 }
 export interface FileRoutesByTo {
@@ -68,7 +61,6 @@ export interface FileRoutesByTo {
   '/capabilities': typeof CapabilitiesRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
-  '/gallery': typeof GalleryRoute
   '/quality': typeof QualityRoute
 }
 export interface FileRoutesById {
@@ -78,7 +70,6 @@ export interface FileRoutesById {
   '/capabilities': typeof CapabilitiesRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
-  '/gallery': typeof GalleryRoute
   '/quality': typeof QualityRoute
 }
 export interface FileRouteTypes {
@@ -89,17 +80,9 @@ export interface FileRouteTypes {
     | '/capabilities'
     | '/careers'
     | '/contact'
-    | '/gallery'
     | '/quality'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/capabilities'
-    | '/careers'
-    | '/contact'
-    | '/gallery'
-    | '/quality'
+  to: '/' | '/about' | '/capabilities' | '/careers' | '/contact' | '/quality'
   id:
     | '__root__'
     | '/'
@@ -107,7 +90,6 @@ export interface FileRouteTypes {
     | '/capabilities'
     | '/careers'
     | '/contact'
-    | '/gallery'
     | '/quality'
   fileRoutesById: FileRoutesById
 }
@@ -117,7 +99,6 @@ export interface RootRouteChildren {
   CapabilitiesRoute: typeof CapabilitiesRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
-  GalleryRoute: typeof GalleryRoute
   QualityRoute: typeof QualityRoute
 }
 
@@ -128,13 +109,6 @@ declare module '@tanstack/react-router' {
       path: '/quality'
       fullPath: '/quality'
       preLoaderRoute: typeof QualityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -181,7 +155,6 @@ const rootRouteChildren: RootRouteChildren = {
   CapabilitiesRoute: CapabilitiesRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
-  GalleryRoute: GalleryRoute,
   QualityRoute: QualityRoute,
 }
 export const routeTree = rootRouteImport
