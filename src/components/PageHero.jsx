@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
 
-export function PageHero({ eyebrow, title, subtitle, image }) {
+export function PageHero({
+  eyebrow,
+  title,
+  subtitle,
+  image,
+  contentClassName = "",
+  titleClassName = "",
+}) {
   return (
     <section className="relative isolate overflow-hidden bg-primary pb-12 pt-24 text-primary-foreground sm:pb-20 sm:pt-32">
       <div className="absolute inset-0">
@@ -16,7 +23,7 @@ export function PageHero({ eyebrow, title, subtitle, image }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl"
+          className={`max-w-3xl ${contentClassName}`}
         >
           {eyebrow && (
             <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-amber/40 bg-amber/10 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-amber sm:px-4 sm:text-xs sm:tracking-[0.2em]">
@@ -24,7 +31,9 @@ export function PageHero({ eyebrow, title, subtitle, image }) {
               {eyebrow}
             </div>
           )}
-          <h1 className="font-display text-2xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1
+            className={`font-display text-2xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl ${titleClassName}`}
+          >
             {title}
           </h1>
           {subtitle && (

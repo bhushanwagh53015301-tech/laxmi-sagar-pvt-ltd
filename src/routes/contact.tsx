@@ -30,6 +30,13 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
+  const complianceRows = [
+    { label: "CIN", value: SITE.compliance.cin },
+    { label: "UDYAM", value: SITE.compliance.udyam },
+    { label: "IEC", value: SITE.compliance.iec },
+    { label: "GST", value: SITE.compliance.gst },
+    { label: "PAN", value: SITE.compliance.pan },
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,9 +54,11 @@ function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Let's talk about your component."
-        subtitle="Share a drawing or part requirement and we will respond with a feasibility note and indicative pricing within 48 working hours."
+        title="Talk to our team."
+        subtitle="Share your requirement and get a response within 48 hours."
         image={IMG.contact}
+        contentClassName="max-w-6xl"
+        titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
       <section className="bg-background py-24">
@@ -146,6 +155,17 @@ function ContactPage() {
           <Reveal delay={0.1}>
             <div className="mt-10 rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-elegant)]">
               <p className="text-sm text-muted-foreground">{SITE.address}</p>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3778.49244753788!2d73.85285739999999!3d18.7315282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c94b07b62b87%3A0x544a4028ff069fe!2sLaxmi%20Sagar%20Engineers%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1776935388742!5m2!1sen!2sin"
+                width="600"
+                height="450"
+                className="mt-6 h-[380px] w-full rounded-xl border border-border"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Laxmi Sagar Engineers Pvt Ltd map location"
+              />
               <a
                 href={SITE.mapLink}
                 target="_blank"
@@ -154,6 +174,22 @@ function ContactPage() {
               >
                 Open in Google Maps
               </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <div className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-elegant)] sm:p-8">
+              <h3 className="font-sans text-2xl font-bold text-primary sm:text-3xl">Compliance Snapshot (Brief)</h3>
+              <div className="mt-6 space-y-4">
+                {complianceRows.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-xl bg-secondary px-4 py-3 font-mono text-sm tracking-[0.22em] text-primary sm:px-6 sm:py-4 sm:text-base"
+                  >
+                    {item.label}: {item.value}
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>

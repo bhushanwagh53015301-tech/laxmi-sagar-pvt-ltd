@@ -6,6 +6,7 @@ import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
+import bannerVideo from "@/assets/banner-video.mp4";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,6 +32,7 @@ export const Route = createFileRoute("/")({
 
 const SLIDES = [
   {
+    video: bannerVideo,
     img: IMG.heroForge,
     eyebrow: "Forging Excellence Since 1980",
     title: "Precision Forged.\nPrecision Machined.",
@@ -69,7 +71,20 @@ function HeroSlider() {
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
-          <img src={s.img} alt="" className="h-full w-full object-cover" />
+          {s.video ? (
+            <video
+              className="h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            >
+              <source src={s.video} type="video/mp4" />
+            </video>
+          ) : (
+            <img src={s.img} alt="" className="h-full w-full object-cover" />
+          )}
         </motion.div>
       </AnimatePresence>
 

@@ -326,9 +326,11 @@ function CapabilitiesPage() {
     <>
       <PageHero
         eyebrow="Capabilities"
-        title="Multi-axis precision. Vertically integrated."
-        subtitle="From the first cut to final inspection — we own every step. That's how we deliver consistent micron-level quality at OEM volumes."
+        title="Integrated precision machining."
+        subtitle="From first cut to final inspection under one roof."
         image={IMG.cnc}
+        contentClassName="max-w-6xl"
+        titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
       {/* Infrastructure */}

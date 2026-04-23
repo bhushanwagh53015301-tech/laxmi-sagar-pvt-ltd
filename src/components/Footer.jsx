@@ -85,6 +85,19 @@ export function Footer() {
           </div>
         </div>
 
+        <div className="mt-10 rounded-xl border border-white/10 bg-white/5 p-4 sm:p-5">
+          <div className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-amber">
+            Compliance Snapshot
+          </div>
+          <div className="mt-3 grid gap-2.5 text-xs text-white/80 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">CIN: {SITE.compliance.cin}</div>
+            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">UDYAM: {SITE.compliance.udyam}</div>
+            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">IEC: {SITE.compliance.iec}</div>
+            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">GST: {SITE.compliance.gst}</div>
+            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">PAN: {SITE.compliance.pan}</div>
+          </div>
+        </div>
+
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center">
           <div>© {new Date().getFullYear()} {SITE.legal}. All rights reserved.</div>
           <div className="font-mono">CIN: {SITE.cin}</div>

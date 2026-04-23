@@ -54,9 +54,11 @@ function QualityPage() {
     <>
       <PageHero
         eyebrow="Quality & Compliance"
-        title="OEM-grade quality systems. Traceable. Documented."
-        subtitle="Procurement and quality teams choose us because every part we ship comes with the paperwork to back it up — calibrated instruments, controlled processes, full batch traceability."
+        title="Quality systems you can trust."
+        subtitle="Calibrated checks, controlled processes, and full traceability."
         image={IMG.quality}
+        contentClassName="max-w-6xl"
+        titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
       {/* ISO Highlight */}

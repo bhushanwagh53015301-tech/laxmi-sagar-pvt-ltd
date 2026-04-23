@@ -91,14 +91,6 @@ const BRIEF_DIRECTOR_MESSAGES = [
   },
 ];
 
-const BRIEF_COMPLIANCE = [
-  "CIN: U29309PN2020PTC192003",
-  "Udyam: UDYAM-MH-26-0012277",
-  "IEC: AAECL2626A",
-  "GST: 27AAECL2626A1ZZ",
-  "PAN: AAECL2626A",
-];
-
 const CERTIFICATIONS = [
   { title: "ISO 9001:2015", file: "/certificates/iso-certificate.pdf" },
   { title: "ZED Certificate", file: "/certificates/zed-certificate.pdf" },
@@ -152,9 +144,11 @@ function AboutPage() {
     <>
       <PageHero
         eyebrow="Since 1980"
-        title="Four decades of precision, built one shift at a time."
-        subtitle="What started as a single-shed jobwork unit in Pune is today an integrated precision manufacturing partner for India's most demanding OEMs."
+        title="Four decades of precision."
+        subtitle="From a small Pune unit to a trusted manufacturing partner."
         image={IMG.team}
+        contentClassName="max-w-6xl"
+        titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
       {/* Story */}
@@ -268,16 +262,6 @@ function AboutPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-border bg-card p-6">
-              <h3 className="font-display text-xl font-bold text-primary">Compliance Snapshot (Brief)</h3>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                {BRIEF_COMPLIANCE.map((item) => (
-                  <div key={item} className="rounded-lg bg-secondary px-4 py-3 font-mono text-xs uppercase tracking-[0.12em] text-primary">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -344,8 +328,35 @@ function AboutPage() {
         </div>
       </section>
 
+      <section className="bg-background py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Appreciation</div>
+            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Recognition moments</h2>
+            <p className="mt-3 max-w-3xl text-muted-foreground">
+              A quick look at employee appreciation highlights from our shop-floor teams.
+            </p>
+          </Reveal>
 
-        {/* Team members */}
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {APPRECIATION_PHOTOS.map((photo) => (
+              <figure
+                key={photo.relativePath}
+                className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]"
+              >
+                <img
+                  src={photo.src}
+                  alt={`Appreciation event at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`}
+                  className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team members */}
       <section className="relative overflow-hidden bg-secondary py-24">
         <div className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-amber/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-20 bottom-6 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
@@ -414,34 +425,6 @@ function AboutPage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
-        </div>
-      </section>
-
-      <section className="bg-background py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Appreciation</div>
-            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Recognition moments</h2>
-            <p className="mt-3 max-w-3xl text-muted-foreground">
-              A quick look at employee appreciation highlights from our shop-floor teams.
-            </p>
-          </Reveal>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {APPRECIATION_PHOTOS.map((photo) => (
-              <figure
-                key={photo.relativePath}
-                className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]"
-              >
-                <img
-                  src={photo.src}
-                  alt={`Appreciation event at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`}
-                  className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  loading="lazy"
-                />
-              </figure>
-            ))}
-          </div>
         </div>
       </section>
 

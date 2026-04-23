@@ -167,11 +167,11 @@ function CareersPage() {
               <span className="h-1 w-1 rounded-full bg-amber" />
               Careers
             </div>
-            <h1 className="font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              Build Your Career in Precision Engineering
+            <h1 className="font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:whitespace-nowrap lg:text-[3.2rem]">
+              Build Your Career With Us
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
-              Join a team that's been shaping India's automotive industry for over 25 years.
+              Join our precision manufacturing team in Pune.
             </p>
           </div>
         </div>
@@ -208,7 +208,7 @@ function CareersPage() {
               Join an ISO 9001:2015 certified manufacturing team trusted by leading automobile OEMs.
             </p>
           </Reveal>
-          <StaggerGroup className="mt-8 grid gap-5 md:grid-cols-2">
+          <StaggerGroup className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {ROLES.map((r) => (
               <StaggerItem key={r.title}>
                 <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-amber/80 hover:shadow-[var(--shadow-elegant)] sm:p-7">
