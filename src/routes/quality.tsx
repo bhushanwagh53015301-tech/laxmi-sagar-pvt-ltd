@@ -190,14 +190,14 @@ function QualityPage() {
             ))}
           </StaggerGroup>
 
-          <Reveal delay={0.15}>
+          {/* <Reveal delay={0.15}>
             <div className="mt-12 grid gap-3 rounded-xl border border-border bg-secondary p-6 font-mono text-xs sm:grid-cols-2 lg:grid-cols-4">
               <div><span className="text-amber">CIN:</span> {SITE.cin}</div>
               <div><span className="text-amber">GST:</span> 27AABCL1234M1Z5</div>
               <div><span className="text-amber">IEC:</span> AABCL1234M</div>
               <div><span className="text-amber">Udyam:</span> UDYAM-MH-26-0123456</div>
             </div>
-          </Reveal>
+          </Reveal> */}
         </div>
       </section>
     </>

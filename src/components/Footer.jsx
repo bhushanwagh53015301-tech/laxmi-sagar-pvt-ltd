@@ -1,5 +1,5 @@
 ﻿import { Link } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { NAV, SITE } from "@/lib/site";
 import brandLogo from "@/assets/Company Logo/L2_No BG_name.png";
 
@@ -69,32 +69,15 @@ export function Footer() {
 
           <div>
             <h4 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-amber">
-              Business Hours
+              Compliance Snapshot
             </h4>
-            <div className="mt-5 space-y-3">
-              {[`Daily: ${SITE.workingHours}`, `${SITE.weeklyOff}: Off`].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 rounded-md border border-white/10 bg-white/5 px-3 py-2.5 text-sm"
-                >
-                  <Clock className="h-4 w-4 text-amber" />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-10 rounded-xl border border-white/10 bg-white/5 p-4 sm:p-5">
-          <div className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-amber">
-            Compliance Snapshot
-          </div>
-          <div className="mt-3 grid gap-2.5 text-xs text-white/80 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">CIN: {SITE.compliance.cin}</div>
-            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">UDYAM: {SITE.compliance.udyam}</div>
-            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">IEC: {SITE.compliance.iec}</div>
-            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">GST: {SITE.compliance.gst}</div>
-            <div className="rounded-md border border-white/10 bg-white/5 px-3 py-2 font-mono">PAN: {SITE.compliance.pan}</div>
+            <ul className="mt-5 space-y-3 text-sm text-white/70">
+              <li>CIN: {SITE.compliance.cin}</li>
+              <li>UDYAM: {SITE.compliance.udyam}</li>
+              <li>IEC: {SITE.compliance.iec}</li>
+              <li>GST: {SITE.compliance.gst}</li>
+              <li>PAN: {SITE.compliance.pan}</li>
+            </ul>
           </div>
         </div>
 
