@@ -265,13 +265,13 @@ function StatsStrip() {
     <section ref={sectionRef} className="relative overflow-hidden bg-primary py-12 sm:py-16">
       <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
       <div className="relative mx-auto max-w-[1700px] px-2 sm:px-4 lg:px-6">
-        <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-2 lg:grid-cols-[1fr_1.35fr_1fr_1.25fr]">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-[1fr_1.35fr_1fr_1.25fr]">
           {stats.map((item, index) => (
             <div
               key={item.label}
               className={`min-w-0 px-2 text-left sm:px-3 lg:px-5 ${index > 0 ? "lg:border-l lg:border-white/10" : ""}`}
             >
-              <p className="whitespace-nowrap font-mono text-[1.7rem] font-semibold leading-none tracking-[0] text-amber drop-shadow-[0_1px_0_rgba(0,0,0,0.35)] sm:text-[2.1rem] lg:text-[2.7rem]">
+              <p className="break-words font-mono text-[1rem] font-semibold leading-tight tracking-[-0.03em] text-amber drop-shadow-[0_1px_0_rgba(0,0,0,0.35)] sm:text-[2.1rem] sm:leading-none sm:tracking-[0] lg:text-[2.7rem]">
                 {item.staticNumber ? (
                   item.staticNumber
                 ) : (
@@ -283,7 +283,7 @@ function StatsStrip() {
                   />
                 )}
               </p>
-              <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.3em] text-white/80 sm:text-xs">
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-white/80 sm:text-xs sm:tracking-[0.3em]">
                 {item.label}
               </p>
             </div>

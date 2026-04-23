@@ -53,10 +53,10 @@ export function Header() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/90 shadow-sm backdrop-blur-lg transition-all duration-300 lg:border-b-0 lg:bg-transparent lg:shadow-none ${
         scrolled
-          ? "border-b border-border bg-background/85 backdrop-blur-lg shadow-sm"
-          : "bg-transparent"
+          ? "lg:border-b lg:border-border lg:bg-background/85 lg:shadow-sm"
+          : ""
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
@@ -116,15 +116,16 @@ export function Header() {
               className="fixed inset-0 z-40 bg-primary/60 backdrop-blur-sm lg:hidden"
             />
             <motion.aside
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
               transition={{ type: "spring", damping: 28, stiffness: 220 }}
-              className="fixed inset-y-0 right-0 z-50 flex w-[88%] max-w-sm flex-col overflow-hidden border-l border-white/10 bg-primary text-primary-foreground shadow-2xl lg:hidden"
+              className="fixed inset-0 z-50 flex min-h-dvh flex-col overflow-y-auto bg-primary text-primary-foreground shadow-2xl lg:hidden"
             >
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_24%,rgba(10,26,47,0.94))]" />
-              <div className="bp-grid pointer-events-none absolute inset-0 text-white/15" />
-              <div className="flex items-center justify-between border-b border-border p-5">
+              <div className="pointer-events-none absolute inset-0 bg-primary/96" />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03)_24%,rgba(10,26,47,0.98))]" />
+              <div className="bp-grid pointer-events-none absolute inset-0 text-white/10" />
+              <div className="relative z-10 flex items-center justify-between border-b border-white/10 px-4 py-4 sm:px-5">
                 <Logo scrolled />
                 <button
                   onClick={() => setOpen(false)}
@@ -134,7 +135,7 @@ export function Header() {
                   <X className="h-6 w-6" />
                 </button>
               </div>
-              <nav className="relative flex flex-1 flex-col gap-1 p-5">
+              <nav className="relative z-10 flex flex-1 flex-col gap-2 px-4 py-6 sm:px-5">
                 {NAV.map((item, i) => (
                   <motion.div
                     key={item.to}
@@ -146,17 +147,17 @@ export function Header() {
                       to={item.to}
                       activeOptions={{ exact: item.to === "/" }}
                       activeProps={{ className: "border-amber/30 bg-white/12 text-amber" }}
-                      className="block rounded-md border border-transparent px-4 py-3 font-display text-base font-semibold uppercase tracking-wider text-white/90 transition-colors hover:border-white/10 hover:bg-white/8 hover:text-white"
+                      className="block rounded-xl border border-white/10 bg-white/5 px-4 py-4 font-display text-lg font-semibold uppercase tracking-[0.18em] text-white/95 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
                     >
                       {item.label}
                     </Link>
                   </motion.div>
                 ))}
               </nav>
-              <div className="relative border-t border-white/10 p-5">
+              <div className="relative z-10 border-t border-white/10 px-4 py-5 sm:px-5">
                 <Link
                   to="/contact"
-                  className="block rounded-md bg-amber px-4 py-3 text-center font-display text-sm font-semibold uppercase tracking-wider text-amber-foreground"
+                  className="block rounded-xl bg-amber px-4 py-4 text-center font-display text-sm font-semibold uppercase tracking-[0.18em] text-amber-foreground"
                 >
                   Request Quote
                 </Link>
