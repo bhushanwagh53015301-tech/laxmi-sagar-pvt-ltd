@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import companyLogo from "@/assets/Company Logo/L2_No BG_name.png";
 
 export function Preloader() {
   const [show, setShow] = useState(true);
@@ -22,7 +23,7 @@ export function Preloader() {
               initial={{ scale: 0.6, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex h-24 w-24 items-center justify-center"
+              className="relative flex h-28 w-28 items-center justify-center sm:h-32 sm:w-32"
             >
               <svg viewBox="0 0 100 100" className="absolute inset-0">
                 <motion.circle
@@ -38,7 +39,17 @@ export function Preloader() {
                   transition={{ duration: 1.1, ease: "easeInOut" }}
                 />
               </svg>
-              <span className="font-display text-3xl font-bold text-white">LS</span>
+              <motion.div
+                animate={{ scale: [1, 1.04, 1] }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+                className="relative h-20 w-20 sm:h-24 sm:w-24"
+              >
+                <img
+                  src={companyLogo}
+                  alt="Laxmi Sagar Engineers logo"
+                  className="h-full w-full object-contain"
+                />
+              </motion.div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
