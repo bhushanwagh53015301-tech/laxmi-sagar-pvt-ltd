@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { ArrowRight, Briefcase, Clock3, GraduationCap, HeartHandshake, MapPin, TrendingUp, Upload } from "lucide-react";
+import { ArrowRight, Briefcase, GraduationCap, HeartHandshake, TrendingUp, Upload } from "lucide-react";
 import { assetsFromCategory, groupBySubPath } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import {
@@ -38,21 +38,57 @@ const ROLES = [
     title: "CNC Operator / Setter",
     exp: "2-6 years",
     loc: "Kuruli, Pune",
+    team: "Machine Shop",
+    type: "Full-time",
+    summary:
+      "Run production on CNC turning lines, manage offsets, and maintain repeatable dimensional quality across shift output.",
+    points: [
+      "Set tools, offsets, and basic program corrections during production.",
+      "Monitor surface finish, cycle stability, and in-process gauging.",
+      "Coordinate with quality and supervisors for first-piece approval.",
+    ],
   },
   {
     title: "Machinist",
     exp: "2-5 years",
     loc: "Kuruli, Pune",
+    team: "Conventional & Support Operations",
+    type: "Full-time",
+    summary:
+      "Handle precision machining and support operations with a strong focus on drawing interpretation, setup discipline, and part consistency.",
+    points: [
+      "Perform machining as per process sheets and engineering drawings.",
+      "Check dimensions using verniers, micrometers, and shop-floor gauges.",
+      "Support production flow by maintaining machine readiness and accuracy.",
+    ],
   },
   {
     title: "Quality Inspector (CMM)",
     exp: "2-5 years",
     loc: "Kuruli, Pune",
+    team: "Quality",
+    type: "Full-time",
+    summary:
+      "Inspect critical components, validate dimensional compliance, and support traceable documentation inside an ISO-controlled process.",
+    points: [
+      "Perform in-process and final inspection using gauges and CMM reports.",
+      "Record observations clearly and escalate deviations without delay.",
+      "Work closely with production to improve first-pass acceptance.",
+    ],
   },
   {
     title: "Production Engineer",
     exp: "3-8 years",
     loc: "Kuruli, Pune",
+    team: "Production Planning & Execution",
+    type: "Full-time",
+    summary:
+      "Own daily production coordination, process adherence, and output planning across machining operations and dispatch readiness.",
+    points: [
+      "Track production targets, bottlenecks, and shift-wise execution.",
+      "Improve line balancing, setup planning, and process discipline.",
+      "Coordinate with quality, maintenance, and stores for smooth throughput.",
+    ],
   },
 ];
 
@@ -94,6 +130,9 @@ const EMPLOYEE_TESTIMONIALS = [
   },
 ];
 const EVENT_PHOTOS = assetsFromCategory("Event Photos");
+const APPRECIATION_PHOTOS = EVENT_PHOTOS.filter((item) =>
+  /apreciation|appreciation/i.test(item.subPath),
+);
 const CELEBRATION_PHOTOS = EVENT_PHOTOS.filter(
   (item) => !/apreciation|appreciation/i.test(item.subPath),
 );
@@ -160,7 +199,7 @@ function CareersPage() {
 
   return (
     <>
-      <section className="bg-primary pb-16 pt-28 text-primary-foreground sm:pb-20 sm:pt-32">
+      <section className="bg-primary pb-12 pt-20 text-primary-foreground sm:pb-20 sm:pt-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-amber">
@@ -177,7 +216,7 @@ function CareersPage() {
         </div>
       </section>
 
-      <section className="bg-background py-24">
+      <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Why Laxmi Sagar</div>
@@ -199,47 +238,72 @@ function CareersPage() {
         </div>
       </section>
 
-      <section className="bg-secondary py-24">
+      <section className="bg-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Open Positions</div>
-            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">We're hiring</h2>
-            <p className="mt-3 max-w-3xl text-muted-foreground">
-              Join an ISO 9001:2015 certified manufacturing team trusted by leading automobile OEMs.
-            </p>
-          </Reveal>
-          <StaggerGroup className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {ROLES.map((r) => (
-              <StaggerItem key={r.title}>
-                <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-amber/80 hover:shadow-[var(--shadow-elegant)] sm:p-7">
-                  <div className="w-full">
-                    <div className="font-sans text-2xl font-bold text-primary">{r.title}</div>
-                    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
-                      <span className="inline-flex items-center gap-1.5">
-                        <Clock3 className="h-4 w-4 text-amber" />
-                        <span>{r.exp}</span>
-                      </span>
-                      <span className="inline-flex items-center gap-1.5">
-                        <MapPin className="h-4 w-4 text-amber" />
-                        <span>{r.loc}</span>
-                      </span>
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <Reveal>
+              <div className="rounded-[2rem] border border-border bg-card p-7 shadow-sm sm:p-9">
+                <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Open Positions</div>
+                <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">We're hiring</h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  Join an ISO 9001:2015 certified manufacturing team trusted by leading automobile OEMs.
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  We are looking for people who care about precision, process discipline, and dependable execution on the shop floor.
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  At Laxmi Sagar Engineers, jobs are shaped around real production responsibility. Team members work on machining, inspection, and process-driven manufacturing programs where consistency, ownership, and practical skill matter every day.
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  If you are comfortable in a factory environment, ready to learn, and serious about building a long-term career in engineering manufacturing, this is a strong place to grow.
+                </p>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {[
+                    "ISO 9001:2015 process environment",
+                    "Hands-on machine and inspection exposure",
+                    "Long-term manufacturing career growth",
+                    "Stable Pune-based industrial opportunity",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground"
+                    >
+                      {item}
                     </div>
-                  </div>
-                  <a
-                    href="#apply"
-                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 font-sans text-xs font-semibold uppercase tracking-wider text-primary-foreground transition-all hover:bg-primary/90"
-                  >
-                    Apply Now
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </a>
+                  ))}
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <div className="rounded-[2rem] border border-border bg-card p-6 shadow-sm sm:p-8">
+                <h3 className="font-sans text-2xl font-bold text-primary">Job Roles</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  Current openings across production and quality. Each role below includes the experience band, location, and the kind of work expected on the floor.
+                </p>
+                <StaggerGroup className="mt-6 space-y-4">
+                  {ROLES.map((r) => (
+                    <StaggerItem key={r.title}>
+                      <div className="rounded-2xl border border-border bg-background px-5 py-5 transition-all hover:border-amber/70 hover:shadow-sm">
+                        <div className="font-sans text-xl font-bold text-primary">{r.title}</div>
+                      </div>
+                    </StaggerItem>
+                  ))}
+                </StaggerGroup>
+                <a
+                  href="#apply"
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 font-sans text-xs font-semibold uppercase tracking-wider text-primary-foreground transition-all hover:bg-primary/90"
+                >
+                  Apply Now
+                  <ArrowRight className="h-4 w-4 transition-transform hover:translate-x-0.5" />
+                </a>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      <section className="bg-background py-24">
+      <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Team Voices</div>
@@ -252,7 +316,7 @@ function CareersPage() {
             <Carousel
               setApi={setTestimonialApi}
               opts={{ align: "start", loop: true }}
-              className="mt-12"
+              className="mt-8 sm:mt-12"
               onMouseEnter={() => setPauseTestimonials(true)}
               onMouseLeave={() => setPauseTestimonials(false)}
               onFocus={() => setPauseTestimonials(true)}
@@ -261,15 +325,15 @@ function CareersPage() {
               <CarouselContent>
                 {EMPLOYEE_TESTIMONIALS.map((t) => (
                   <CarouselItem key={t.name}>
-                    <article className="relative overflow-hidden rounded-2xl border border-border bg-card p-7 md:p-10">
+                    <article className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 md:p-7">
                       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber/70 via-amber to-amber/70" />
                       <div className="inline-flex items-center rounded-full border border-border bg-background px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                         Employee Testimonial
                       </div>
-                      <p className="mt-6 font-sans text-5xl leading-none text-amber">"</p>
-                      <p className="mt-4 max-w-4xl text-base leading-relaxed text-foreground md:text-lg">{t.quote}</p>
-                      <div className="mt-8 flex items-center gap-4 border-t border-border pt-5">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber/15 font-mono text-xs font-semibold uppercase tracking-wider text-amber">
+                      <p className="mt-4 font-sans text-4xl leading-none text-amber">"</p>
+                      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-foreground md:text-base">{t.quote}</p>
+                      <div className="mt-6 flex items-center gap-3 border-t border-border pt-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber/15 font-mono text-[11px] font-semibold uppercase tracking-wider text-amber">
                           {t.name
                             .split(" ")
                             .map((part) => part[0])
@@ -277,8 +341,8 @@ function CareersPage() {
                             .slice(0, 2)}
                         </div>
                         <div>
-                          <p className="font-sans text-base font-bold text-primary">{t.name}</p>
-                          <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground md:text-[11px]">
+                          <p className="font-sans text-sm font-bold text-primary md:text-base">{t.name}</p>
+                          <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
                             {t.role} | {t.tenure}
                           </p>
                         </div>
@@ -305,7 +369,7 @@ function CareersPage() {
         </div>
       </section>
 
-      <section className="bg-secondary py-24">
+      <section className="bg-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Event Celebrations</div>
@@ -316,6 +380,32 @@ function CareersPage() {
           </Reveal>
 
           <div className="mt-10 space-y-8">
+            {APPRECIATION_PHOTOS.length > 0 ? (
+              <div>
+                <div className="mb-4 flex items-end justify-between gap-4">
+                  <h3 className="font-display text-xl font-bold text-primary">Recognition moments</h3>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                    {APPRECIATION_PHOTOS.length} photos
+                  </p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {APPRECIATION_PHOTOS.map((photo) => (
+                    <figure
+                      key={photo.relativePath}
+                      className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]"
+                    >
+                      <img
+                        src={photo.src}
+                        alt={`Appreciation event at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`}
+                        className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
             {Object.entries(CELEBRATIONS_BY_TYPE).map(([groupName, photos]) => (
               <div key={groupName}>
                 <div className="mb-4 flex items-end justify-between gap-4">
@@ -345,7 +435,9 @@ function CareersPage() {
         </div>
       </section>
 
-      <section id="apply" className="bg-background py-24">
+      
+
+      <section id="apply" className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Apply</div>
@@ -427,4 +519,3 @@ function Field({ label, name, type = "text", required }) {
     </div>
   );
 }
-

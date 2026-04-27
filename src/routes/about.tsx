@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Target, Eye, Heart, Award } from "lucide-react";
+import { Target, Eye, Heart } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import ownerPhoto from "@/assets/owner.png";
+import isoCertificateImage from "@/assets/certificate/iso-certificate_page-0001.jpg";
+import zedCertificateImage from "@/assets/certificate/ZED Certificate_page-0001.jpg";
 import {
   type CarouselApi,
   Carousel,
@@ -51,13 +53,6 @@ const MILESTONES = [
   { year: "2021", text: "Crossed 200,000 components per year across 50+ OEM customers." },
   { year: "2026", text: "Modern Kuruli facility upgrade — automated inspection and traceability." },
 ];
-const BRIEF_ADDITIONS = [
-  "Founded in 1997 by Mr. Dattatray S. Rokhade and Mr. Laxmikant D. Rokhade.",
-  "Incorporated in 2020 as Laxmi Sagar Engineers Pvt Ltd for structured long-term growth.",
-  "25,000+ sq ft facility with planned expansion to 40,000+ sq ft.",
-  "Focused on domestic OEMs and international automotive programs.",
-];
-
 const BRIEF_DIRECTOR_MESSAGES = [
   {
     name: "Mr. Dattatray S. Rokhade",
@@ -92,8 +87,8 @@ const BRIEF_DIRECTOR_MESSAGES = [
 ];
 
 const CERTIFICATIONS = [
-  { title: "ISO 9001:2015", file: "/certificates/iso-certificate.pdf" },
-  { title: "ZED Certificate", file: "/certificates/zed-certificate.pdf" },
+  { title: "ISO 9001:2015", image: isoCertificateImage },
+  { title: "ZED Certificate", image: zedCertificateImage },
 ];
 
 const DIRECTORS = [
@@ -160,9 +155,9 @@ function AboutPage() {
               Built on the floor, refined by every part we ship.
             </h2>
             <div className="mt-6 space-y-4 text-muted-foreground">
-              <p>{SITE.legal} began in {SITE.established} as a small jobwork shop serving local engineering firms. The founding promise was simple — make every part right the first time.</p>
-              <p>Forty-five years later, that same promise drives a 35,000 sq.ft. facility in Kuruli running multi-axis CNC and VMC lines, induction hardening, and a calibrated inspection lab — all under one roof.</p>
-              <p>We work directly with OEM engineering teams from prototype to mass production, taking ownership of feasibility, fixturing, process planning and traceability so our customers can focus on what they build.</p>
+              <p>{SITE.legal} was founded in 1997 by Mr. Dattatray S. Rokhade and Mr. Laxmikant D. Rokhade with a simple promise: make every part right the first time and earn long-term customer trust through consistent execution.</p>
+              <p>That promise has grown into a 25,000+ sq.ft. facility with planned expansion to 40,000+ sq.ft., focused on domestic OEMs as well as international automotive programs that demand precision, reliability, and process discipline.</p>
+              <p>In 2020, the company was incorporated as Laxmi Sagar Engineers Pvt Ltd to support structured long-term growth. Today, we work directly with OEM engineering teams from prototype to mass production, taking ownership of feasibility, fixturing, process planning and traceability so our customers can focus on what they build.</p>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
@@ -207,28 +202,16 @@ function AboutPage() {
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            {/* <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Added From PDF Brief</div> */}
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
-              Additional company information
+              The People Behind the Precision
             </h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
-              Existing content is retained. The details below are added from the official website content brief.
+              Leadership shaped by hands-on manufacturing experience, operational discipline, and long-term industrial growth.
             </p>
           </Reveal>
 
-          <StaggerGroup className="mt-8 grid gap-4 sm:grid-cols-2">
-            {BRIEF_ADDITIONS.map((item) => (
-              <StaggerItem key={item}>
-                <div className="rounded-xl border border-border bg-card p-5 text-sm leading-relaxed text-muted-foreground">
-                  {item}
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-
           <div className="mt-10 space-y-6">
             <div className="rounded-xl border border-border bg-card p-6">
-              <h3 className="font-display text-xl font-bold text-primary">The People Behind the Precision</h3>
               <div className="mt-6 grid gap-5 md:grid-cols-2">
                 {BRIEF_DIRECTOR_MESSAGES.map((person) => (
                   <article
@@ -306,29 +289,30 @@ function AboutPage() {
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Recognised & Certified</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Certifications</h2>
+            <p className="mt-3 max-w-3xl text-muted-foreground">
+              Quality and manufacturing standards backed by officially issued certifications.
+            </p>
           </Reveal>
           <StaggerGroup className="mt-12 grid gap-5 sm:grid-cols-2">
             {CERTIFICATIONS.map((cert) => (
               <StaggerItem key={cert.title}>
-                <a
-                  href={cert.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]"
-                >
-                  <Award className="h-10 w-10 flex-shrink-0 text-amber" />
-                  <div>
-                    <div className="font-display text-sm font-semibold uppercase tracking-wide text-primary">{cert.title}</div>
-                    <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Open PDF</div>
+                <figure className="group overflow-hidden rounded-2xl bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]">
+                  <div className="bg-white p-4 sm:p-5">
+                    <img
+                      src={cert.image}
+                      alt={`${cert.title} certificate`}
+                      className="h-[320px] w-full rounded-lg object-contain sm:h-[380px]"
+                      loading="lazy"
+                    />
                   </div>
-                </a>
+                </figure>
               </StaggerItem>
             ))}
           </StaggerGroup>
         </div>
       </section>
 
-      <section className="bg-background py-24">
+      {/* <section className="bg-background py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Appreciation</div>
@@ -354,7 +338,7 @@ function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Team members */}
       <section className="relative overflow-hidden bg-secondary py-24">
@@ -364,7 +348,7 @@ function AboutPage() {
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Team Members</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
-              Our core team
+              Key Team Members
             </h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
               The people who drive quality, production, HR and operations every day.
@@ -379,13 +363,14 @@ function AboutPage() {
               {TEAM_MEMBERS.map((member) => (
                 <CarouselItem key={member.role} className="basis-full pl-0">
                   <article className="group overflow-hidden rounded-2xl border border-border/70 bg-card/95 shadow-[var(--shadow-elegant)]">
-                    <div className="relative aspect-[4/5] bg-gradient-to-b from-white via-slate-50 to-slate-100 p-4">
+                    <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50">
                       <img
                         src={member.image}
                         alt={member.role}
-                        className="h-full w-full object-contain object-top"
+                        className="h-full w-full object-cover object-top"
                         loading="lazy"
                       />
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/10 to-transparent" />
                     </div>
                     <div className="border-t border-border/70 bg-card px-5 py-4">
                       <p className="font-display text-xl font-bold uppercase tracking-wide text-primary">
@@ -405,13 +390,14 @@ function AboutPage() {
             {TEAM_MEMBERS.map((member) => (
               <StaggerItem key={member.role}>
                 <article className="group overflow-hidden rounded-2xl border border-border/70 bg-card/95 shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-1 hover:border-amber/50">
-                  <div className="relative aspect-[4/5] bg-gradient-to-b from-white via-slate-50 to-slate-100 p-4 md:p-5">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50">
                     <img
                       src={member.image}
                       alt={member.role}
-                      className="h-full w-full object-contain object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
                       loading="lazy"
                     />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/10 to-transparent" />
                   </div>
                   <div className="border-t border-border/70 bg-card px-5 py-4">
                     <p className="font-display text-xl font-bold uppercase tracking-wide text-primary">

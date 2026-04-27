@@ -61,7 +61,7 @@ function ContactPage() {
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
-      <section className="bg-background py-24">
+      <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-[1fr_1.2fr] lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Get in Touch</div>
@@ -146,7 +146,7 @@ function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-secondary py-24">
+      <section className="bg-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Find Us</div>

@@ -1,27 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Cog, Cpu, Flame, Ruler, Microscope, Wrench, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { IMG } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
+import isoCertificateImage from "@/assets/certificate/iso-certificate_page-0001.jpg";
+import zedCertificateImage from "@/assets/certificate/ZED Certificate_page-0001.jpg";
+import {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 export const Route = createFileRoute("/capabilities")({
   head: () => ({
     meta: [
-      { title: "Capabilities — CNC, VMC, Induction Hardening | Laxmi Sagar Engineers" },
+      { title: "Capabilities - CNC, VMC, Induction Hardening | Laxmi Sagar Engineers" },
       {
         name: "description",
         content:
-          "Multi-axis CNC, VMC machining, induction hardening, facing & centring, calibrated inspection — full precision manufacturing under one roof in Pune.",
+          "Multi-axis CNC, VMC machining, induction hardening, facing and centering, calibrated inspection - full precision manufacturing under one roof in Pune.",
       },
       { property: "og:title", content: "Capabilities | Laxmi Sagar Engineers" },
       {
         property: "og:description",
         content:
-          "End-to-end forging job-work: facing → CNC → VMC → hardening → inspection → dispatch. Explore our full process and equipment list.",
+          "End-to-end forging job-work: facing to CNC to VMC to hardening to inspection to dispatch. Explore our full process and equipment list.",
       },
       { property: "og:image", content: IMG.cnc },
       { name: "twitter:image", content: IMG.cnc },
@@ -29,15 +37,6 @@ export const Route = createFileRoute("/capabilities")({
   }),
   component: CapabilitiesPage,
 });
-
-const INFRA = [
-  { icon: Cog, title: "CNC Turning", specs: "Up to 8 multi-axis CNC lines · Ø6–Ø250mm · Bar & chuck", img: IMG.cnc },
-  { icon: Cpu, title: "VMC Machining", specs: "3-axis & 4-axis VMC · Bed up to 1000×500mm · ±0.01mm", img: IMG.vmc },
-  { icon: Flame, title: "Induction Hardening", specs: "In-house single-shot & scan hardening · 1.5–4mm case depth", img: IMG.hardening },
-  { icon: Ruler, title: "Facing & Centering", specs: "Auto facing-centring lines · throughput 600+ pcs/hr", img: IMG.facing },
-  { icon: Microscope, title: "Inspection Lab", specs: "CMM · profile projector · hardness · roughness · gauges", img: IMG.inspection },
-  { icon: Wrench, title: "Tool Room", specs: "In-house fixturing & tooling for fast NPD turnaround", img: IMG.factory },
-];
 
 const STEPS = [
   {
@@ -78,19 +77,21 @@ const STEPS = [
 ];
 
 const COMPONENTS = [
-  { name: "Transmission Shafts", mat: "EN8 / EN24", tol: "±0.01mm" },
-  { name: "Crankshaft Pins", mat: "20MnCr5", tol: "±0.008mm" },
-  { name: "Differential Pinions", mat: "16MnCr5", tol: "±0.012mm" },
-  { name: "Engine Valves", mat: "SUH3", tol: "±0.005mm" },
-  { name: "Gear Blanks", mat: "SAE 8620", tol: "±0.015mm" },
-  { name: "Hub Spindles", mat: "EN19", tol: "±0.01mm" },
-  { name: "Wheel Studs", mat: "10B21", tol: "±0.008mm" },
-  { name: "King Pins", mat: "EN24", tol: "±0.01mm" },
-  { name: "Camshafts", mat: "SAE 1045", tol: "±0.012mm" },
-  { name: "Connecting Rods", mat: "C70S6", tol: "±0.01mm" },
+  { name: "Transmission Shafts", mat: "EN8 / EN24", tol: "+/-0.01mm" },
+  { name: "Crankshaft Pins", mat: "20MnCr5", tol: "+/-0.008mm" },
+  { name: "Differential Pinions", mat: "16MnCr5", tol: "+/-0.012mm" },
+  { name: "Engine Valves", mat: "SUH3", tol: "+/-0.005mm" },
+  { name: "Gear Blanks", mat: "SAE 8620", tol: "+/-0.015mm" },
+  { name: "Hub Spindles", mat: "EN19", tol: "+/-0.01mm" },
+  { name: "Wheel Studs", mat: "10B21", tol: "+/-0.008mm" },
+  { name: "King Pins", mat: "EN24", tol: "+/-0.01mm" },
+  { name: "Camshafts", mat: "SAE 1045", tol: "+/-0.012mm" },
+  { name: "Connecting Rods", mat: "C70S6", tol: "+/-0.01mm" },
 ];
 
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
+const COMPANY_PHOTOS = assetsFromCategory("Company Photos");
+
 const PRODUCT_LINES = [
   {
     category: "Transmission Gears",
@@ -136,6 +137,77 @@ const CERT_DOWNLOADS = [
   { title: "ZED Certificate", file: "/certificates/zed-certificate.pdf" },
 ];
 
+const CAPABILITY_FLOW = [
+  {
+    id: "infra",
+    badge: "01 Infrastructure",
+    title: "Advanced Manufacturing Infrastructure",
+    description:
+      "A disciplined facility layout designed for forged and machined component production with controlled movement from incoming material to final dispatch.",
+    notes: [
+      "25,000+ sq ft operating footprint with expansion planned beyond 40,000+ sq ft.",
+      "Dedicated production zones for machining, heat treatment, inspection, and packing.",
+      "Structured floor planning supports traceability, process discipline, and smoother execution.",
+    ],
+    images: [
+      {
+        src: COMPANY_PHOTOS[0]?.src ?? IMG.factory,
+        alt: "Laxmi Sagar Engineers facility exterior",
+      },
+      {
+        src: IMG.factory,
+        alt: "Manufacturing facility infrastructure overview",
+      },
+      {
+        src: IMG.heroFactory,
+        alt: "Factory layout and industrial infrastructure",
+      },
+    ],
+  },
+  {
+    id: "machine",
+    badge: "02 Machine",
+    title: "Machine Capacity & Production Readiness",
+    description:
+      "CNC, VMC, and supporting production equipment are aligned to handle forged parts with repeatable machining quality and practical job-work flexibility.",
+    notes: [
+      "Configured for turning, drilling, milling, and component-specific machining routes.",
+      "Suitable for shafts, yokes, flanges, bushes, spindles, and similar precision parts.",
+      "Machine availability is structured around throughput, dimensional control, and stable output.",
+    ],
+    images: PRODUCT_PHOTOS.slice(0, 5).map((item) => ({
+      src: item.src,
+      alt: cleanLabel(item.filename),
+    })),
+  },
+  {
+    id: "product",
+    badge: "03 Product",
+    title: "Product Range & Certified Systems",
+    description:
+      "Representative product coverage and certification support help show manufacturing scope, customer confidence, and reliable production readiness.",
+    notes: [
+      "Product examples highlight the range of parts supported across precision machining programs.",
+      "Certificates reinforce process discipline, consistency, and customer-facing credibility.",
+      "Visual proof of products and compliance helps present a stronger capability story.",
+    ],
+    images: [
+      {
+        src: isoCertificateImage,
+        alt: "ISO 9001 certificate",
+      },
+      {
+        src: zedCertificateImage,
+        alt: "ZED certificate",
+      },
+      {
+        src: IMG.inspection,
+        alt: "Inspection and quality verification setup",
+      },
+    ],
+  },
+];
+
 function cleanLabel(text: string) {
   return text
     .replace(/\.[^.]+$/, "")
@@ -145,20 +217,127 @@ function cleanLabel(text: string) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function CapabilityImageSlider({
+  images,
+  title,
+}: {
+  images: Array<{ src: string; alt: string }>;
+  title: string;
+}) {
+  const [api, setApi] = useState<CarouselApi>();
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      if (api.canScrollNext()) {
+        api.scrollNext();
+      } else {
+        api.scrollTo(0);
+      }
+    }, 3200);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [api]);
+
+  return (
+    <div className="relative overflow-hidden rounded-[1.75rem] border border-border/70 bg-card shadow-[var(--shadow-elegant)]">
+      <Carousel
+        setApi={setApi}
+        opts={{ align: "start", loop: true }}
+        className="w-full"
+      >
+        <CarouselContent className="ml-0">
+          {images.map((image) => (
+            <CarouselItem key={`${title}-${image.alt}`} className="pl-0">
+              <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary/20 to-transparent" />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+    </div>
+  );
+}
+
+function CapabilityFlowSection() {
+  return (
+    <section className="bg-background py-14 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal>
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Manufacturing Setup & Quality Flow</div>
+          <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
+            Infrastructure, machine capacity, and quality control in one clear flow.
+          </h2>
+          <p className="mt-3 max-w-3xl text-muted-foreground">
+            Ordered the way your client asked for it: infrastructure first, machine second, and quality control third.
+          </p>
+        </Reveal>
+
+        <div className="mt-10 space-y-8 sm:mt-14 sm:space-y-10">
+          {CAPABILITY_FLOW.map((item, index) => {
+            const reversed = index % 2 === 1;
+
+            return (
+              <Reveal key={item.id} delay={index * 0.08}>
+                <article className="grid gap-6 rounded-[2rem] border border-border/70 bg-card/90 p-5 shadow-sm sm:p-7 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
+                  <div className={reversed ? "lg:order-2" : ""}>
+                    <div className="inline-flex rounded-full border border-amber/30 bg-amber/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
+                      {item.badge}
+                    </div>
+                    <h3 className="mt-4 font-display text-2xl font-bold text-primary sm:text-3xl">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      {item.description}
+                    </p>
+                    <div className="mt-5 space-y-3">
+                      {item.notes.map((note) => (
+                        <div
+                          key={note}
+                          className="rounded-xl border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground"
+                        >
+                          {note}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={reversed ? "lg:order-1" : ""}>
+                    <CapabilityImageSlider images={item.images} title={item.title} />
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProcessFlow() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="relative overflow-hidden bg-primary py-24 text-primary-foreground sm:py-32">
+    <section className="relative overflow-hidden bg-primary py-14 text-primary-foreground sm:py-32">
       <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-3xl">
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// The Process</div>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">From raw forging to dispatch — one continuous flow.</h2>
+          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">From raw forging to dispatch - one continuous flow.</h2>
           <p className="mt-4 text-white/75">Every part traced through every step. Process discipline is what keeps our first-pass yield above 99.6%.</p>
         </Reveal>
 
-        <div className="relative mt-16">
+        <div className="relative mt-10 sm:mt-16">
           <svg viewBox="0 0 1000 60" className="absolute left-0 right-0 top-8 hidden h-12 w-full lg:block" preserveAspectRatio="none">
             <motion.path
               d="M 20 30 L 980 30"
@@ -179,62 +358,64 @@ function ProcessFlow() {
               const showAbove = index % 2 === 0;
 
               return (
-              <StaggerItem key={s.n}>
-                <div
-                  className="group relative flex flex-col items-center text-center"
-                  onMouseEnter={() => setActiveStep(index)}
-                >
-                  {isActive && showAbove ? (
-                    <div className="mb-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
+                <StaggerItem key={s.n}>
+                  <div
+                    className="group relative flex flex-col items-center text-center"
+                    onMouseEnter={() => setActiveStep(index)}
+                  >
+                    {isActive && showAbove ? (
+                      <div className="mb-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
+                          {s.n} · {s.t}
+                        </p>
+                        <p className="mt-2 text-xs leading-relaxed text-white/85">{s.info}</p>
+                      </div>
+                    ) : null}
+
+                    <button
+                      type="button"
+                      onClick={() => setActiveStep(index)}
+                      className={`relative z-10 flex h-20 w-20 items-center justify-center rounded-full border-2 font-display text-xl font-bold transition-all ${
+                        isActive
+                          ? "scale-110 border-amber bg-amber text-primary"
+                          : "border-amber bg-primary text-amber group-hover:scale-110 group-hover:bg-amber group-hover:text-primary"
+                      }`}
+                      aria-label={`Show details for ${s.t}`}
+                    >
+                      {s.n}
+                    </button>
+                    <div className="mt-4 font-display text-sm font-semibold uppercase tracking-wider">{s.t}</div>
+
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        opacity: isActive ? 1 : 0,
+                        y: isActive ? 0 : showAbove ? 6 : -6,
+                      }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className={`pointer-events-none absolute z-20 hidden w-[230px] rounded-lg border border-amber/40 bg-primary/95 p-3 text-left shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur lg:block ${
+                        showAbove ? "bottom-[122px]" : "top-[122px]"
+                      } ${index === 0 ? "left-0 translate-x-0" : ""} ${
+                        index > 0 && index < STEPS.length - 1 ? "left-1/2 -translate-x-1/2" : ""
+                      } ${index === STEPS.length - 1 ? "right-0 translate-x-0" : ""}`}
+                    >
                       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
                         {s.n} · {s.t}
                       </p>
                       <p className="mt-2 text-xs leading-relaxed text-white/85">{s.info}</p>
-                    </div>
-                  ) : null}
+                    </motion.div>
 
-                  <button
-                    type="button"
-                    onClick={() => setActiveStep(index)}
-                    className={`relative z-10 flex h-20 w-20 items-center justify-center rounded-full border-2 font-display text-xl font-bold transition-all ${
-                      isActive
-                        ? "scale-110 border-amber bg-amber text-primary"
-                        : "border-amber bg-primary text-amber group-hover:scale-110 group-hover:bg-amber group-hover:text-primary"
-                    }`}
-                    aria-label={`Show details for ${s.t}`}
-                  >
-                    {s.n}
-                  </button>
-                  <div className="mt-4 font-display text-sm font-semibold uppercase tracking-wider">{s.t}</div>
-
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      opacity: isActive ? 1 : 0,
-                      y: isActive ? 0 : showAbove ? 6 : -6,
-                    }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className={`pointer-events-none absolute z-20 hidden w-[230px] rounded-lg border border-amber/40 bg-primary/95 p-3 text-left shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur lg:block ${
-                      showAbove ? "bottom-[122px]" : "top-[122px]"
-                    } ${index === 0 ? "left-0 translate-x-0" : ""} ${
-                      index > 0 && index < STEPS.length - 1 ? "left-1/2 -translate-x-1/2" : ""
-                    } ${index === STEPS.length - 1 ? "right-0 translate-x-0" : ""}`}
-                  >
-                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">{s.n} · {s.t}</p>
-                    <p className="mt-2 text-xs leading-relaxed text-white/85">{s.info}</p>
-                  </motion.div>
-
-                  {isActive && !showAbove ? (
-                    <div className="mt-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
-                        {s.n} · {s.t}
-                      </p>
-                      <p className="mt-2 text-xs leading-relaxed text-white/85">{s.info}</p>
-                    </div>
-                  ) : null}
-                </div>
-              </StaggerItem>
-            );
+                    {isActive && !showAbove ? (
+                      <div className="mt-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
+                          {s.n} · {s.t}
+                        </p>
+                        <p className="mt-2 text-xs leading-relaxed text-white/85">{s.info}</p>
+                      </div>
+                    ) : null}
+                  </div>
+                </StaggerItem>
+              );
             })}
           </StaggerGroup>
         </div>
@@ -251,7 +432,7 @@ function ProductVisualsSection() {
   ];
 
   return (
-    <section className="bg-secondary py-24">
+    <section className="bg-secondary py-14 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Product Visuals</div>
@@ -289,9 +470,6 @@ function ProductVisualsSection() {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent" />
-                  <div className="absolute left-3 top-3 rounded-full border border-white/25 bg-primary/65 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white/85 backdrop-blur">
-                    Sample {String(index + 1).padStart(2, "0")}
-                  </div>
                   <figcaption className="absolute inset-x-0 bottom-0 p-4">
                     <p className="font-display text-base font-semibold uppercase tracking-wide text-white">
                       {cleanLabel(item.filename)}
@@ -333,73 +511,12 @@ function CapabilitiesPage() {
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
-      {/* Infrastructure */}
-      <section className="bg-background py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Manufacturing Infrastructure</div>
-            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Equipment & lines</h2>
-          </Reveal>
-          <StaggerGroup className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {INFRA.map((it) => (
-              <StaggerItem key={it.title}>
-                <div className="sheen group h-full overflow-hidden rounded-xl border border-border bg-card transition-shadow hover:shadow-[var(--shadow-elegant)]">
-                  <div className="relative h-44 overflow-hidden">
-                    <img src={it.img} alt={it.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent" />
-                    <div className="absolute bottom-3 left-4 flex h-10 w-10 items-center justify-center rounded-md bg-amber text-amber-foreground">
-                      <it.icon className="h-5 w-5" />
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-display text-lg font-bold uppercase tracking-wide text-primary">{it.title}</h3>
-                    <p className="mt-2 font-mono text-xs leading-relaxed text-muted-foreground">{it.specs}</p>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-
-          <Reveal delay={0.15}>
-            <div className="mt-12 rounded-2xl border border-border bg-card p-6 sm:p-8">
-              <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Added From PDF Brief</div>
-              <h3 className="mt-3 font-display text-2xl font-bold text-primary">Infrastructure at a glance</h3>
-              <div className="mt-6 overflow-x-auto">
-                <table className="w-full min-w-[520px] border-collapse">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="py-3 text-left font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">Parameter</th>
-                      <th className="py-3 text-left font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">Detail</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      ["Current Plant Size", "25,000+ sq ft"],
-                      ["Planned Expansion", "40,000+ sq ft"],
-                      ["CNC Lathes", "25+ machines"],
-                      ["VMC Machines", "3–4 machines"],
-                      ["Induction Hardening", "1 unit"],
-                      ["Facing & Centering", "Dedicated line"],
-                      ["Quality Lab", "Calibrated instruments"],
-                      ["Location", "Kuruli, Pune (near Chakan industrial belt)"],
-                    ].map((row) => (
-                      <tr key={row[0]} className="border-b border-border/70 last:border-0">
-                        <td className="py-3 pr-6 font-display text-sm font-semibold text-primary">{row[0]}</td>
-                        <td className="py-3 text-sm text-muted-foreground">{row[1]}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <CapabilityFlowSection />
 
       <ProcessFlow />
       <ProductVisualsSection />
 
-      <section className="bg-background py-24">
+      {/* <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Product-Wise Capability</div>
@@ -467,9 +584,9 @@ function CapabilitiesPage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="bg-secondary py-24">
+      {/* <section className="bg-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Process Capability Matrix</div>
@@ -498,18 +615,17 @@ function CapabilitiesPage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Component expertise */}
-      <section className="bg-secondary py-24">
+      <section className="bg-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// What We Make</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Component expertise</h2>
-            <p className="mt-3 max-w-2xl text-muted-foreground">Hover any tile to see typical material and tolerance band — we work to drawing.</p>
+            <p className="mt-3 max-w-2xl text-muted-foreground">Hover any tile to see typical material and tolerance band - we work to drawing.</p>
           </Reveal>
 
-          <StaggerGroup className="mt-12 flex flex-wrap gap-3">
+          <StaggerGroup className="mt-8 flex flex-wrap gap-3 sm:mt-12">
             {COMPONENTS.map((c) => (
               <StaggerItem key={c.name}>
                 <div className="group relative cursor-default rounded-full border border-border bg-card px-5 py-3 font-display text-sm font-semibold uppercase tracking-wide text-primary transition-all hover:-translate-y-0.5 hover:border-amber hover:bg-amber hover:text-amber-foreground hover:shadow-[var(--shadow-amber)]">
@@ -524,11 +640,11 @@ function CapabilitiesPage() {
           </StaggerGroup>
 
           <Reveal delay={0.15}>
-            <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            <div className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-3">
               {[
                 { k: "Materials", v: "EN8 / EN19 / EN24 · 16MnCr5 · 20MnCr5 · SAE 1045 / 8620 · C70S6" },
-                { k: "Size Range", v: "Ø6 – Ø250 mm · length up to 600 mm" },
-                { k: "Tolerances", v: "Up to ±5 microns on critical features" },
+                { k: "Size Range", v: "Dia 6 - 250 mm · length up to 600 mm" },
+                { k: "Tolerances", v: "Up to +/-5 microns on critical features" },
               ].map((it) => (
                 <div key={it.k} className="rounded-xl border border-border bg-card p-6">
                   <div className="font-mono text-xs uppercase tracking-[0.2em] text-amber">{it.k}</div>
@@ -539,7 +655,7 @@ function CapabilitiesPage() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <div className="mt-16 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:mt-16">
               <MagneticButton to="/contact" variant="amber">
                 Get a feasibility note <ArrowRight className="h-4 w-4" />
               </MagneticButton>
@@ -548,7 +664,7 @@ function CapabilitiesPage() {
         </div>
       </section>
 
-      <section className="bg-background py-24">
+      {/* <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Proof & Compliance</div>
@@ -574,7 +690,7 @@ function CapabilitiesPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

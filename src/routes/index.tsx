@@ -6,6 +6,9 @@ import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
+import companyBannerVideo from "@/assets/Company Photos/DJI_0185.MP4";
+import companyBannerPoster from "@/assets/Company Photos/LSE.jpg";
+import companyBannerImage from "@/assets/Company Photos/DJI_0191.JPG";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,7 +34,8 @@ export const Route = createFileRoute("/")({
 
 const SLIDES = [
   {
-    img: IMG.heroForge,
+    video: companyBannerVideo,
+    poster: companyBannerPoster,
     eyebrow: "Forging Excellence Since 1980",
     title: "Precision Forged.\nPrecision Machined.",
     sub: "Four decades of jobwork excellence for India's leading OEMs across automotive, off-highway and industrial sectors.",
@@ -50,13 +54,35 @@ const SLIDES = [
   },
 ];
 
+const HOME_BANNER_SLIDES = [
+  {
+    video: companyBannerVideo,
+    poster: companyBannerPoster,
+    eyebrow: "Forging Excellence Since 1980",
+    title: "Precision Forged.\nPrecision Machined.",
+    sub: "Four decades of jobwork excellence for India's leading OEMs across automotive, off-highway and industrial sectors.",
+  },
+  {
+    img: companyBannerImage,
+    eyebrow: "Factory Infrastructure",
+    title: "Built For\nPrecision Output.",
+    sub: "A production-ready facility in Pune with disciplined machining, inspection, and dispatch flow built for dependable execution.",
+  },
+  {
+    img: companyBannerPoster,
+    eyebrow: "End-to-End Manufacturing",
+    title: "From Shop Floor\nto Dispatch.",
+    sub: "Forging, machining, inspection, and delivery coordinated under one roof in Kuruli, Pune for consistent industrial production.",
+  },
+];
+
 function HeroSlider() {
   const [i, setI] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setI((p) => (p + 1) % SLIDES.length), 6500);
+    const t = setInterval(() => setI((p) => (p + 1) % HOME_BANNER_SLIDES.length), 6500);
     return () => clearInterval(t);
   }, []);
-  const s = SLIDES[i];
+  const s = HOME_BANNER_SLIDES[i];
 
   return (
     <section className="relative isolate h-[86svh] min-h-[500px] overflow-hidden bg-primary text-primary-foreground sm:h-[100svh] sm:min-h-[640px]">
@@ -69,7 +95,22 @@ function HeroSlider() {
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
-          <img src={s.img} alt="" className="h-full w-full object-cover" />
+          {s.video ? (
+            <video
+              key={s.video}
+              className="h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={s.poster}
+            >
+              <source src={s.video} type="video/mp4" />
+            </video>
+          ) : (
+            <img src={s.img} alt="" className="h-full w-full object-cover" />
+          )}
         </motion.div>
       </AnimatePresence>
 
@@ -114,7 +155,7 @@ function HeroSlider() {
         </AnimatePresence>
 
         <div className="mt-8 flex items-center gap-3 sm:mt-12">
-          {SLIDES.map((_, idx) => (
+          {HOME_BANNER_SLIDES.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setI(idx)}

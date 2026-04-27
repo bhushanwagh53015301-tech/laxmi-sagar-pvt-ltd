@@ -9,7 +9,7 @@ export function PageHero({
   titleClassName = "",
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-primary pb-12 pt-24 text-primary-foreground sm:pb-20 sm:pt-32">
+    <section className="relative isolate overflow-hidden bg-primary pb-10 pt-20 text-primary-foreground sm:pb-20 sm:pt-32">
       <div className="absolute inset-0">
         <img src={image} alt="" className="h-full w-full object-cover opacity-25" />
         <div
