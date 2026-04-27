@@ -7,8 +7,8 @@ import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import ownerPhoto from "@/assets/owner.png";
-import isoCertificateImage from "@/assets/certificate/iso-certificate_page-0001.jpg";
-import zedCertificateImage from "@/assets/certificate/ZED Certificate_page-0001.jpg";
+import isoCertificateFile from "@/assets/iso-certificate.pdf";
+import zedCertificateFile from "@/assets/zed-certificate.pdf";
 import {
   type CarouselApi,
   Carousel,
@@ -87,8 +87,8 @@ const BRIEF_DIRECTOR_MESSAGES = [
 ];
 
 const CERTIFICATIONS = [
-  { title: "ISO 9001:2015", image: isoCertificateImage },
-  { title: "ZED Certificate", image: zedCertificateImage },
+  { title: "ISO 9001:2015", file: isoCertificateFile },
+  { title: "ZED Certificate", file: zedCertificateFile },
 ];
 
 const DIRECTORS = [
@@ -296,16 +296,27 @@ function AboutPage() {
           <StaggerGroup className="mt-12 grid gap-5 sm:grid-cols-2">
             {CERTIFICATIONS.map((cert) => (
               <StaggerItem key={cert.title}>
-                <figure className="group overflow-hidden rounded-2xl bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]">
-                  <div className="bg-white p-4 sm:p-5">
-                    <img
-                      src={cert.image}
-                      alt={`${cert.title} certificate`}
-                      className="h-[320px] w-full rounded-lg object-contain sm:h-[380px]"
-                      loading="lazy"
-                    />
+                <a
+                  href={cert.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)] sm:p-7"
+                >
+                  <div className="rounded-2xl border border-dashed border-border bg-background px-5 py-10 text-center">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
+                      Certified Document
+                    </div>
+                    <div className="mt-4 font-display text-2xl font-bold text-primary">
+                      {cert.title}
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      Open the official certificate PDF in a new tab.
+                    </p>
                   </div>
-                </figure>
+                  <div className="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors group-hover:text-amber">
+                    View certificate
+                  </div>
+                </a>
               </StaggerItem>
             ))}
           </StaggerGroup>

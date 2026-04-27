@@ -7,8 +7,6 @@ import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
-import isoCertificateImage from "@/assets/certificate/iso-certificate_page-0001.jpg";
-import zedCertificateImage from "@/assets/certificate/ZED Certificate_page-0001.jpg";
 import {
   type CarouselApi,
   Carousel,
@@ -193,12 +191,12 @@ const CAPABILITY_FLOW = [
     ],
     images: [
       {
-        src: isoCertificateImage,
-        alt: "ISO 9001 certificate",
+        src: PRODUCT_PHOTOS[0]?.src ?? IMG.parts,
+        alt: "Representative machined product",
       },
       {
-        src: zedCertificateImage,
-        alt: "ZED certificate",
+        src: COMPANY_PHOTOS[1]?.src ?? COMPANY_PHOTOS[0]?.src ?? IMG.factory,
+        alt: "Manufacturing facility and company readiness",
       },
       {
         src: IMG.inspection,
