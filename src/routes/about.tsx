@@ -7,8 +7,8 @@ import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import ownerPhoto from "@/assets/owner.png";
-import isoCertificateFile from "@/assets/iso-certificate.pdf";
-import zedCertificateFile from "@/assets/zed-certificate.pdf";
+import isoCertificateImage from "@/assets/certificate/ISO Certificate_page-0001.jpg";
+import zedCertificateImage from "@/assets/certificate/ZED Certificate_page-0001.jpg";
 import {
   type CarouselApi,
   Carousel,
@@ -87,8 +87,8 @@ const BRIEF_DIRECTOR_MESSAGES = [
 ];
 
 const CERTIFICATIONS = [
-  { title: "ISO 9001:2015", file: isoCertificateFile },
-  { title: "ZED Certificate", file: zedCertificateFile },
+  { title: "ISO 9001:2015", image: isoCertificateImage },
+  { title: "ZED Certificate", image: zedCertificateImage },
 ];
 
 const DIRECTORS = [
@@ -104,9 +104,17 @@ const COMPANY_PHOTOS_GALLERY = COMPANY_PHOTOS.filter(
   (item) => item.relativePath !== STORY_PHOTO?.relativePath,
 );
 const TEAM_PHOTOS = assetsFromCategory("Team Photos");
-const TEAM_MEMBERS = TEAM_PHOTOS.map((item) => ({
+const TEAM_MEMBER_NAMES = [
+  "Shrushti Kolhe",
+  "Pooja Dantrao",
+  "Ranjan Epili",
+  "Shubham Yedake",
+];
+
+const TEAM_MEMBERS = TEAM_PHOTOS.map((item, index) => ({
   image: item.src,
   role: item.filename.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim(),
+  name: TEAM_MEMBER_NAMES[index] ?? cleanLabel(item.filename),
 }));
 const EVENT_PHOTOS = assetsFromCategory("Event Photos");
 const APPRECIATION_PHOTOS = EVENT_PHOTOS.filter((item) =>
@@ -150,7 +158,7 @@ function AboutPage() {
       <section className="bg-background py-24">
         <div className="mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Our Story</div>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Our Story</div>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-primary sm:text-4xl">
               Built on the floor, refined by every part we ship.
             </h2>
@@ -178,7 +186,7 @@ function AboutPage() {
       <section className="bg-secondary py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="text-center">
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// What Drives Us</div>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">What Drives Us</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Mission. Vision. Values.</h2>
           </Reveal>
           <StaggerGroup className="mt-14 grid gap-6 md:grid-cols-3">
@@ -254,7 +262,7 @@ function AboutPage() {
         <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal className="text-center">
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Our Journey</div>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Our Journey</div>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">45 years, milestone by milestone.</h2>
           </Reveal>
 
@@ -287,7 +295,7 @@ function AboutPage() {
       <section className="bg-background py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Recognised & Certified</div>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Recognised & Certified</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Certifications</h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
               Quality and manufacturing standards backed by officially issued certifications.
@@ -296,27 +304,19 @@ function AboutPage() {
           <StaggerGroup className="mt-12 grid gap-5 sm:grid-cols-2">
             {CERTIFICATIONS.map((cert) => (
               <StaggerItem key={cert.title}>
-                <a
-                  href={cert.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)] sm:p-7"
-                >
-                  <div className="rounded-2xl border border-dashed border-border bg-background px-5 py-10 text-center">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
-                      Certified Document
-                    </div>
-                    <div className="mt-4 font-display text-2xl font-bold text-primary">
-                      {cert.title}
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      Open the official certificate PDF in a new tab.
-                    </p>
+                <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)] sm:p-7">
+                  <div className="overflow-hidden rounded-2xl border border-border bg-background p-3">
+                    <img
+                      src={cert.image}
+                      alt={`${cert.title} certificate`}
+                      className="mx-auto h-auto max-h-[420px] w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                      loading="lazy"
+                    />
                   </div>
-                  <div className="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors group-hover:text-amber">
-                    View certificate
+                  <div className="mt-5 font-display text-2xl font-bold text-primary">
+                    {cert.title}
                   </div>
-                </a>
+                </div>
               </StaggerItem>
             ))}
           </StaggerGroup>
@@ -357,7 +357,7 @@ function AboutPage() {
         <div className="pointer-events-none absolute -right-20 bottom-6 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Team Members</div>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Team Members</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
               Key Team Members
             </h2>
@@ -388,7 +388,7 @@ function AboutPage() {
                         {cleanLabel(member.role)}
                       </p>
                       <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                        Laxmi Sagar Engineers
+                        {member.name}
                       </p>
                     </div>
                   </article>
@@ -415,7 +415,7 @@ function AboutPage() {
                       {cleanLabel(member.role)}
                     </p>
                     <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                      Laxmi Sagar Engineers
+                      {member.name}
                     </p>
                   </div>
                 </article>

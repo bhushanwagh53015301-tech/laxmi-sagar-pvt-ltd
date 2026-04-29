@@ -64,7 +64,7 @@ function ContactPage() {
       <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-[1fr_1.2fr] lg:px-8">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Get in Touch</div>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Get in Touch</div>
             <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Reach our team</h2>
             <p className="mt-4 text-muted-foreground">Procurement, engineering or new business - pick the channel that works for you.</p>
 
@@ -108,13 +108,13 @@ function ContactPage() {
                     <option value="general">General Enquiry</option>
                     <option value="rfq">Request for Quote</option>
                     <option value="jobwork">Jobwork Enquiry</option>
-                    <option value="partnership">Partnership / Vendor Registration</option>
+                    <option value="partnership">Supplier Collaboration</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
-                <div className="sm:col-span-2">
+                {/* <div className="sm:col-span-2">
                   <Field label="Subject" name="subject" required />
-                </div>
+                </div> */}
               </div>
 
               <div className="mt-5">
@@ -149,8 +149,8 @@ function ContactPage() {
       <section className="bg-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Find Us</div>
-            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Our facility in Kuruli, Pune</h2>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Find Us</div>
+            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Find Us</h2>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-elegant)]">
@@ -177,7 +177,7 @@ function ContactPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.15}>
+          {/* <Reveal delay={0.15}>
             <div className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-elegant)] sm:p-8">
               <h3 className="font-sans text-2xl font-bold text-primary sm:text-3xl">Compliance Snapshot (Brief)</h3>
               <div className="mt-6 space-y-4">
@@ -191,7 +191,7 @@ function ContactPage() {
                 ))}
               </div>
             </div>
-          </Reveal>
+          </Reveal> */}
         </div>
       </section>
     </>
@@ -216,7 +216,7 @@ function InfoCard(props) {
       </div>
     </div>
   );
-  return href ? <a href={href}>{content}</a> : content;
+  return href ? <a href={href} className="block">{content}</a> : content;
 }
 
 function Field({ label, name, type = "text", required }) {

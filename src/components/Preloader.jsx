@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import companyLogo from "@/assets/Company Logo/L2_No BG_name.png";
+import companyLogo from "@/assets/Company Logo/L3_No BG_No_NAME.png";
 
 export function Preloader() {
   const [show, setShow] = useState(true);

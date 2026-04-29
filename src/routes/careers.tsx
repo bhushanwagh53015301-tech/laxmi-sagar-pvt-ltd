@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { ArrowRight, Briefcase, GraduationCap, HeartHandshake, TrendingUp, Upload } from "lucide-react";
+import { Briefcase, Cog, GraduationCap, HeartHandshake, ShieldCheck, TrendingUp, Upload, Wrench } from "lucide-react";
 import { assetsFromCategory, groupBySubPath } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import {
@@ -33,8 +33,16 @@ export const Route = createFileRoute("/careers")({
   component: CareersPage,
 });
 
+const CAREER_PERKS = [
+  { icon: GraduationCap, t: "Hands-on Learning", d: "Train on multi-axis CNC, VMC and induction hardening lines from day one." },
+  { icon: TrendingUp, t: "Clear Growth Path", d: "Operator -> Setter -> Line Lead -> Supervisor with defined milestones and pay bands." },
+  { icon: HeartHandshake, t: "OEM Work Exposure", d: "Contribute to heavy forging and precision machining programs for leading automobile OEMs." },
+  { icon: Briefcase, t: "Process-Driven Culture", d: "Work inside ISO 9001:2015 quality systems with traceable, auditable manufacturing processes." },
+];
+
 const ROLES = [
   {
+    icon: Cog,
     title: "CNC Operator / Setter",
     exp: "2-6 years",
     loc: "Kuruli, Pune",
@@ -49,6 +57,7 @@ const ROLES = [
     ],
   },
   {
+    icon: Wrench,
     title: "Machinist",
     exp: "2-5 years",
     loc: "Kuruli, Pune",
@@ -63,6 +72,7 @@ const ROLES = [
     ],
   },
   {
+    icon: ShieldCheck,
     title: "Quality Inspector (CMM)",
     exp: "2-5 years",
     loc: "Kuruli, Pune",
@@ -77,6 +87,7 @@ const ROLES = [
     ],
   },
   {
+    icon: Briefcase,
     title: "Production Engineer",
     exp: "3-8 years",
     loc: "Kuruli, Pune",
@@ -92,41 +103,30 @@ const ROLES = [
   },
 ];
 
-const CAREER_PERKS = [
-  { icon: GraduationCap, t: "Hands-on Learning", d: "Train on multi-axis CNC, VMC and induction hardening lines from day one." },
-  { icon: TrendingUp, t: "Clear Growth Path", d: "Operator -> Setter -> Line Lead -> Supervisor with defined milestones and pay bands." },
-  { icon: HeartHandshake, t: "OEM Work Exposure", d: "Contribute to heavy forging and precision machining programs for leading automobile OEMs." },
-  { icon: Briefcase, t: "Process-Driven Culture", d: "Work inside ISO 9001:2015 quality systems with traceable, auditable manufacturing processes." },
-];
-
 const EMPLOYEE_TESTIMONIALS = [
   {
     quote:
       "I joined as a machine operator and moved into setter responsibilities in under two years. The mentoring and clear process standards made that growth possible.",
     name: "Nikhil Jadhav",
     role: "CNC Setter",
-    tenure: "3 years at Laxmi Sagar",
   },
   {
     quote:
       "Quality is treated as a shared responsibility, not a final checkpoint. Working closely with production has helped me improve both speed and accuracy.",
     name: "Priya Kulkarni",
     role: "Quality Inspector",
-    tenure: "4 years at Laxmi Sagar",
   },
   {
     quote:
       "Senior team members actively coach us on the why behind each process. That practical guidance has accelerated my learning on the shop floor.",
     name: "Sagar Shinde",
     role: "Production Engineer",
-    tenure: "2 years at Laxmi Sagar",
   },
   {
     quote:
       "The culture is disciplined and supportive. If you take ownership, leadership gives you opportunities to lead and grow.",
     name: "Rutuja Patil",
     role: "VMC Programmer",
-    tenure: "5 years at Laxmi Sagar",
   },
 ];
 const EVENT_PHOTOS = assetsFromCategory("Event Photos");
@@ -219,7 +219,7 @@ function CareersPage() {
       <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Why Laxmi Sagar</div>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Why Laxmi Sagar</div>
             <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">A workshop that respects the craft.</h2>
           </Reveal>
           <StaggerGroup className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -238,67 +238,118 @@ function CareersPage() {
         </div>
       </section>
 
-      <section className="bg-secondary py-14 sm:py-24">
+      <section id="apply" className="bg-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <Reveal>
-              <div className="rounded-[2rem] border border-border bg-card p-7 shadow-sm sm:p-9">
-                <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Open Positions</div>
-                <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">We're hiring</h2>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                  Join an ISO 9001:2015 certified manufacturing team trusted by leading automobile OEMs.
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  We are looking for people who care about precision, process discipline, and dependable execution on the shop floor.
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  At Laxmi Sagar Engineers, jobs are shaped around real production responsibility. Team members work on machining, inspection, and process-driven manufacturing programs where consistency, ownership, and practical skill matter every day.
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  If you are comfortable in a factory environment, ready to learn, and serious about building a long-term career in engineering manufacturing, this is a strong place to grow.
-                </p>
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  {[
-                    "ISO 9001:2015 process environment",
-                    "Hands-on machine and inspection exposure",
-                    "Long-term manufacturing career growth",
-                    "Stable Pune-based industrial opportunity",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground"
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.08}>
-              <div className="rounded-[2rem] border border-border bg-card p-6 shadow-sm sm:p-8">
-                <h3 className="font-sans text-2xl font-bold text-primary">Job Roles</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Current openings across production and quality. Each role below includes the experience band, location, and the kind of work expected on the floor.
-                </p>
-                <StaggerGroup className="mt-6 space-y-4">
-                  {ROLES.map((r) => (
-                    <StaggerItem key={r.title}>
-                      <div className="rounded-2xl border border-border bg-background px-5 py-5 transition-all hover:border-amber/70 hover:shadow-sm">
-                        <div className="font-sans text-xl font-bold text-primary">{r.title}</div>
+          <div className="rounded-[2rem] border border-border bg-card p-6 shadow-[var(--shadow-elegant)] sm:p-8 lg:p-10">
+            <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-12">
+              <Reveal>
+                <div>
+                  <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Open Positions</div>
+                  <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">We're hiring</h2>
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                    Join an ISO 9001:2015 certified manufacturing team trusted by leading automobile OEMs.
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    We are looking for people who care about precision, process discipline, and dependable execution on the shop floor.
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    At Laxmi Sagar Engineers, jobs are shaped around real production responsibility. Team members work on machining, inspection, and process-driven manufacturing programs where consistency, ownership, and practical skill matter every day.
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    If you are comfortable in a factory environment, ready to learn, and serious about building a long-term career in engineering manufacturing, this is a strong place to grow.
+                  </p>
+                  <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                    {ROLES.map((role) => (
+                      <div
+                        key={role.title}
+                        className="flex items-center gap-4 rounded-2xl border border-border bg-background px-5 py-5 transition-all hover:border-amber/70 hover:shadow-sm"
+                      >
+                        <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                          <role.icon className="h-7 w-7" />
+                        </div>
+                        <div className="font-sans text-lg font-semibold leading-snug text-primary">
+                          {role.title}
+                        </div>
                       </div>
-                    </StaggerItem>
-                  ))}
-                </StaggerGroup>
-                <a
-                  href="#apply"
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 font-sans text-xs font-semibold uppercase tracking-wider text-primary-foreground transition-all hover:bg-primary/90"
-                >
-                  Apply Now
-                  <ArrowRight className="h-4 w-4 transition-transform hover:translate-x-0.5" />
-                </a>
-              </div>
-            </Reveal>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.08}>
+                <div>
+                  <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Apply</div>
+                  <h3 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Send us your application</h3>
+                  <p className="mt-3 text-muted-foreground">
+                    Do not see your role? Send a general application and we will keep your profile on file.
+                  </p>
+                  <form onSubmit={handleSubmit} className="mt-8 space-y-5 rounded-[1.75rem] border border-border bg-background p-6 shadow-sm sm:p-8">
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <Field label="Full Name" name="name" required />
+                      <Field label="Email" name="email" type="email" required />
+                      <Field label="Phone" name="phone" type="tel" required />
+                      <div>
+                        <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
+                          Position Applying For <span className="text-amber">*</span>
+                        </label>
+                        <select
+                          name="position"
+                          required
+                          defaultValue=""
+                          className="mt-2 h-11 w-full rounded-md border border-border bg-card px-4 text-sm text-foreground outline-none transition-colors focus:border-amber"
+                        >
+                          <option value="" disabled>Select position</option>
+                          {ROLES.map((role) => (
+                            <option key={role.title} value={role.title}>
+                              {role.title}
+                            </option>
+                          ))}
+                          <option value="General Application">General Application</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
+                          Years of Experience <span className="text-amber">*</span>
+                        </label>
+                        <select
+                          name="experience"
+                          required
+                          defaultValue=""
+                          className="mt-2 h-11 w-full rounded-md border border-border bg-card px-4 text-sm text-foreground outline-none transition-colors focus:border-amber"
+                        >
+                          <option value="" disabled>Select experience</option>
+                          <option value="0-1">0-1</option>
+                          <option value="1-3">1-3</option>
+                          <option value="3-5">3-5</option>
+                          <option value="5-10">5-10</option>
+                          <option value="10+">10+</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
+                          Resume <span className="text-amber">*</span>
+                        </label>
+                        <label className="mt-2 flex h-11 cursor-pointer items-center gap-3 rounded-md border border-dashed border-border bg-card px-3 text-sm text-muted-foreground hover:border-amber hover:text-primary">
+                          <Upload className="h-4 w-4" />
+                          <span>Upload PDF / DOC</span>
+                          <input type="file" accept=".pdf,.doc,.docx" className="hidden" required />
+                        </label>
+                      </div>
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="sheen w-full rounded-md bg-amber px-6 py-3.5 font-sans text-sm font-semibold uppercase tracking-wider text-amber-foreground shadow-[var(--shadow-amber)] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+                    >
+                      {submitting ? "Submitting..." : "Submit Application"}
+                    </button>
+                    <p className="text-center text-xs leading-relaxed text-muted-foreground">
+                      Our HR team reviews every application and usually responds within 5 working days.
+                    </p>
+                  </form>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
@@ -306,8 +357,8 @@ function CareersPage() {
       <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Team Voices</div>
-            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">What our employees say</h2>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Team Voices</div>
+            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Stories from Our Team</h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
               Real experiences from our shop floor, quality, and production teams.
             </p>
@@ -333,17 +384,10 @@ function CareersPage() {
                       <p className="mt-4 font-sans text-4xl leading-none text-amber">"</p>
                       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-foreground md:text-base">{t.quote}</p>
                       <div className="mt-6 flex items-center gap-3 border-t border-border pt-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber/15 font-mono text-[11px] font-semibold uppercase tracking-wider text-amber">
-                          {t.name
-                            .split(" ")
-                            .map((part) => part[0])
-                            .join("")
-                            .slice(0, 2)}
-                        </div>
                         <div>
                           <p className="font-sans text-sm font-bold text-primary md:text-base">{t.name}</p>
                           <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-                            {t.role} | {t.tenure}
+                            {t.role}
                           </p>
                         </div>
                       </div>
@@ -372,7 +416,7 @@ function CareersPage() {
       <section className="bg-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Event Celebrations</div>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Event Celebrations</div>
             <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Life at Laxmi Sagar</h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
               Team celebrations and workplace moments that reflect our culture.
@@ -435,71 +479,6 @@ function CareersPage() {
         </div>
       </section>
 
-      
-
-      <section id="apply" className="bg-background py-14 sm:py-24">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Apply</div>
-            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Send us your application</h2>
-            <p className="mt-3 text-muted-foreground">Do not see your role? Send a general application and we will keep your profile on file.</p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <form onSubmit={handleSubmit} className="mt-10 space-y-5 rounded-2xl border border-border bg-card p-8 shadow-sm">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Full Name" name="name" required />
-                <Field label="Email" name="email" type="email" required />
-                <Field label="Phone" name="phone" type="tel" required />
-                <Field label="Position Applying For" name="position" required />
-                <div>
-                  <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
-                    Years of Experience <span className="text-amber">*</span>
-                  </label>
-                  <select
-                    name="experience"
-                    required
-                    defaultValue=""
-                    className="mt-2 h-11 w-full rounded-md border border-border bg-background px-4 text-sm text-foreground outline-none transition-colors focus:border-amber"
-                  >
-                    <option value="" disabled>Select experience</option>
-                    <option value="0-1">0–1</option>
-                    <option value="1-3">1–3</option>
-                    <option value="3-5">3–5</option>
-                    <option value="5-10">5–10</option>
-                    <option value="10+">10+</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
-                    Resume <span className="text-amber">*</span>
-                  </label>
-                  <label className="mt-2 flex h-11 cursor-pointer items-center gap-3 rounded-md border border-dashed border-border bg-background px-3 text-sm text-muted-foreground hover:border-amber hover:text-primary">
-                    <Upload className="h-4 w-4" />
-                    <span>Upload PDF / DOC</span>
-                    <input type="file" accept=".pdf,.doc,.docx" className="hidden" required />
-                  </label>
-                </div>
-              </div>
-              <div>
-                <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">Message</label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  className="mt-2 w-full rounded-md border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-amber"
-                  placeholder="Tell us about your shop-floor experience..."
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={submitting}
-                className="sheen w-full rounded-md bg-amber px-6 py-3.5 font-sans text-sm font-semibold uppercase tracking-wider text-amber-foreground shadow-[var(--shadow-amber)] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
-              >
-                {submitting ? "Submitting..." : "Submit Application"}
-              </button>
-            </form>
-          </Reveal>
-        </div>
-      </section>
     </>
   );
 }

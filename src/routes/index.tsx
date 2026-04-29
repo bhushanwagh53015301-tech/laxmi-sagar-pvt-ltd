@@ -9,6 +9,7 @@ import { MagneticButton } from "@/components/MagneticButton";
 import companyBannerVideo from "@/assets/Company Photos/DJI_0185.MP4";
 import companyBannerPoster from "@/assets/Company Photos/LSE.jpg";
 import companyBannerImage from "@/assets/Company Photos/DJI_0191.JPG";
+import ourStoryImage from "@/assets/DJI_0201.JPG";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,7 +20,10 @@ export const Route = createFileRoute("/")({
         content:
           "45+ years delivering forged & machined components to India's top automotive and off-highway OEMs. CNC, VMC, induction hardening, inspection — all under one roof in Pune.",
       },
-      { property: "og:title", content: "Laxmi Sagar Engineers — Precision Forged. Precision Machined." },
+      {
+        property: "og:title",
+        content: "Laxmi Sagar Engineers — Precision Forged. Precision Machined.",
+      },
       {
         property: "og:description",
         content:
@@ -32,34 +36,12 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const SLIDES = [
-  {
-    video: companyBannerVideo,
-    poster: companyBannerPoster,
-    eyebrow: "Forging Excellence Since 1980",
-    title: "Precision Forged.\nPrecision Machined.",
-    sub: "Four decades of jobwork excellence for India's leading OEMs across automotive, off-highway and industrial sectors.",
-  },
-  {
-    img: IMG.heroCnc,
-    eyebrow: "CNC + VMC Capability",
-    title: "Tolerances You\nCan Trust.",
-    sub: "Multi-axis CNC and VMC lines deliver micron-level precision on safety-critical components — every batch, every shift.",
-  },
-  {
-    img: IMG.heroFactory,
-    eyebrow: "End-to-End Manufacturing",
-    title: "From Billet\nto Dispatch.",
-    sub: "Forging, facing, centring, turning, milling, induction hardening and final inspection — all under one roof in Kuruli, Pune.",
-  },
-];
-
 const HOME_BANNER_SLIDES = [
   {
     video: companyBannerVideo,
     poster: companyBannerPoster,
     eyebrow: "Forging Excellence Since 1980",
-    title: "Precision Forged.\nPrecision Machined.",
+    title: "Laxmi Sagar\nEngineers Pvt Ltd",
     sub: "Four decades of jobwork excellence for India's leading OEMs across automotive, off-highway and industrial sectors.",
   },
   {
@@ -177,20 +159,20 @@ function IntroSection() {
       <div className="bp-grid-fine pointer-events-none absolute inset-0 text-primary/40" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 md:grid-cols-2 md:gap-14 lg:gap-20 lg:px-8">
         <Reveal>
-          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
-            // Who We Are
-          </div>
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Who We Are</div>
           <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-primary sm:text-5xl">
-            Engineering trust,<br />one component at a time.
+            Engineering trust,
+            <br />
+            one component at a time.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            Founded in {SITE.established} in Pune, Laxmi Sagar Engineers has grown from a single-shed
-            jobwork unit into a fully-integrated precision manufacturing facility serving India's
-            largest commercial vehicle, tractor and diesel engine OEMs.
+            Founded in {SITE.established} in Pune, Laxmi Sagar Engineers has grown from a
+            single-shed jobwork unit into a fully-integrated precision manufacturing facility
+            serving India's largest commercial vehicle, tractor and diesel engine OEMs.
           </p>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Our edge is consistency — repeatable micron-level tolerances on safety-critical
-            forged & machined components, batch after batch, year after year.
+            Our edge is consistency — repeatable micron-level tolerances on safety-critical forged &
+            machined components, batch after batch, year after year.
           </p>
           <div className="mt-8">
             <Link
@@ -207,12 +189,16 @@ function IntroSection() {
           <div className="relative">
             <div className="absolute -inset-4 rounded-2xl bg-amber/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-xl shadow-[var(--shadow-elegant)]">
-              <img src={IMG.factory} alt="Laxmi Sagar factory floor" className="h-[480px] w-full object-cover" />
+              <img
+                src={ourStoryImage}
+                alt="Laxmi Sagar factory floor"
+                className="h-[480px] w-full object-cover"
+              />
             </div>
-            <div className="absolute -bottom-6 -left-6 rounded-xl bg-primary p-6 text-primary-foreground shadow-[var(--shadow-elegant)]">
+            {/* <div className="absolute -bottom-6 -left-6 rounded-xl bg-primary p-6 text-primary-foreground shadow-[var(--shadow-elegant)]">
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-amber">Established</div>
               <div className="font-display text-4xl font-bold">{SITE.established}</div>
-            </div>
+            </div> */}
           </div>
         </Reveal>
       </div>
@@ -296,23 +282,29 @@ function StatsStrip() {
   }
 
   const stats = [
-    { value: 25, suffix: "+", label: "Years of Engineering Expertise" },
+    { value: 30, suffix: "+", label: "Years of Engineering Expertise" },
     { value: 25000, suffix: "+ sq.ft.", label: "Manufacturing Facility" },
     { value: 25, suffix: "+", label: "CNC & VMC Machines" },
-    { value: 0, suffix: "", suffixClassName: "", label: "Certified Quality System", staticNumber: "ISO 9001:2015" },
+    {
+      value: 0,
+      suffix: "",
+      suffixClassName: "",
+      label: "Certified Quality System",
+      staticNumber: "ISO 9001:2015",
+    },
   ];
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-primary py-12 sm:py-16">
       <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
       <div className="relative mx-auto max-w-[1700px] px-2 sm:px-4 lg:px-6">
-        <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-[1fr_1.35fr_1fr_1.25fr]">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-4 md:gap-x-4 lg:grid-cols-[1fr_1.35fr_1fr_1.25fr]">
           {stats.map((item, index) => (
             <div
               key={item.label}
-              className={`min-w-0 px-2 text-left sm:px-3 lg:px-5 ${index > 0 ? "lg:border-l lg:border-white/10" : ""}`}
+              className={`min-w-0 px-2 text-left sm:px-3 md:px-2 lg:px-5 ${index > 0 ? "md:border-l md:border-white/10" : ""}`}
             >
-              <p className="break-words font-mono text-[1rem] font-semibold leading-tight tracking-[-0.03em] text-amber drop-shadow-[0_1px_0_rgba(0,0,0,0.35)] sm:text-[2.1rem] sm:leading-none sm:tracking-[0] lg:text-[2.7rem]">
+              <p className="break-words font-mono text-[1rem] font-semibold leading-tight tracking-[-0.03em] text-amber drop-shadow-[0_1px_0_rgba(0,0,0,0.35)] sm:text-[2.1rem] sm:leading-none sm:tracking-[0] md:text-[1.55rem] lg:text-[2.7rem]">
                 {item.staticNumber ? (
                   item.staticNumber
                 ) : (
@@ -324,7 +316,7 @@ function StatsStrip() {
                   />
                 )}
               </p>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-white/80 sm:text-xs sm:tracking-[0.3em]">
+              <p className="mt-2 text-balance font-mono text-[10px] uppercase tracking-[0.18em] text-white/80 sm:text-xs sm:tracking-[0.24em] md:text-[10px] md:tracking-[0.16em] lg:tracking-[0.3em]">
                 {item.label}
               </p>
             </div>
@@ -367,7 +359,9 @@ function CapabilitiesGrid() {
     <section className="bg-secondary py-16 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Capabilities</div>
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
+            Capabilities
+          </div>
           <h2 className="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight text-primary sm:text-5xl">
             One roof. Every step. Total accountability.
           </h2>
@@ -422,7 +416,7 @@ function ClientMarquee() {
   return (
     <section className="overflow-hidden border-y border-border bg-background py-14">
       <Reveal className="mb-10 text-center">
-        <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Trusted By</div>
+        <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Trusted By</div>
         <h3 className="mt-3 font-display text-2xl font-bold text-primary sm:text-3xl">
           Powering India's most demanding OEMs
         </h3>
@@ -436,7 +430,12 @@ function ClientMarquee() {
               key={i}
               className="flex h-20 min-w-[220px] items-center justify-center rounded-xl border border-border bg-card px-8 shadow-sm transition-transform hover:-translate-y-0.5"
             >
-              <img src={logo.src} alt={logo.filename} className="h-12 w-full object-contain" loading="lazy" />
+              <img
+                src={logo.src}
+                alt={logo.filename}
+                className="h-12 w-full object-contain"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
@@ -460,7 +459,10 @@ function CtaBanner() {
       </div>
       <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-8 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <Reveal className="max-w-2xl">
-          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Get Started</div>
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
+            {" "}
+            Get Started
+          </div>
           <h2 className="mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl">
             Have a drawing? We'll quote it within 48 hours.
           </h2>

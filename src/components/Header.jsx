@@ -3,24 +3,16 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NAV } from "@/lib/site";
-import brandLogo from "@/assets/Company Logo/L2_No BG_name.png";
+import brandLogo from "@/assets/Company Logo/L3_No BG_No_NAME.png";
 
 function Logo({ scrolled = false }) {
   return (
     <Link to="/" className="group flex items-center">
-      <div
-        className={`overflow-hidden rounded-md border ${
-          scrolled
-            ? "border-border bg-white"
-            : "border-white/35 bg-white/95 shadow-sm backdrop-blur"
-        }`}
-      >
-        <img
-          src={brandLogo}
-          alt="Laxmi Sagar Engineers"
-          className="h-10 w-auto sm:h-11"
-        />
-      </div>
+      <img
+        src={brandLogo}
+        alt="Laxmi Sagar Engineers"
+        className={`w-auto object-contain transition-all ${scrolled ? "h-10 sm:h-11" : "h-11 sm:h-12"}`}
+      />
     </Link>
   );
 }
@@ -53,9 +45,9 @@ export function Header() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/90 shadow-sm backdrop-blur-lg transition-all duration-300 lg:border-b-0 lg:bg-transparent lg:shadow-none ${
+      className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/80 shadow-sm backdrop-blur-xl transition-all duration-300 lg:border-b-0 lg:bg-transparent lg:shadow-none ${
         scrolled
-          ? "lg:border-b lg:border-border lg:bg-background/85 lg:shadow-sm"
+          ? "lg:border-b lg:border-border lg:bg-background/75 lg:shadow-sm lg:backdrop-blur-2xl"
           : ""
       }`}
     >
@@ -97,7 +89,7 @@ export function Header() {
           className={`rounded-md border p-3 shadow-sm backdrop-blur lg:hidden ${
             scrolled
               ? "border-border bg-background/90 text-foreground"
-              : "border-white/20 bg-primary/35 text-white"
+              : "border-white/20 bg-primary/25 text-white"
           }`}
           aria-label="Open menu"
         >
