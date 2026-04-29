@@ -30,6 +30,7 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
+  const visitAddress = "Sr No 622/2, Near Saint Gobain Sekurit Ltd, Village Kuruli, Taluka Khed, Pune 410501";
   const complianceRows = [
     { label: "CIN", value: SITE.compliance.cin },
     { label: "UDYAM", value: SITE.compliance.udyam },
@@ -69,7 +70,21 @@ function ContactPage() {
             <p className="mt-4 text-muted-foreground">Procurement, engineering or new business - pick the channel that works for you.</p>
 
             <div className="mt-10 space-y-5">
-              <InfoCard icon={MapPin} title="Visit Us" lines={[SITE.address]} />
+              <InfoCard
+                icon={MapPin}
+                title="Visit Us"
+                lines={[
+                  <a
+                    key="visit-address"
+                    href={SITE.mapLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex text-foreground underline-offset-4 hover:text-primary hover:underline"
+                  >
+                    {visitAddress}
+                  </a>,
+                ]}
+              />
               <InfoCard
                 icon={Phone}
                 title="Call Us"
@@ -150,11 +165,11 @@ function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Find Us</div>
-            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Find Us</h2>
+            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Visit Our Plant</h2>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-elegant)]">
-              <p className="text-sm text-muted-foreground">{SITE.address}</p>
+              {/* <p className="text-sm text-muted-foreground">{SITE.address}</p> */}
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3778.49244753788!2d73.85285739999999!3d18.7315282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c94b07b62b87%3A0x544a4028ff069fe!2sLaxmi%20Sagar%20Engineers%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1776935388742!5m2!1sen!2sin"
                 width="600"

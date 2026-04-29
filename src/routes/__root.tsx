@@ -130,15 +130,17 @@ function RootShell({ children }) {
 function RootComponent() {
   return (
     <div className="relative isolate">
-      <div className="site-grid-overlay pointer-events-none fixed inset-0 -z-10" aria-hidden="true" />
+      <div className="site-grid-overlay pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
       <Preloader />
       <Header />
-      <main className="relative min-h-screen">
+      <main className="relative z-10 min-h-screen">
         <PageTransition>
           <Outlet />
         </PageTransition>
       </main>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
       <WhatsAppFab />
       <Toaster richColors position="top-right" />
     </div>

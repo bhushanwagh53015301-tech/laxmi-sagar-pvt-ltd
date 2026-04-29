@@ -41,7 +41,7 @@ const HOME_BANNER_SLIDES = [
     video: companyBannerVideo,
     poster: companyBannerPoster,
     eyebrow: "Forging Excellence Since 1980",
-    title: "Laxmi Sagar\nEngineers Pvt Ltd",
+    title: "Laxmi Sagar\nEngineers Pvt Ltd.",
     sub: "Four decades of jobwork excellence for India's leading OEMs across automotive, off-highway and industrial sectors.",
   },
   {
@@ -166,13 +166,11 @@ function IntroSection() {
             one component at a time.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            Founded in {SITE.established} in Pune, Laxmi Sagar Engineers has grown from a
-            single-shed jobwork unit into a fully-integrated precision manufacturing facility
-            serving India's largest commercial vehicle, tractor and diesel engine OEMs.
+            For over four decades, Laxmi Sagar Engineers has supplied precision-machined and forged components to India's automotive, commercial vehicle, tractor, and off-highway OEMs — consistently, at volume, with full traceability.
+
           </p>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Our edge is consistency — repeatable micron-level tolerances on safety-critical forged &
-            machined components, batch after batch, year after year.
+            We take ownership of tolerances, timelines, and documentation — so your production line never has to second-guess what's coming from us.
           </p>
           <div className="mt-8">
             <Link
