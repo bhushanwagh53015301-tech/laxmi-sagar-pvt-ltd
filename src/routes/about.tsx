@@ -9,6 +9,8 @@ import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import ownerPhoto from "@/assets/owner.png";
 import isoCertificateFile from "@/assets/iso-certificate.pdf";
 import zedCertificateFile from "@/assets/zed-certificate.pdf";
+import isoCertificatePreview from "@/assets/certificate/ISO Certificate_page-0001.jpg";
+import zedCertificatePreview from "@/assets/certificate/ZED Certificate_page-0001.jpg";
 import {
   type CarouselApi,
   Carousel,
@@ -87,8 +89,8 @@ const BRIEF_DIRECTOR_MESSAGES = [
 ];
 
 const CERTIFICATIONS = [
-  { title: "ISO 9001:2015", file: isoCertificateFile },
-  { title: "ZED Certificate", file: zedCertificateFile },
+  { title: "ISO 9001:2015", file: isoCertificateFile, preview: isoCertificatePreview },
+  { title: "ZED Certificate", file: zedCertificateFile, preview: zedCertificatePreview },
 ];
 
 const DIRECTORS = [
@@ -104,9 +106,18 @@ const COMPANY_PHOTOS_GALLERY = COMPANY_PHOTOS.filter(
   (item) => item.relativePath !== STORY_PHOTO?.relativePath,
 );
 const TEAM_PHOTOS = assetsFromCategory("Team Photos");
+const CORE_TEAM_NAMES = [
+  "Shrushti Kolhe",
+  "Pooja Dantrao",
+  "Ranjan Epili",
+  "Shubham Yedake",
+];
 const TEAM_MEMBERS = TEAM_PHOTOS.map((item) => ({
   image: item.src,
   role: item.filename.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim(),
+})).map((member, index) => ({
+  ...member,
+  name: CORE_TEAM_NAMES[index] ?? "Laxmi Sagar Engineers",
 }));
 const EVENT_PHOTOS = assetsFromCategory("Event Photos");
 const APPRECIATION_PHOTOS = EVENT_PHOTOS.filter((item) =>
@@ -300,21 +311,22 @@ function AboutPage() {
                   href={cert.file}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)] sm:p-7"
+                  className="group flex h-full flex-col rounded-[2rem] border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)] sm:p-6"
                 >
-                  <div className="rounded-2xl border border-dashed border-border bg-background px-5 py-10 text-center">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
-                      Certified Document
+                  <div className="overflow-hidden rounded-[1.75rem] border border-border bg-background p-4 sm:p-5">
+                    <div className="overflow-hidden rounded-[1.5rem] bg-white">
+                      <img
+                        src={cert.preview}
+                        alt={cert.title}
+                        className="h-[520px] w-full object-contain bg-white"
+                        loading="lazy"
+                      />
                     </div>
-                    <div className="mt-4 font-display text-2xl font-bold text-primary">
+                  </div>
+                  <div className="px-2 pb-1 pt-5 text-center">
+                    <div className="font-display text-2xl font-bold text-primary">
                       {cert.title}
                     </div>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      Open the official certificate PDF in a new tab.
-                    </p>
-                  </div>
-                  <div className="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors group-hover:text-amber">
-                    View certificate
                   </div>
                 </a>
               </StaggerItem>
@@ -388,7 +400,7 @@ function AboutPage() {
                         {cleanLabel(member.role)}
                       </p>
                       <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                        Laxmi Sagar Engineers
+                        {member.name}
                       </p>
                     </div>
                   </article>
@@ -415,7 +427,7 @@ function AboutPage() {
                       {cleanLabel(member.role)}
                     </p>
                     <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                      Laxmi Sagar Engineers
+                      {member.name}
                     </p>
                   </div>
                 </article>

@@ -359,9 +359,9 @@ const CAPS = [
 
 function CapabilitiesGrid() {
   return (
-    <section className="bg-secondary pb-2 pt-2 sm:pb-10 sm:pt-20">
+    <section className="bg-secondary py-16 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal>
+        <Reveal>  
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
             Capabilities
           </div>
