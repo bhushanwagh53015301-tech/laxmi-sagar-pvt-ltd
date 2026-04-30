@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { ShieldCheck } from "lucide-react";
 import { IMG } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
@@ -35,6 +36,20 @@ export const Route = createFileRoute("/capabilities")({
 
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
 const COMPANY_PHOTOS = assetsFromCategory("Company Photos");
+const TRACEABILITY_IMAGES = [
+  {
+    src: IMG.inspection,
+    alt: "Inspection and traceability checks",
+  },
+  {
+    src: PRODUCT_PHOTOS[0]?.src ?? IMG.parts,
+    alt: "Finished component ready for quality validation",
+  },
+  {
+    src: COMPANY_PHOTOS[0]?.src ?? IMG.factory,
+    alt: "Manufacturing floor supporting traceable production flow",
+  },
+];
 
 const PRODUCT_LINES = [
   {
@@ -214,7 +229,7 @@ function CapabilityImageSlider({
 
 function CapabilityFlowSection() {
   return (
-    <section className="bg-background py-14 sm:py-24">
+    <section className="bg-background pt-14 pb-2 sm:pt-24 sm:pb-4">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Manufacturing Setup & Quality Flow</div>
@@ -268,6 +283,55 @@ function CapabilityFlowSection() {
   );
 }
 
+function TraceabilitySection() {
+  return (
+    <section className="bg-background pt-0 pb-8 sm:pb-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal>
+          <article className="grid gap-5 rounded-[2rem] border border-border/70 bg-card/95 p-5 shadow-[var(--shadow-elegant)] sm:p-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-8">
+            <div>
+              <CapabilityImageSlider
+                images={TRACEABILITY_IMAGES}
+                title="Traceability and inspection process"
+              />
+            </div>
+
+            <div>
+              <div className="inline-flex rounded-full border border-amber/30 bg-amber/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
+                Our Promise
+              </div>
+              <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-primary sm:text-4xl">
+                Full batch traceability - heat number to dispatch.
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Every batch we run carries a unique identifier. From the supplier mill test
+                certificate through every machining op, hardening cycle and inspection record,
+                it&apos;s logged, signed and archived.
+              </p>
+              <ul className="mt-5 space-y-2.5">
+                {[
+                  "Supplier MTC linked to batch ID",
+                  "Operator + machine + shift logged at every op",
+                  "Inspection records archived for 5+ years",
+                  "Recall traceability within 30 minutes",
+                ].map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground"
+                  >
+                    <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function CapabilitiesPage() {
   return (
     <>
@@ -281,6 +345,7 @@ function CapabilitiesPage() {
       />
 
       <CapabilityFlowSection />
+      <TraceabilitySection />
 
       {/* <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

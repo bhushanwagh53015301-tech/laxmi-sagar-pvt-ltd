@@ -6,10 +6,12 @@ import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
+import { ProductVisualsSection } from "@/components/ProductVisualsSection";
 import companyBannerVideo from "@/assets/Company Photos/DJI_0185.MP4";
 import companyBannerPoster from "@/assets/Company Photos/LSE.jpg";
 import companyBannerImage from "@/assets/Company Photos/DJI_0191.JPG";
 import ourStoryImage from "@/assets/DJI_0201.JPG";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,19 +42,19 @@ const HOME_BANNER_SLIDES = [
   {
     video: companyBannerVideo,
     poster: companyBannerPoster,
-    eyebrow: "Forging Excellence Since 1980",
+    eyebrow: "PRECISION JOBWORK · PUNE · SINCE 1980",
     title: "Laxmi Sagar\nEngineers Pvt Ltd.",
-    sub: "Four decades of jobwork excellence for India's leading OEMs across automotive, off-highway and industrial sectors.",
+    sub: "Precision CNC Machined & Forged Components for Automotive OEMs",
   },
   {
     img: companyBannerImage,
-    eyebrow: "Factory Infrastructure",
+    eyebrow: "ISO 9001:2015 CERTIFIED · AUTOMOTIVE OEM SUPPLIER",
     title: "Built For\nPrecision Output.",
-    sub: "A production-ready facility in Pune with disciplined machining, inspection, and dispatch flow built for dependable execution.",
+    sub: "CNC machined and forged components for automotive, commercial vehicle, and industrial OEMs — delivered to tolerance, on time, every batch.",
   },
   {
     img: companyBannerPoster,
-    eyebrow: "End-to-End Manufacturing",
+    eyebrow: "CNC MACHINING · FORGING · INDUCTION HARDENING",
     title: "From Shop Floor\nto Dispatch.",
     sub: "Forging, machining, inspection, and delivery coordinated under one roof in Kuruli, Pune for consistent industrial production.",
   },
@@ -166,11 +168,13 @@ function IntroSection() {
             one component at a time.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            For over four decades, Laxmi Sagar Engineers has supplied precision-machined and forged components to India's automotive, commercial vehicle, tractor, and off-highway OEMs — consistently, at volume, with full traceability.
-
+            For over four decades, Laxmi Sagar Engineers has supplied precision-machined and forged
+            components to India's automotive, commercial vehicle, tractor, and off-highway OEMs —
+            consistently, at volume, with full traceability.
           </p>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            We take ownership of tolerances, timelines, and documentation — so your production line never has to second-guess what's coming from us.
+            We take ownership of tolerances, timelines, and documentation — so your production line
+            never has to second-guess what's coming from us.
           </p>
           <div className="mt-8">
             <Link
@@ -352,9 +356,10 @@ const CAPS = [
   },
 ];
 
+
 function CapabilitiesGrid() {
   return (
-    <section className="bg-secondary py-16 sm:py-32">
+    <section className="bg-secondary pb-2 pt-2 sm:pb-10 sm:pt-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
@@ -486,6 +491,7 @@ function HomePage() {
       <IntroSection />
       <StatsStrip />
       <CapabilitiesGrid />
+      <ProductVisualsSection />
       <ClientMarquee />
       <CtaBanner />
     </>

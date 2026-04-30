@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Briefcase, Cog, GraduationCap, HeartHandshake, ShieldCheck, TrendingUp, Upload, Wrench } from "lucide-react";
 import { assetsFromCategory, groupBySubPath } from "@/lib/localAssets";
+import { IMG } from "@/lib/site";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import {
   type CarouselApi,
@@ -199,8 +200,16 @@ function CareersPage() {
 
   return (
     <>
-      <section className="bg-primary pb-12 pt-20 text-primary-foreground sm:pb-20 sm:pt-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative isolate overflow-hidden bg-primary pb-12 pt-20 text-primary-foreground sm:pb-20 sm:pt-32">
+        <div className="absolute inset-0">
+          <img src={IMG.careers} alt="" className="h-full w-full object-cover opacity-25" />
+        </div>
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--gradient-hero)", opacity: 0.85 }}
+        />
+        <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-amber">
               <span className="h-1 w-1 rounded-full bg-amber" />

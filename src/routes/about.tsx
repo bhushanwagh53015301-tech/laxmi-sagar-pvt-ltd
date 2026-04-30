@@ -39,8 +39,8 @@ export const Route = createFileRoute("/about")({
 });
 
 const VALUES = [
-  { icon: Target, title: "Mission", text: "Deliver world-class forged & machined components on-time, every time, with zero compromise on tolerance or traceability." },
-  { icon: Eye, title: "Vision", text: "To be India's most trusted precision jobwork partner for safety-critical automotive and industrial components." },
+  { icon: Target, title: "Mission", text: "To deliver world-class CNC machined and forged components — on-time, within tolerance, with full documentation — so our OEM customers can build without second-guessing their supply chain." },
+  { icon: Eye, title: "Vision", text: "To be the most trusted precision machining and forging jobwork partner for safety-critical automotive and industrial components in India — recognised for consistency, traceability, and zero-defect delivery." },
   { icon: Heart, title: "Values", text: "Integrity. Precision. Accountability. Continuous improvement. Respect for craft." },
 ];
 
@@ -155,9 +155,9 @@ function AboutPage() {
               Built on the floor, refined by every part we ship.
             </h2>
             <div className="mt-6 space-y-4 text-muted-foreground">
-              <p>{SITE.legal} was founded in 1997 by Mr. Dattatray S. Rokhade and Mr. Laxmikant D. Rokhade with a simple promise: make every part right the first time and earn long-term customer trust through consistent execution.</p>
-              <p>That promise has grown into a 25,000+ sq.ft. facility with planned expansion to 40,000+ sq.ft., focused on domestic OEMs as well as international automotive programs that demand precision, reliability, and process discipline.</p>
-              <p>In 2020, the company was incorporated as Laxmi Sagar Engineers Pvt Ltd to support structured long-term growth. Today, we work directly with OEM engineering teams from prototype to mass production, taking ownership of feasibility, fixturing, process planning and traceability so our customers can focus on what they build.</p>
+              <p>Laxmi Sagar Engineers Pvt Ltd traces its roots to 1980, when founder Mr. Dattatray S. Rokhade established Laxmi Sagar Industries in Bhosari, Pune — one of Maharashtra's earliest precision jobwork units serving the region's growing industrial base.</p>
+              <p>As OEM demand grew, a second unit — Laxmi Sagar Engineers — was established in Chakan, Pune in 1997, expanding capacity for CNC machining, forging jobwork, and component supply to automotive and commercial vehicle manufacturers.</p>
+              <p>In 2020, the enterprise was formally incorporated as Laxmi Sagar Engineers Pvt Ltd, marking the transition into a structured, scalable precision manufacturing company. Today, operating from a 25,000+ sq.ft. facility at Kuruli, Khed, Pune — ISO 9001:2015 certified and ZED rated — we supply safety-critical machined components to India's leading OEMs across automotive, tractor, and off-highway segments.</p>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
