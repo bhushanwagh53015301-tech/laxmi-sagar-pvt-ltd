@@ -59,22 +59,22 @@ const ROLES = [
   },
   {
     icon: Wrench,
-    title: "Machinist",
+    title: "Production Supervisor",
     exp: "2-5 years",
     loc: "Kuruli, Pune",
-    team: "Conventional & Support Operations",
+    team: "Production",
     type: "Full-time",
     summary:
-      "Handle precision machining and support operations with a strong focus on drawing interpretation, setup discipline, and part consistency.",
+      "Lead shift-level production execution with a strong focus on throughput, discipline, and process adherence across machining operations.",
     points: [
-      "Perform machining as per process sheets and engineering drawings.",
-      "Check dimensions using verniers, micrometers, and shop-floor gauges.",
-      "Support production flow by maintaining machine readiness and accuracy.",
+      "Monitor daily targets, manpower allocation, and machine utilization.",
+      "Coordinate with quality, maintenance, and stores for smooth production flow.",
+      "Drive process discipline and timely issue escalation on the shop floor.",
     ],
   },
   {
     icon: ShieldCheck,
-    title: "Quality Inspector (CMM)",
+    title: "Quality Inspector",
     exp: "2-5 years",
     loc: "Kuruli, Pune",
     team: "Quality",
@@ -89,19 +89,28 @@ const ROLES = [
   },
   {
     icon: Briefcase,
-    title: "Production Engineer",
+    title: "HR/Admin Executive",
     exp: "3-8 years",
     loc: "Kuruli, Pune",
-    team: "Production Planning & Execution",
+    team: "HR & Administration",
     type: "Full-time",
     summary:
-      "Own daily production coordination, process adherence, and output planning across machining operations and dispatch readiness.",
+      "Support recruitment, employee coordination, attendance records, and day-to-day administrative operations in a disciplined manufacturing environment.",
     points: [
-      "Track production targets, bottlenecks, and shift-wise execution.",
-      "Improve line balancing, setup planning, and process discipline.",
-      "Coordinate with quality, maintenance, and stores for smooth throughput.",
+      "Manage onboarding coordination, documentation, and personnel records.",
+      "Support attendance, leave tracking, and routine HR/admin workflows.",
+      "Coordinate with leadership and departments for smooth office operations.",
     ],
   },
+];
+
+const POSITION_OPTIONS = [
+  "Accounts",
+  "HR/Admin",
+  "Production",
+  "Quality",
+  "Store",
+  "Management",
 ];
 
 const EMPLOYEE_TESTIMONIALS = [
@@ -225,10 +234,10 @@ function CareersPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-24">
+      <section className="page-grid-surface py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Why Laxmi Sagar</div>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Why work at Laxmi Sagar</div>
             <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">A workshop that respects the craft.</h2>
           </Reveal>
           <StaggerGroup className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -247,7 +256,7 @@ function CareersPage() {
         </div>
       </section>
 
-      <section id="apply" className="bg-secondary py-14 sm:py-24">
+      <section id="apply" className="page-grid-surface-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-[2rem] border border-border bg-card p-6 shadow-[var(--shadow-elegant)] sm:p-8 lg:p-10">
             <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-12">
@@ -308,9 +317,9 @@ function CareersPage() {
                           className="mt-2 h-11 w-full rounded-md border border-border bg-card px-4 text-sm text-foreground outline-none transition-colors focus:border-amber"
                         >
                           <option value="" disabled>Select position</option>
-                          {ROLES.map((role) => (
-                            <option key={role.title} value={role.title}>
-                              {role.title}
+                          {POSITION_OPTIONS.map((position) => (
+                            <option key={position} value={position}>
+                              {position}
                             </option>
                           ))}
                           <option value="General Application">General Application</option>
@@ -363,7 +372,7 @@ function CareersPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-24">
+      {/* <section className="page-grid-surface py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Team Voices</div>
@@ -420,9 +429,9 @@ function CareersPage() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </section> */}
 
-      <section className="bg-secondary py-14 sm:py-24">
+      <section className="page-grid-surface-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Event Celebrations</div>

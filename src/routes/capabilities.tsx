@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 import { IMG } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
@@ -48,6 +49,44 @@ const TRACEABILITY_IMAGES = [
   {
     src: COMPANY_PHOTOS[0]?.src ?? IMG.factory,
     alt: "Manufacturing floor supporting traceable production flow",
+  },
+];
+
+const PROCESS_STEPS = [
+  {
+    n: "01",
+    t: "Raw Forging",
+    info: "Source-approved forged blanks are verified for heat, dimensions, and visible defects before release.",
+  },
+  {
+    n: "02",
+    t: "Facing & Centering",
+    info: "Datum faces and centers are prepared to ensure stable clamping and repeatable downstream machining.",
+  },
+  {
+    n: "03",
+    t: "CNC Turning",
+    info: "Critical diameters and profiles are machined on CNC with in-process gauging for tolerance control.",
+  },
+  {
+    n: "04",
+    t: "VMC Machining",
+    info: "Milling, drilling, and feature generation are completed in controlled setups for positional accuracy.",
+  },
+  {
+    n: "05",
+    t: "Induction Hardening",
+    info: "Hardness and case depth are controlled to drawing requirements for wear resistance and durability.",
+  },
+  {
+    n: "06",
+    t: "Final Inspection",
+    info: "Each batch is validated using calibrated gauges and inspection records for full traceability.",
+  },
+  {
+    n: "07",
+    t: "Dispatch",
+    info: "Approved parts are packed as per customer protocol and dispatched with complete lot documentation.",
   },
 ];
 
@@ -229,7 +268,7 @@ function CapabilityImageSlider({
 
 function CapabilityFlowSection() {
   return (
-    <section className="bg-background pt-14 pb-2 sm:pt-24 sm:pb-4">
+    <section className="page-grid-surface overflow-x-clip pt-14 pb-2 sm:pt-24 sm:pb-4">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Manufacturing Setup & Quality Flow</div>
@@ -247,8 +286,8 @@ function CapabilityFlowSection() {
 
             return (
               <Reveal key={item.id} delay={index * 0.08}>
-                <article className="grid gap-6 rounded-[2rem] border border-border/70 bg-card/90 p-5 shadow-sm sm:p-7 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
-                  <div className={reversed ? "lg:order-2" : ""}>
+                <article className="grid gap-6 overflow-hidden rounded-[2rem] border border-border/70 bg-card/90 p-5 shadow-sm sm:p-7 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
+                  <div className={`min-w-0 ${reversed ? "lg:order-2" : ""}`}>
                     <div className="inline-flex rounded-full border border-amber/30 bg-amber/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
                       {item.badge}
                     </div>
@@ -270,7 +309,7 @@ function CapabilityFlowSection() {
                     </div>
                   </div>
 
-                  <div className={reversed ? "lg:order-1" : ""}>
+                  <div className={`min-w-0 ${reversed ? "lg:order-1" : ""}`}>
                     <CapabilityImageSlider images={item.images} title={item.title} />
                   </div>
                 </article>
@@ -283,20 +322,135 @@ function CapabilityFlowSection() {
   );
 }
 
+function ProcessFlowSection() {
+  const [activeStep, setActiveStep] = useState(0);
+
+  return (
+    <section className="relative overflow-x-clip overflow-y-hidden bg-primary py-14 text-primary-foreground sm:py-24">
+      <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal className="max-w-3xl">
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
+            The Process
+          </div>
+          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
+            From raw forging to dispatch - one continuous flow.
+          </h2>
+          <p className="mt-4 text-white/75">
+            Every part traced through every step. Process discipline is what keeps our
+            first-pass yield above 99.6%.
+          </p>
+        </Reveal>
+
+        <div className="relative mt-10 sm:mt-16">
+          <svg
+            viewBox="0 0 1000 60"
+            className="absolute left-0 right-0 top-8 hidden h-12 w-full lg:block"
+            preserveAspectRatio="none"
+          >
+            <motion.path
+              d="M 20 30 L 980 30"
+              stroke="oklch(0.78 0.16 70)"
+              strokeWidth="2"
+              strokeDasharray="6 6"
+              fill="none"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+            />
+          </svg>
+
+          <StaggerGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-7" stagger={0.12}>
+            {PROCESS_STEPS.map((step, index) => {
+              const isActive = activeStep === index;
+              const showAbove = index % 2 === 0;
+
+              return (
+                <StaggerItem key={step.n}>
+                  <div
+                    className="group relative flex flex-col items-center text-center"
+                    onMouseEnter={() => setActiveStep(index)}
+                  >
+                    {isActive && showAbove ? (
+                      <div className="mb-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
+                          {step.n} · {step.t}
+                        </p>
+                        <p className="mt-2 text-xs leading-relaxed text-white/85">{step.info}</p>
+                      </div>
+                    ) : null}
+
+                    <button
+                      type="button"
+                      onClick={() => setActiveStep(index)}
+                      className={`relative z-10 flex h-20 w-20 items-center justify-center rounded-full border-2 font-display text-xl font-bold transition-all ${
+                        isActive
+                          ? "scale-110 border-amber bg-amber text-primary"
+                          : "border-amber bg-primary text-amber group-hover:scale-110 group-hover:bg-amber group-hover:text-primary"
+                      }`}
+                      aria-label={`Show details for ${step.t}`}
+                    >
+                      {step.n}
+                    </button>
+                    <div className="mt-4 font-display text-sm font-semibold uppercase tracking-wider">
+                      {step.t}
+                    </div>
+
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        opacity: isActive ? 1 : 0,
+                        y: isActive ? 0 : showAbove ? 6 : -6,
+                      }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className={`pointer-events-none absolute z-20 hidden w-[230px] rounded-lg border border-amber/40 bg-primary/95 p-3 text-left shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur lg:block ${
+                        showAbove ? "bottom-[122px]" : "top-[122px]"
+                      } ${index === 0 ? "left-0 translate-x-0" : ""} ${
+                        index > 0 && index < PROCESS_STEPS.length - 1
+                          ? "left-1/2 -translate-x-1/2"
+                          : ""
+                      } ${index === PROCESS_STEPS.length - 1 ? "right-0 translate-x-0" : ""}`}
+                    >
+                      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
+                        {step.n} · {step.t}
+                      </p>
+                      <p className="mt-2 text-xs leading-relaxed text-white/85">{step.info}</p>
+                    </motion.div>
+
+                    {isActive && !showAbove ? (
+                      <div className="mt-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
+                          {step.n} · {step.t}
+                        </p>
+                        <p className="mt-2 text-xs leading-relaxed text-white/85">{step.info}</p>
+                      </div>
+                    ) : null}
+                  </div>
+                </StaggerItem>
+              );
+            })}
+          </StaggerGroup>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function TraceabilitySection() {
   return (
-    <section className="bg-background pt-0 pb-8 sm:pb-12">
+    <section className="page-grid-surface overflow-x-clip pt-0 pb-8 sm:pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <article className="grid gap-5 rounded-[2rem] border border-border/70 bg-card/95 p-5 shadow-[var(--shadow-elegant)] sm:p-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-8">
-            <div>
+          <article className="grid gap-5 overflow-hidden rounded-[2rem] border border-border/70 bg-card/95 p-5 shadow-[var(--shadow-elegant)] sm:p-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-8">
+            <div className="min-w-0">
               <CapabilityImageSlider
                 images={TRACEABILITY_IMAGES}
                 title="Traceability and inspection process"
               />
             </div>
 
-            <div>
+            <div className="min-w-0">
               <div className="inline-flex rounded-full border border-amber/30 bg-amber/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
                 Our Promise
               </div>
@@ -344,6 +498,7 @@ function CapabilitiesPage() {
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
+      <ProcessFlowSection />
       <CapabilityFlowSection />
       <TraceabilitySection />
 

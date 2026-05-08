@@ -130,7 +130,7 @@ function RootShell({ children }) {
 function RootComponent() {
   return (
     <div className="relative isolate">
-      <div className="site-grid-overlay pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
+      <div className="site-grid-overlay pointer-events-none fixed inset-0 z-[1]" aria-hidden="true" />
       <Preloader />
       <Header />
       <main className="relative z-10 min-h-screen">

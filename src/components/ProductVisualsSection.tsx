@@ -1,8 +1,14 @@
+import { useEffect, useState } from "react";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { Reveal } from "@/components/Reveal";
+import {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
-
 const PRODUCT_LINES = [
   {
     category: "Transmission Gears",
@@ -35,22 +41,34 @@ function cleanLabel(text: string) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-export function ProductVisualsSection() {
+export function ProductVisualsSection({
+  variant = "slider",
+}: {
+  variant?: "slider" | "detailed-grid";
+}) {
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const visualNotes = [
     "OEM-grade finish",
     "Production-ready geometry",
     "Traceable batch quality",
   ];
 
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const interval = window.setInterval(() => {
+      carouselApi.scrollNext();
+    }, 3200);
+
+    return () => window.clearInterval(interval);
+  }, [carouselApi]);
+
   return (
-    <section className="bg-secondary pb-14 pt-2 sm:pb-24 sm:pt-6">
+    <section className="page-grid-surface-secondary overflow-x-clip pb-14 pt-0 sm:pb-24 sm:pt-0">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Product Visuals</div>
           <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Machined components gallery</h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            Representative component photography mapped to our production and machining expertise.
-          </p>
         </Reveal>
 
         <div className="mt-8 flex flex-wrap gap-2">
@@ -64,47 +82,81 @@ export function ProductVisualsSection() {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {PRODUCT_PHOTOS.map((item, index) => {
-            const relatedLine = PRODUCT_LINES[index % PRODUCT_LINES.length];
+        {variant === "slider" ? (
+          <Reveal delay={0.08}>
+            <Carousel
+              setApi={setCarouselApi}
+              opts={{ align: "start", loop: true }}
+              className="mt-10 min-w-0 px-1 sm:px-2"
+            >
+              <CarouselContent className="-ml-5">
+                {PRODUCT_PHOTOS.map((item) => (
+                  <CarouselItem
+                    key={item.relativePath}
+                    className="basis-[92%] pl-5 sm:basis-1/2 lg:basis-1/3"
+                  >
+                    <figure className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber/50 hover:shadow-[var(--shadow-elegant)]">
+                      <div className="flex aspect-[16/10] items-center justify-center overflow-hidden bg-white p-5 sm:p-6">
+                        <img
+                          src={item.src}
+                          alt={cleanLabel(item.filename)}
+                          className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                          loading="lazy"
+                        />
+                      </div>
+                    </figure>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </Reveal>
+        ) : (
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {PRODUCT_PHOTOS.map((item, index) => {
+              const relatedLine = PRODUCT_LINES[index % PRODUCT_LINES.length];
 
-            return (
-              <figure
-                key={item.relativePath}
-                className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber/50 hover:shadow-[var(--shadow-elegant)]"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={item.src}
-                    alt={item.filename}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent" />
-                  <figcaption className="absolute inset-x-0 bottom-0 p-4">
-                    <p className="font-display text-base font-semibold uppercase tracking-wide text-white">
-                      {cleanLabel(item.filename)}
-                    </p>
-                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/75">
-                      {relatedLine.category}
-                    </p>
-                  </figcaption>
-                </div>
+              return (
+                <figure
+                  key={item.relativePath}
+                  className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber/50 hover:shadow-[var(--shadow-elegant)]"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={item.src}
+                      alt={cleanLabel(item.filename)}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent" />
+                    <figcaption className="absolute inset-x-0 bottom-0 p-4">
+                      <p className="font-display text-base font-semibold uppercase tracking-wide text-white">
+                        {cleanLabel(item.filename)}
+                      </p>
+                      <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/75">
+                        {relatedLine.category}
+                      </p>
+                    </figcaption>
+                  </div>
 
-                <div className="grid grid-cols-2 gap-3 border-t border-border/80 p-4">
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Materials</p>
-                    <p className="mt-1 text-xs text-foreground">{relatedLine.materials}</p>
+                  <div className="grid grid-cols-2 gap-3 border-t border-border/80 p-4">
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                        Materials
+                      </p>
+                      <p className="mt-1 text-xs text-foreground">{relatedLine.materials}</p>
+                    </div>
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                        Application
+                      </p>
+                      <p className="mt-1 text-xs text-foreground">{relatedLine.application}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Application</p>
-                    <p className="mt-1 text-xs text-foreground">{relatedLine.application}</p>
-                  </div>
-                </div>
-              </figure>
-            );
-          })}
-        </div>
+                </figure>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

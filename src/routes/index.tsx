@@ -129,7 +129,7 @@ function HeroSlider() {
             </p>
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <MagneticButton to="/contact" variant="amber">
-                Request a Quote <ArrowRight className="h-4 w-4" />
+                Enquire Now <ArrowRight className="h-4 w-4" />
               </MagneticButton>
               <MagneticButton to="/capabilities" variant="outline">
                 View Capabilities
@@ -157,15 +157,13 @@ function HeroSlider() {
 
 function IntroSection() {
   return (
-    <section className="relative bg-background py-16 sm:py-32">
+    <section className="relative page-grid-surface py-16 sm:py-32">
       <div className="bp-grid-fine pointer-events-none absolute inset-0 text-primary/40" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 md:grid-cols-2 md:gap-14 lg:gap-20 lg:px-8">
         <Reveal>
-          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Who We Are</div>
-          <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-primary sm:text-5xl">
-            Engineering trust,
-            <br />
-            one component at a time.
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Our story</div>
+          <h2 className="mt-4 max-w-[14ch] font-display text-4xl font-bold leading-tight text-primary sm:max-w-none sm:text-5xl">
+            Engineering trust, one component at a time.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
             For over four decades, Laxmi Sagar Engineers has supplied precision-machined and forged
@@ -284,15 +282,16 @@ function StatsStrip() {
   }
 
   const stats = [
-    { value: 30, suffix: "+", label: "Years of Engineering Expertise" },
-    { value: 25000, suffix: "+ sq.ft.", label: "Manufacturing Facility" },
-    { value: 25, suffix: "+", label: "CNC & VMC Machines" },
+    { value: 30, suffix: "+", label: "Years of Engineering Expertise", numberClassName: "" },
+    { value: 25000, suffix: "+", label: "Manufacturing Facility", numberClassName: "" , suffixClassName: "ml-1 text-[0.78em] tracking-[-0.01em]"},
+    { value: 25, suffix: "+", label: "CNC & VMC Machines", numberClassName: "" },
     {
       value: 0,
       suffix: "",
       suffixClassName: "",
       label: "Certified Quality System",
       staticNumber: "ISO 9001:2015",
+      numberClassName: "text-[1.05em] leading-[0.92]",
     },
   ];
 
@@ -304,9 +303,9 @@ function StatsStrip() {
           {stats.map((item, index) => (
             <div
               key={item.label}
-              className={`min-w-0 px-2 text-left sm:px-3 md:px-2 lg:px-5 ${index > 0 ? "md:border-l md:border-white/10" : ""}`}
+            className={`min-w-0 px-2 text-center sm:px-3 md:px-2 lg:px-5 ${index > 0 ? "md:border-l md:border-white/10" : ""}`}
             >
-              <p className="break-words font-mono text-[1rem] font-semibold leading-tight tracking-[-0.03em] text-amber drop-shadow-[0_1px_0_rgba(0,0,0,0.35)] sm:text-[2.1rem] sm:leading-none sm:tracking-[0] md:text-[1.55rem] lg:text-[2.7rem]">
+              <p className={`font-display tabular-nums text-[1.15rem] font-bold leading-[0.95] tracking-[-0.03em] text-amber drop-shadow-[0_1px_0_rgba(0,0,0,0.35)] sm:text-[1.6rem] md:text-[1.75rem] lg:text-[2.7rem] ${item.numberClassName ?? ""}`}>
                 {item.staticNumber ? (
                   item.staticNumber
                 ) : (
@@ -359,13 +358,13 @@ const CAPS = [
 
 function CapabilitiesGrid() {
   return (
-    <section className="bg-secondary py-16 sm:py-32">
+    <section className="page-grid-surface-secondary py-16 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>  
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
             Capabilities
           </div>
-          <h2 className="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight text-primary sm:text-5xl">
+          <h2 className="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight text-primary sm:text-5xl lg:whitespace-nowrap">
             One roof. Every step. Total accountability.
           </h2>
         </Reveal>
@@ -417,26 +416,26 @@ function ClientMarquee() {
   const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
 
   return (
-    <section className="overflow-hidden border-y border-border bg-background py-14">
+    <section className="page-grid-surface overflow-hidden border-y border-border py-16 sm:py-20">
       <Reveal className="mb-10 text-center">
         <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Trusted By</div>
-        <h3 className="mt-3 font-display text-2xl font-bold text-primary sm:text-3xl">
-          Powering India's most demanding OEMs
+        <h3 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl lg:text-5xl">
+          Powering India's most leading OEMs
         </h3>
       </Reveal>
       <div className="relative">
         <div className="absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-background to-transparent" />
         <div className="absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-background to-transparent" />
-        <div className="flex w-max animate-marquee gap-12">
+        <div className="flex w-max animate-marquee gap-14 sm:gap-16">
           {logos.map((logo, i) => (
             <div
               key={i}
-              className="flex h-20 min-w-[220px] items-center justify-center rounded-xl border border-border bg-card px-8 shadow-sm transition-transform hover:-translate-y-0.5"
+              className="flex h-24 min-w-[240px] items-center justify-center rounded-xl border border-border bg-card px-8 shadow-sm transition-transform hover:-translate-y-0.5 sm:h-28 sm:min-w-[280px]"
             >
               <img
                 src={logo.src}
                 alt={logo.filename}
-                className="h-12 w-full object-contain"
+                className="h-14 w-full object-contain sm:h-16"
                 loading="lazy"
               />
             </div>
@@ -449,7 +448,7 @@ function ClientMarquee() {
 
 function CtaBanner() {
   return (
-    <section className="relative isolate overflow-hidden bg-primary py-16 text-primary-foreground sm:py-32">
+    <section className="relative isolate overflow-hidden bg-primary py-6 text-primary-foreground sm:py-8">
       <div className="absolute inset-0">
         <img src={IMG.parts} alt="" className="h-full w-full object-cover opacity-15" />
         <div
@@ -460,23 +459,24 @@ function CtaBanner() {
           }}
         />
       </div>
-      <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-8 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+      <div className="bp-grid pointer-events-none absolute inset-0 text-white/20" />
+      <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-4 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <Reveal className="max-w-2xl">
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
             {" "}
-            Get Started
+            Connect with us
           </div>
-          <h2 className="mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl">
-            Have a drawing? We'll quote it within 48 hours.
+          <h2 className="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">
+            Have a drawing? We wil quote within 48 hours.
           </h2>
-          <p className="mt-4 text-white/75">
+          <p className="mt-2 text-white/75">
             Send your part drawing, target volume and tolerances — our engineering team will revert
             with a feasibility note and indicative pricing.
           </p>
         </Reveal>
         <Reveal delay={0.15}>
           <MagneticButton to="/contact" variant="amber">
-            Request a Quote <ArrowRight className="h-5 w-5" />
+            Enquire Now <ArrowRight className="h-5 w-5" />
           </MagneticButton>
         </Reveal>
       </div>
@@ -486,14 +486,16 @@ function CtaBanner() {
 
 function HomePage() {
   return (
-    <>
-      <HeroSlider />
-      <IntroSection />
-      <StatsStrip />
-      <CapabilitiesGrid />
-      <ProductVisualsSection />
-      <ClientMarquee />
-      <CtaBanner />
-    </>
+    <div className="relative bg-background">
+      <div className="relative z-10">
+        <HeroSlider />
+        <IntroSection />
+        <StatsStrip />
+        <CapabilitiesGrid />
+        <ProductVisualsSection />
+        <ClientMarquee />
+        <CtaBanner />
+      </div>
+    </div>
   );
 }

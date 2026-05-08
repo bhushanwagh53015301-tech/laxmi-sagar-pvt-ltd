@@ -246,33 +246,7 @@ function QualityPage() {
         </div>
       </section> */}
 
-      <section className="bg-secondary py-14 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Inspection Workflow</div>
-            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">From incoming to dispatch - checked at every gate.</h2>
-          </Reveal>
-          <StaggerGroup className="mt-8 grid gap-6 sm:mt-14 md:grid-cols-2 lg:grid-cols-4">
-            {FLOW.map((s, i) => (
-              <StaggerItem key={s.t}>
-                <div className="group relative h-full rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
-                  <div className="font-mono text-5xl font-bold text-amber/30">0{i + 1}</div>
-                  <div className="mt-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                    <s.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-5 font-display text-lg font-bold uppercase tracking-wide text-primary">{s.t}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        </div>
-      </section>
-
-      <ProcessFlow />
-      <ProductVisualsSection />
-
-      <section className="bg-secondary py-14 sm:py-24">
+      <section className="page-grid-surface-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> What We Make</div>
@@ -319,7 +293,32 @@ function QualityPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-24">
+      <ProductVisualsSection variant="detailed-grid" />
+
+      <section className="page-grid-surface-secondary py-14 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Inspection Workflow</div>
+            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">From incoming to dispatch - checked at every gate.</h2>
+          </Reveal>
+          <StaggerGroup className="mt-8 grid gap-6 sm:mt-14 md:grid-cols-2 lg:grid-cols-4">
+            {FLOW.map((s, i) => (
+              <StaggerItem key={s.t}>
+                <div className="group relative h-full rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
+                  <div className="font-mono text-5xl font-bold text-amber/30">0{i + 1}</div>
+                  <div className="mt-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-bold uppercase tracking-wide text-primary">{s.t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </section>
+
+      <section className="page-grid-surface py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Calibrated Instruments</div>

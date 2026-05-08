@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Target, Eye, Heart } from "lucide-react";
+import { Target, Eye, ArrowRight } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
@@ -43,7 +43,6 @@ export const Route = createFileRoute("/about")({
 const VALUES = [
   { icon: Target, title: "Mission", text: "To deliver world-class CNC machined and forged components — on-time, within tolerance, with full documentation — so our OEM customers can build without second-guessing their supply chain." },
   { icon: Eye, title: "Vision", text: "To be the most trusted precision machining and forging jobwork partner for safety-critical automotive and industrial components in India — recognised for consistency, traceability, and zero-defect delivery." },
-  { icon: Heart, title: "Values", text: "Integrity. Precision. Accountability. Continuous improvement. Respect for craft." },
 ];
 
 const MILESTONES = [
@@ -74,7 +73,7 @@ const BRIEF_DIRECTOR_MESSAGES = [
     name: "Mr. Laxmikant D. Rokhade",
     role: "Managing Director",
     education: "Diploma in Mechanical Engineering",
-    photo: IMG.director1,
+    photo: ownerPhoto,
     message:
       "With deep mechanical expertise and long shop-floor experience, he leads manufacturing operations and strategic direction. His leadership ensures each component meets strict OEM expectations. Under his guidance, the company has scaled from a small job shop into a full-fledged precision machining and forging facility.",
   },
@@ -158,7 +157,7 @@ function AboutPage() {
       />
 
       {/* Story */}
-      <section className="bg-background py-24">
+      <section className="page-grid-surface py-24">
         <div className="mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Our Story</div>
@@ -186,23 +185,42 @@ function AboutPage() {
       </section>
 
       {/* Vision/Mission/Values */}
-      <section className="bg-secondary py-24">
+      <section className="relative overflow-hidden page-grid-surface-secondary py-24">
+        <div className="pointer-events-none absolute -left-20 top-10 h-60 w-60 rounded-full bg-amber/12 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="text-center">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">What Drives Us</div>
-            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Mission. Vision. Values.</h2>
+            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl lg:text-5xl">
+              Mission and vision
+              <br />
+              with industrial clarity.
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              We focus on delivering dependable production today while building a manufacturing partner customers can trust for the long run.
+            </p>
           </Reveal>
-          <StaggerGroup className="mt-14 grid gap-6 md:grid-cols-3">
+          <StaggerGroup className="mt-14 grid gap-6 lg:grid-cols-2">
             {VALUES.map((v) => (
               <StaggerItem key={v.title}>
-                <div className="h-full rounded-xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                    <v.icon className="h-6 w-6" />
+                <div className="group relative h-full overflow-hidden rounded-[2rem] border border-border/70 bg-card/95 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber/40 hover:shadow-[var(--shadow-elegant)] sm:p-10">
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber via-amber/55 to-transparent" />
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]">
+                      <v.icon className="h-7 w-7" />
+                    </div>
+                    {/* <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
+                      {v.title === "Mission" ? "Deliver Today" : "Build Tomorrow"}
+                    </div> */}
                   </div>
-                  <h3 className="mt-6 font-display text-xl font-bold uppercase tracking-wide text-primary">
+                  <h3 className="mt-8 font-display text-3xl font-bold uppercase tracking-wide text-primary">
                     {v.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.text}</p>
+                  <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">{v.text}</p>
+                  {/* <div className="mt-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-primary/70 transition-colors group-hover:text-primary">
+                    Precision-led commitment
+                    <ArrowRight className="h-4 w-4" />
+                  </div> */}
                 </div>
               </StaggerItem>
             ))}
@@ -210,7 +228,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-background py-20">
+      <section className="page-grid-surface py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
@@ -223,7 +241,7 @@ function AboutPage() {
 
           <div className="mt-10 space-y-6">
             <div className="rounded-xl border border-border bg-card p-6">
-              <div className="mt-6 grid gap-5 md:grid-cols-2">
+              <div className="mx-auto mt-6 grid max-w-5xl gap-5">
                 {BRIEF_DIRECTOR_MESSAGES.map((person) => (
                   <article
                     key={person.name}
@@ -295,7 +313,7 @@ function AboutPage() {
 
     
       {/* Certifications */}
-      <section className="bg-background py-24">
+      <section className="page-grid-surface py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Recognised & Certified</div>
@@ -364,7 +382,7 @@ function AboutPage() {
       </section> */}
 
       {/* Team members */}
-      <section className="relative overflow-hidden bg-secondary py-24">
+      <section className="relative overflow-hidden page-grid-surface-secondary py-24">
         <div className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-amber/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-20 bottom-6 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

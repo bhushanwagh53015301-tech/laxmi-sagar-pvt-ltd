@@ -49,12 +49,14 @@ export function Header() {
         scrolled
           ? "lg:border-b lg:border-border/80 lg:bg-background/92 lg:shadow-sm lg:backdrop-blur-2xl"
           : ""
-      }`}
+        }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
-        <Logo scrolled={scrolled} />
+      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[auto_1fr_auto] items-center px-4 sm:h-20 sm:px-6 lg:px-8">
+        <div className="justify-self-start">
+          <Logo scrolled={scrolled} />
+        </div>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center justify-center gap-1 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.to}
@@ -75,18 +77,9 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center lg:flex">
-          <Link
-            to="/contact"
-            className="sheen rounded-md bg-amber px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wider text-amber-foreground shadow-[var(--shadow-amber)] transition-transform hover:-translate-y-0.5"
-          >
-            Request Quote
-          </Link>
-        </div>
-
         <button
           onClick={() => setOpen(true)}
-          className={`rounded-md border p-3 shadow-sm backdrop-blur lg:hidden ${
+          className={`justify-self-end rounded-md border p-3 shadow-sm backdrop-blur lg:hidden ${
             scrolled
               ? "border-border bg-background/90 text-foreground"
               : "border-white/20 bg-primary/25 text-white"
@@ -146,14 +139,6 @@ export function Header() {
                   </motion.div>
                 ))}
               </nav>
-              <div className="relative z-10 border-t border-white/10 px-4 py-5 sm:px-5">
-                <Link
-                  to="/contact"
-                  className="block rounded-xl bg-amber px-4 py-4 text-center font-display text-sm font-semibold uppercase tracking-[0.18em] text-amber-foreground"
-                >
-                  Request Quote
-                </Link>
-              </div>
             </motion.aside>
           </>
         )}
