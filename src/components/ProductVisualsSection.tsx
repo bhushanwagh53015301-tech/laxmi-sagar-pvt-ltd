@@ -9,6 +9,14 @@ import {
 } from "@/components/ui/carousel";
 
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
+const PRODUCT_NAME_MAP: Record<string, string> = {
+  "Bush.jpg": "Precision Bush",
+  "Eq. Shaft.jpg": "Equalizer Shaft",
+  "Flange.jpg": "Machined Flange",
+  "Sleeve Yoke.jpg": "Sleeve Yoke",
+  "Slip Yoke.jpg": "Slip Yoke",
+  "Spindle.jpg": "Forged Spindle",
+};
 const PRODUCT_LINES = [
   {
     category: "Transmission Gears",
@@ -39,6 +47,10 @@ function cleanLabel(text: string) {
     .replace(/\s+/g, " ")
     .trim()
     .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function getProductName(filename: string) {
+  return PRODUCT_NAME_MAP[filename] ?? cleanLabel(filename);
 }
 
 export function ProductVisualsSection({
@@ -99,11 +111,16 @@ export function ProductVisualsSection({
                       <div className="flex aspect-[16/10] items-center justify-center overflow-hidden bg-white p-5 sm:p-6">
                         <img
                           src={item.src}
-                          alt={cleanLabel(item.filename)}
+                          alt={getProductName(item.filename)}
                           className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                           loading="lazy"
                         />
                       </div>
+                      <figcaption className="border-t border-border/80 px-5 py-4 sm:px-6">
+                        <p className="font-display text-base font-semibold uppercase tracking-wide text-primary">
+                          {getProductName(item.filename)}
+                        </p>
+                      </figcaption>
                     </figure>
                   </CarouselItem>
                 ))}
@@ -120,17 +137,17 @@ export function ProductVisualsSection({
                   key={item.relativePath}
                   className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber/50 hover:shadow-[var(--shadow-elegant)]"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-white p-6">
                     <img
                       src={item.src}
-                      alt={cleanLabel(item.filename)}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      alt={getProductName(item.filename)}
+                      className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent" />
                     <figcaption className="absolute inset-x-0 bottom-0 p-4">
                       <p className="font-display text-base font-semibold uppercase tracking-wide text-white">
-                        {cleanLabel(item.filename)}
+                        {getProductName(item.filename)}
                       </p>
                       <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/75">
                         {relatedLine.category}

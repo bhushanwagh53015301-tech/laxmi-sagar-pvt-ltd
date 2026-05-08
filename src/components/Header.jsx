@@ -20,14 +20,37 @@ function Logo({ scrolled = false }) {
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [useLightDesktopNav, setUseLightDesktopNav] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const syncHeaderState = () => {
+      setScrolled(window.scrollY > 8);
+
+      const probeY = window.innerWidth >= 1024 ? 88 : 72;
+      const probeX = Math.round(window.innerWidth / 2);
+      const elements = document.elementsFromPoint(probeX, probeY);
+      const contentElement = elements.find(
+        (element) =>
+          !element.closest("header") &&
+          !(element instanceof HTMLHtmlElement) &&
+          !(element instanceof HTMLBodyElement),
+      );
+
+      setUseLightDesktopNav(Boolean(contentElement?.closest(".bg-primary")));
+    };
+
+    const onScroll = () => syncHeaderState();
+
+    syncHeaderState();
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     setOpen(false);
@@ -63,11 +86,13 @@ export function Header() {
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
               activeProps={{
-                className: `${scrolled ? "text-primary" : "text-amber"} after:scale-x-100`,
+                className: `${scrolled ? (useLightDesktopNav ? "text-white" : "text-primary") : "text-amber"} after:scale-x-100`,
               }}
               inactiveProps={{
                 className: scrolled
-                  ? "text-foreground/80 hover:text-primary"
+                  ? useLightDesktopNav
+                    ? "text-white/85 hover:text-white"
+                    : "text-foreground/80 hover:text-primary"
                   : "text-white/85 hover:text-white",
               }}
               className="relative px-4 py-2 font-display text-sm font-semibold uppercase tracking-wider transition-colors after:absolute after:bottom-1 after:left-4 after:right-4 after:h-0.5 after:origin-left after:scale-x-0 after:bg-amber after:transition-transform after:duration-300 hover:after:scale-x-100"

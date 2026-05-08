@@ -233,12 +233,14 @@ function StatsStrip() {
     end,
     start,
     suffix = "",
+    suffixText = "",
     suffixClassName = "",
     duration = 1400,
   }: {
     end: number;
     start: boolean;
     suffix?: string;
+    suffixText?: string;
     suffixClassName?: string;
     duration?: number;
   }) {
@@ -277,13 +279,25 @@ function StatsStrip() {
       <span>
         {display}
         {suffix ? <span className={suffixClassName}>{suffix}</span> : null}
+        {suffixText ? (
+          <span className="-translate-y-1 inline-block ml-3 font-mono text-[0.46em] uppercase tracking-[0.14em] text-amber">
+            {suffixText}
+          </span>
+        ) : null}
       </span>
     );
   }
 
   const stats = [
     { value: 30, suffix: "+", label: "Years of Engineering Expertise", numberClassName: "" },
-    { value: 25000, suffix: "+", label: "Manufacturing Facility", numberClassName: "" , suffixClassName: "ml-1 text-[0.78em] tracking-[-0.01em]"},
+    {
+      value: 25000,
+        suffix: "+",
+        label: "Manufacturing Facility",
+        numberClassName: "",
+        suffixClassName: "ml-1 text-[0.78em] tracking-[-0.01em]",
+        suffixText: "sq. ft.",
+      },
     { value: 25, suffix: "+", label: "CNC & VMC Machines", numberClassName: "" },
     {
       value: 0,
@@ -313,6 +327,7 @@ function StatsStrip() {
                     end={item.value}
                     start={hasStarted}
                     suffix={item.suffix}
+                    suffixText={item.suffixText}
                     suffixClassName={item.suffixClassName}
                   />
                 )}
@@ -411,6 +426,22 @@ function CapabilitiesGrid() {
 }
 
 const CLIENT_LOGOS = assetsFromCategory("Client Logos");
+const CLIENT_NAME_MAP: Record<string, string> = {
+  "ADiam2018_Approved_for_external_use.png": "A Diam",
+  "client-1.png": "Client Partner 01",
+  "client-4.png": "Client Partner 04",
+  "hendrickson-usa-l-l-c-vector-logo.png": "Hendrickson",
+  "images.png": "York Transport Equipment",
+  "logo-2.png": "Trinity",
+  "logo.png": "RSB",
+  "R.jpeg": "Rieter",
+  "Trinity_Logo.png": "Trinity",
+  "york_transport_equipment_india_private_limited_logo.jpeg": "York India",
+};
+
+function getClientName(filename: string) {
+  return CLIENT_NAME_MAP[filename] ?? filename.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim();
+}
 
 function ClientMarquee() {
   const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
@@ -418,9 +449,9 @@ function ClientMarquee() {
   return (
     <section className="page-grid-surface overflow-hidden border-y border-border py-16 sm:py-20">
       <Reveal className="mb-10 text-center">
-        <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Trusted By</div>
+        <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Our Clientele</div>
         <h3 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl lg:text-5xl">
-          Powering India's most leading OEMs
+          Powering India's leading OEMs
         </h3>
       </Reveal>
       <div className="relative">
@@ -430,14 +461,17 @@ function ClientMarquee() {
           {logos.map((logo, i) => (
             <div
               key={i}
-              className="flex h-24 min-w-[240px] items-center justify-center rounded-xl border border-border bg-card px-8 shadow-sm transition-transform hover:-translate-y-0.5 sm:h-28 sm:min-w-[280px]"
+              className="flex min-h-[8.5rem] min-w-[240px] flex-col items-center justify-center rounded-xl border border-border bg-card px-8 py-4 text-center shadow-sm transition-transform hover:-translate-y-0.5 sm:min-h-[9.5rem] sm:min-w-[280px]"
             >
               <img
                 src={logo.src}
-                alt={logo.filename}
-                className="h-14 w-full object-contain sm:h-16"
+                alt={getClientName(logo.filename)}
+                className="h-12 w-full object-contain sm:h-14"
                 loading="lazy"
               />
+              <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                {getClientName(logo.filename)}
+              </p>
             </div>
           ))}
         </div>
@@ -448,7 +482,7 @@ function ClientMarquee() {
 
 function CtaBanner() {
   return (
-    <section className="relative isolate overflow-hidden bg-primary py-6 text-primary-foreground sm:py-8">
+    <section className="relative isolate overflow-hidden bg-primary py-12 text-primary-foreground sm:py-16">
       <div className="absolute inset-0">
         <img src={IMG.parts} alt="" className="h-full w-full object-cover opacity-15" />
         <div
@@ -467,7 +501,7 @@ function CtaBanner() {
             Connect with us
           </div>
           <h2 className="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">
-            Have a drawing? We wil quote within 48 hours.
+            Have a drawing? We will quote within 48 hours.
           </h2>
           <p className="mt-2 text-white/75">
             Send your part drawing, target volume and tolerances — our engineering team will revert

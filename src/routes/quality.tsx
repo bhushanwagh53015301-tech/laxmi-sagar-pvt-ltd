@@ -99,20 +99,20 @@ const COMPONENTS = [
 ];
 
 function ProcessFlow() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState<number | null>(null);
 
   return (
-    <section className="relative overflow-hidden bg-primary py-14 text-primary-foreground sm:py-32">
+    <section className="relative overflow-x-clip bg-primary py-14 text-primary-foreground sm:py-32">
       <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal className="max-w-3xl">
+        <Reveal className="max-w-4xl">
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> The Process</div>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">From raw forging to dispatch - one continuous flow.</h2>
+          <h2 className="mt-3 max-w-[14ch] font-display text-3xl font-bold leading-tight sm:max-w-none sm:text-4xl">From raw forging to dispatch - one continuous flow.</h2>
           <p className="mt-4 text-white/75">Every part traced through every step. Process discipline is what keeps our first-pass yield above 99.6%.</p>
         </Reveal>
 
-        <div className="relative mt-10 sm:mt-16">
-          <svg viewBox="0 0 1000 60" className="absolute left-0 right-0 top-8 hidden h-12 w-full lg:block" preserveAspectRatio="none">
+        <div className="relative mt-10 pb-8 sm:mt-16 sm:pb-12">
+          <svg viewBox="0 0 1000 60" className="absolute left-0 right-0 top-8 hidden h-12 w-full xl:block" preserveAspectRatio="none">
             <motion.path
               d="M 20 30 L 980 30"
               stroke="oklch(0.78 0.16 70)"
@@ -126,7 +126,7 @@ function ProcessFlow() {
             />
           </svg>
 
-          <StaggerGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-7" stagger={0.12}>
+          <StaggerGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7" stagger={0.12}>
             {STEPS.map((s, index) => {
               const isActive = activeStep === index;
               const showAbove = index % 2 === 0;
@@ -136,6 +136,7 @@ function ProcessFlow() {
                   <div
                     className="group relative flex flex-col items-center text-center"
                     onMouseEnter={() => setActiveStep(index)}
+                    onMouseLeave={() => setActiveStep(null)}
                   >
                     {isActive && showAbove ? (
                       <div className="mb-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
@@ -158,7 +159,7 @@ function ProcessFlow() {
                     >
                       {s.n}
                     </button>
-                    <div className="mt-4 font-display text-sm font-semibold uppercase tracking-wider">{s.t}</div>
+                    <div className="mt-4 max-w-[12ch] text-balance font-display text-sm font-semibold uppercase tracking-wider">{s.t}</div>
 
                     <motion.div
                       initial={false}
@@ -167,7 +168,7 @@ function ProcessFlow() {
                         y: isActive ? 0 : showAbove ? 6 : -6,
                       }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
-                      className={`pointer-events-none absolute z-20 hidden w-[230px] rounded-lg border border-amber/40 bg-primary/95 p-3 text-left shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur lg:block ${
+                      className={`pointer-events-none absolute z-20 hidden w-[230px] rounded-lg border border-amber/40 bg-primary/95 p-3 text-left shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur xl:block ${
                         showAbove ? "bottom-[122px]" : "top-[122px]"
                       } ${index === 0 ? "left-0 translate-x-0" : ""} ${
                         index > 0 && index < STEPS.length - 1 ? "left-1/2 -translate-x-1/2" : ""
