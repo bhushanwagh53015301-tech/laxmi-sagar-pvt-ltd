@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Briefcase, Cog, GraduationCap, HeartHandshake, ShieldCheck, TrendingUp, Upload, Wrench } from "lucide-react";
-import { assetsFromCategory, groupBySubPath } from "@/lib/localAssets";
+import { assetsFromCategory } from "@/lib/localAssets";
 import { IMG } from "@/lib/site";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import {
@@ -140,13 +140,6 @@ const EMPLOYEE_TESTIMONIALS = [
   },
 ];
 const EVENT_PHOTOS = assetsFromCategory("Event Photos");
-const APPRECIATION_PHOTOS = EVENT_PHOTOS.filter((item) =>
-  /apreciation|appreciation/i.test(item.subPath),
-);
-const CELEBRATION_PHOTOS = EVENT_PHOTOS.filter(
-  (item) => !/apreciation|appreciation/i.test(item.subPath),
-);
-const CELEBRATIONS_BY_TYPE = groupBySubPath(CELEBRATION_PHOTOS);
 
 function cleanLabel(text: string) {
   return text
@@ -157,16 +150,12 @@ function cleanLabel(text: string) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function cleanGroupName(groupName: string) {
-  const raw = groupName === "General" ? "Event Highlights" : groupName;
-  return cleanLabel(raw.replace(/^PHOTOS\s*\/\s*/i, ""));
-}
-
 function CareersPage() {
   const [submitting, setSubmitting] = useState(false);
   const [testimonialApi, setTestimonialApi] = useState<CarouselApi>();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [pauseTestimonials, setPauseTestimonials] = useState(false);
+  const [eventApi, setEventApi] = useState<CarouselApi>();
 
   useEffect(() => {
     if (!testimonialApi) return;
@@ -194,6 +183,16 @@ function CareersPage() {
 
     return () => clearInterval(interval);
   }, [testimonialApi, pauseTestimonials]);
+
+  useEffect(() => {
+    if (!eventApi) return;
+
+    const interval = setInterval(() => {
+      eventApi.scrollNext();
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [eventApi]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -441,59 +440,33 @@ function CareersPage() {
             </p>
           </Reveal>
 
-          <div className="mt-10 space-y-8">
-            {APPRECIATION_PHOTOS.length > 0 ? (
-              <div>
-                <div className="mb-4 flex items-end justify-between gap-4">
-                  <h3 className="font-display text-xl font-bold text-primary">Recognition moments</h3>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                    {APPRECIATION_PHOTOS.length} photos
-                  </p>
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {APPRECIATION_PHOTOS.map((photo) => (
-                    <figure
-                      key={photo.relativePath}
-                      className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]"
-                    >
-                      <img
-                        src={photo.src}
-                        alt={`Appreciation event at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`}
-                        className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                        loading="lazy"
-                      />
-                    </figure>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            {Object.entries(CELEBRATIONS_BY_TYPE).map(([groupName, photos]) => (
-              <div key={groupName}>
-                <div className="mb-4 flex items-end justify-between gap-4">
-                  <h3 className="font-display text-xl font-bold text-primary">{cleanGroupName(groupName)}</h3>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                    {photos.length} photos
-                  </p>
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {photos.map((photo) => (
-                    <figure
-                      key={photo.relativePath}
-                      className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]"
-                    >
+          <Reveal delay={0.08}>
+            <Carousel
+              setApi={setEventApi}
+              opts={{ align: "start", loop: true }}
+              className="mt-10"
+            >
+              <CarouselContent className="-ml-4">
+                {EVENT_PHOTOS.map((photo) => (
+                  <CarouselItem
+                    key={photo.relativePath}
+                    className="basis-[92%] pl-4 sm:basis-1/2 lg:basis-1/3"
+                  >
+                    <figure className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]">
                       <img
                         src={photo.src}
                         alt={`Team celebration at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`}
-                        className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         loading="lazy"
                       />
                     </figure>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-auto right-14 top-[-3.4rem] h-10 w-10 border-border bg-card text-primary hover:border-amber hover:text-amber" />
+              <CarouselNext className="right-0 top-[-3.4rem] h-10 w-10 border-border bg-card text-primary hover:border-amber hover:text-amber" />
+            </Carousel>
+          </Reveal>
         </div>
       </section>
 
