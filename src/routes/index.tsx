@@ -7,10 +7,10 @@ import { assetsFromCategory } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
 import { ProductVisualsSection } from "@/components/ProductVisualsSection";
-import companyBannerVideo from "@/assets/Company Photos/DJI_0185.MP4";
-import companyBannerPoster from "@/assets/Company Photos/LSE.jpg";
-import companyBannerImage from "@/assets/Company Photos/DJI_0191.JPG";
-import ourStoryImage from "@/assets/DJI_0201.JPG";
+import companyBannerVideo from "@/assets/home-page-banner/DJI_0185 (1).webm";
+import companyBannerImage from "@/assets/home-page-banner/DJI_0191.JPG";
+import officeBannerImage from "@/assets/home-page-banner/LSE.jpg";
+import ourStoryImage from "@/assets/DJI_0202.JPG";
 
 
 export const Route = createFileRoute("/")({
@@ -41,19 +41,19 @@ export const Route = createFileRoute("/")({
 const HOME_BANNER_SLIDES = [
   {
     video: companyBannerVideo,
-    poster: companyBannerPoster,
+    poster: companyBannerImage,
     eyebrow: "PRECISION JOBWORK · PUNE · SINCE 1980",
     title: "Laxmi Sagar\nEngineers Pvt Ltd.",
     sub: "Precision CNC Machined & Forged Components for Automotive OEMs",
   },
   {
-    img: companyBannerImage,
+    img: officeBannerImage,
     eyebrow: "ISO 9001:2015 CERTIFIED · AUTOMOTIVE OEM SUPPLIER",
     title: "Built For\nPrecision Output.",
     sub: "CNC machined and forged components for automotive, commercial vehicle, and industrial OEMs — delivered to tolerance, on time, every batch.",
   },
   {
-    img: companyBannerPoster,
+    img: companyBannerImage,
     eyebrow: "CNC MACHINING · FORGING · INDUCTION HARDENING",
     title: "From Shop Floor\nto Dispatch.",
     sub: "Forging, machining, inspection, and delivery coordinated under one roof in Kuruli, Pune for consistent industrial production.",
@@ -77,12 +77,12 @@ function HeroSlider() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0"
+          className="absolute inset-0 z-0"
         >
           {s.video ? (
             <video
               key={s.video}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover brightness-[0.78] contrast-[1.05]"
               autoPlay
               muted
               loop
@@ -90,24 +90,28 @@ function HeroSlider() {
               preload="metadata"
               poster={s.poster}
             >
-              <source src={s.video} type="video/mp4" />
+              <source src={s.video} type="video/webm" />
             </video>
           ) : (
-            <img src={s.img} alt="" className="h-full w-full object-cover" />
+            <img
+              src={s.img}
+              alt=""
+              className="h-full w-full object-cover brightness-[0.78] contrast-[1.05]"
+            />
           )}
         </motion.div>
       </AnimatePresence>
 
       <div
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-0 z-10"
         style={{
           background:
-            "linear-gradient(120deg, oklch(0.18 0.06 258 / 0.92) 0%, oklch(0.31 0.10 258 / 0.7) 50%, oklch(0.31 0.10 258 / 0.4) 100%)",
+            "linear-gradient(120deg, oklch(0.18 0.06 258 / 0.68) 0%, oklch(0.31 0.10 258 / 0.4) 50%, oklch(0.31 0.10 258 / 0.18) 100%)",
         }}
       />
-      <div className="bp-grid absolute inset-0 text-white/30" />
+      <div className="bp-grid pointer-events-none absolute inset-0 z-10 text-white/20" />
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-12 pt-24 sm:px-6 sm:pb-24 sm:pt-32 lg:px-8">
+      <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-12 pt-24 sm:px-6 sm:pb-24 sm:pt-32 lg:px-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={i}

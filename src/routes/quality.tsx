@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, ClipboardCheck, Microscope, FileText, Award, Download } from "lucide-react";
-import { IMG, SITE } from "@/lib/site";
+import { ShieldCheck, ClipboardCheck, Microscope, FileText } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
 import { ProductVisualsSection } from "@/components/ProductVisualsSection";
 import { ArrowRight } from "lucide-react";
+import qualityHeroImage from "@/assets/Product Photos/Spindle.webp";
 
 export const Route = createFileRoute("/quality")({
   head: () => ({
@@ -24,8 +24,8 @@ export const Route = createFileRoute("/quality")({
         content:
           "Quality systems, calibrated inspection lab, traceability and certifications you can rely on for safety-critical components.",
       },
-      { property: "og:image", content: IMG.quality },
-      { name: "twitter:image", content: IMG.quality },
+      { property: "og:image", content: qualityHeroImage },
+      { name: "twitter:image", content: qualityHeroImage },
     ],
   }),
   component: QualityPage,
@@ -213,7 +213,7 @@ function QualityPage() {
         eyebrow="Product"
         title="Product systems you can trust."
         subtitle="Calibrated checks, controlled processes, and full traceability."
-        image={IMG.quality}
+        image={qualityHeroImage}
         contentClassName="max-w-6xl"
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
@@ -294,7 +294,7 @@ function QualityPage() {
         </div>
       </section>
 
-      <ProductVisualsSection variant="detailed-grid" />
+      <ProductVisualsSection variant="detailed-grid" allowedExtensions={[".webp"]} />
 
       <section className="page-grid-surface-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

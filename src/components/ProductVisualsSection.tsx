@@ -11,11 +11,17 @@ import {
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
 const PRODUCT_NAME_MAP: Record<string, string> = {
   "Bush.jpg": "Precision Bush",
+  "Bush.webp": "Precision Bush",
   "Eq. Shaft.jpg": "Equalizer Shaft",
+  "Eq. Shaft.webp": "Equalizer Shaft",
   "Flange.jpg": "Machined Flange",
+  "Flange.webp": "Machined Flange",
   "Sleeve Yoke.jpg": "Sleeve Yoke",
+  "Sleeve Yoke.webp": "Sleeve Yoke",
   "Slip Yoke.jpg": "Slip Yoke",
+  "Slip Yoke.webp": "Slip Yoke",
   "Spindle.jpg": "Forged Spindle",
+  "Spindle.webp": "Forged Spindle",
 };
 const PRODUCT_LINES = [
   {
@@ -55,10 +61,19 @@ function getProductName(filename: string) {
 
 export function ProductVisualsSection({
   variant = "slider",
+  allowedExtensions,
 }: {
   variant?: "slider" | "detailed-grid";
+  allowedExtensions?: string[];
 }) {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const normalizedExtensions = allowedExtensions?.map((ext) => ext.toLowerCase());
+  const filteredPhotos = allowedExtensions?.length
+    ? PRODUCT_PHOTOS.filter((item) => {
+        const extension = item.filename.slice(item.filename.lastIndexOf(".")).toLowerCase();
+        return normalizedExtensions?.includes(extension);
+      })
+    : PRODUCT_PHOTOS;
   const visualNotes = [
     "OEM-grade finish",
     "Production-ready geometry",
@@ -102,7 +117,7 @@ export function ProductVisualsSection({
               className="mt-10 min-w-0 px-1 sm:px-2"
             >
               <CarouselContent className="-ml-5">
-                {PRODUCT_PHOTOS.map((item) => (
+                {filteredPhotos.map((item) => (
                   <CarouselItem
                     key={item.relativePath}
                     className="basis-[92%] pl-5 sm:basis-1/2 lg:basis-1/3"
@@ -129,7 +144,7 @@ export function ProductVisualsSection({
           </Reveal>
         ) : (
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {PRODUCT_PHOTOS.map((item, index) => {
+            {filteredPhotos.map((item, index) => {
               const relatedLine = PRODUCT_LINES[index % PRODUCT_LINES.length];
 
               return (

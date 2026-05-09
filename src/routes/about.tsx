@@ -6,7 +6,8 @@ import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
-import ownerPhoto from "@/assets/owner.png";
+import ownerPhoto from "@/assets/owner.webp";
+import ourStoryPhoto from "@/assets/Company Photos/WhatsApp Image 2026-04-08 at 6.08.05 PM (1).png";
 import isoCertificateFile from "@/assets/iso-certificate.pdf";
 import zedCertificateFile from "@/assets/zed-certificate.pdf";
 import isoCertificatePreview from "@/assets/certificate/ISO Certificate_page-0001.jpg";
@@ -174,7 +175,7 @@ function AboutPage() {
             <div className="relative">
               <div className="overflow-hidden rounded-xl shadow-[var(--shadow-elegant)]">
                 <img
-                  src={STORY_PHOTO?.src ?? IMG.factory}
+                  src={ourStoryPhoto}
                   alt="Laxmi Sagar Engineers facility"
                   className="h-[460px] w-full object-cover"
                 />
