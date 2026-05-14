@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight, ClipboardCheck, Download, FileText, Microscope, ShieldCheck } from "lucide-react";
 import { IMG } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { MagneticButton } from "@/components/MagneticButton";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
+const instrumentListPdf = "/downloads/instrument-list.pdf";
+const machineryListPdf = "/downloads/machinery-list.pdf";
 import {
   type CarouselApi,
   Carousel,
@@ -37,6 +39,7 @@ export const Route = createFileRoute("/capabilities")({
 });
 
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
+const MACHINE_PHOTOS = PRODUCT_PHOTOS.filter((item) => /(^| \/ )machines$/i.test(item.subPath) || /machine/i.test(item.filename));
 const COMPANY_PHOTOS = assetsFromCategory("Company Photos");
 const TRACEABILITY_IMAGES = [
   {
@@ -131,38 +134,20 @@ const PROCESS_MATRIX = [
   ["Dispatch", "Final inspection + packing protocol", "Batch-level traceability and safe transit readiness"],
 ];
 
-const CERT_DOWNLOADS = [
-  { title: "ISO 9001 Certificate", file: "/certificates/iso-certificate.pdf" },
-  { title: "ZED Certificate", file: "/certificates/zed-certificate.pdf" },
+const FLOW = [
+  { icon: ClipboardCheck, t: "Incoming Material", d: "Mill test certificate verification, dimensional check on raw forgings, batch tagging." },
+  { icon: ShieldCheck, t: "In-Process Patrol", d: "First-piece approval, hourly SPC sampling, gauge R&R verified at every change-over." },
+  { icon: Microscope, t: "Final Inspection", d: "100% gauge check on critical features + AQL sampling on dimensional and surface finish." },
+  { icon: FileText, t: "Documentation", d: "PSW / PPAP-style report pack, traceability log, material certificate per batch." },
 ];
 
-const INSPECTION_DEPTH_STEPS = [
-  {
-    step: "Step 01",
-    title: "Incoming Verification",
-    detail: "Raw forgings are checked against heat certificate, dimensions, and visual quality before release.",
-  },
-  {
-    step: "Step 02",
-    title: "In-Process Control",
-    detail: "Critical dimensions are sampled in-line with calibrated gauges and process logs at each stage.",
-  },
-  {
-    step: "Step 03",
-    title: "Final Validation",
-    detail: "Finished parts are verified for dimensional compliance, hardness, and functional features.",
-  },
-  {
-    step: "Step 04",
-    title: "Traceability Record",
-    detail: "Batch ID, machine/shift data, inspection records, and dispatch documentation are linked and archived.",
-  },
-];
-
-const INSPECTION_LAB = [
-  "CMM and profile projector validation support",
-  "Surface roughness and hardness verification",
-  "Bore/plug gauge-based dimensional checks",
+const INSTRUMENTS = [
+  { name: "Digital Height Gauges", spec: "Trimos 0–1200 mm · Mitutoyo 0–450 mm" },
+  { name: "Profile Projector", spec: "0–550 mm · Optical form & contour verification" },
+  { name: "Bench Centres & V-Blocks", spec: "1000 mm bench centre · Granite plates up to 1000×750 mm" },
+  { name: "Precision Micrometers", spec: "Mitutoyo · 0–125 mm · LC 0.010 mm" },
+  { name: "Bore Gauges", spec: "Mitutoyo · 18–160 mm range" },
+  { name: "APG with Auto Offset", spec: "Component-specific gauging built into the production process." },
 ];
 
 const CAPABILITY_FLOW = [
@@ -204,7 +189,11 @@ const CAPABILITY_FLOW = [
       "Machine availability is structured around throughput, dimensional control, and stable output.",
       "Sub-contracting workload is absorbed through flexible route planning and machine readiness.",
     ],
-    images: PRODUCT_PHOTOS.slice(0, 5).map((item) => ({
+    download: {
+      label: "Download Machinery List",
+      file: machineryListPdf,
+    },
+    images: (MACHINE_PHOTOS.length ? MACHINE_PHOTOS : PRODUCT_PHOTOS).slice(0, 8).map((item) => ({
       src: item.src,
       alt: cleanLabel(item.filename),
     })),
@@ -220,6 +209,10 @@ const CAPABILITY_FLOW = [
       "Certificate-backed systems reinforce process discipline and customer confidence.",
       "Inspection records and batch-level traceability support reliable audits and repeat orders.",
     ],
+    download: {
+      label: "Download Instrument List",
+      file: instrumentListPdf,
+    },
     images: [
       {
         src: PRODUCT_PHOTOS[0]?.src ?? IMG.parts,
@@ -280,11 +273,11 @@ function CapabilityImageSlider({
         <CarouselContent className="ml-0">
           {images.map((image) => (
             <CarouselItem key={`${title}-${image.alt}`} className="pl-0">
-              <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+              <div className="relative aspect-[4/3] overflow-hidden bg-white">
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain p-3"
                   loading="lazy"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary/20 to-transparent" />
@@ -338,6 +331,17 @@ function CapabilityFlowSection() {
                         </div>
                       ))}
                     </div>
+                    {item.download ? (
+                      <a
+                        href={item.download.file}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-5 inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:border-amber hover:text-amber"
+                      >
+                        <Download className="h-4 w-4" />
+                        {item.download.label}
+                      </a>
+                    ) : null}
                   </div>
 
                   <div className={`min-w-0 ${reversed ? "lg:order-1" : ""}`}>
@@ -474,56 +478,46 @@ function InspectionInDepthSection() {
     <section className="page-grid-surface-secondary overflow-x-clip pt-10 pb-12 sm:pt-16 sm:pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Inspection in Depth</div>
-          <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">4-step inspection flow with lab support and PDF downloads.</h2>
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Inspection Workflow</div>
+          <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">From incoming to dispatch - checked at every gate.</h2>
         </Reveal>
 
-        <StaggerGroup className="mt-8 grid gap-4 sm:mt-10 md:grid-cols-2 lg:grid-cols-4">
-          {INSPECTION_DEPTH_STEPS.map((item) => (
-            <StaggerItem key={item.step}>
-              <article className="rounded-xl border border-border bg-card p-5 shadow-sm">
-                <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">{item.step}</div>
-                <h3 className="mt-2 font-display text-lg font-semibold text-primary">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.detail}</p>
+        <StaggerGroup className="mt-8 grid gap-6 sm:mt-14 md:grid-cols-2 lg:grid-cols-4">
+          {FLOW.map((item, index) => (
+            <StaggerItem key={item.t}>
+              <article className="relative h-full rounded-xl border border-border bg-card p-7 shadow-sm">
+                <div className="font-mono text-5xl font-bold text-amber/30">0{index + 1}</div>
+                <div className="mt-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                  <item.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 font-display text-lg font-bold uppercase tracking-wide text-primary">{item.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.d}</p>
               </article>
             </StaggerItem>
           ))}
         </StaggerGroup>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-          <Reveal>
-            <article className="overflow-hidden rounded-[1.5rem] border border-border/70 bg-card p-5 shadow-sm sm:p-6">
-              <h3 className="font-display text-2xl font-bold text-primary">Inspection Lab</h3>
-              <ul className="mt-4 space-y-2.5">
-                {INSPECTION_LAB.map((point) => (
-                  <li key={point} className="flex items-start gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground">
-                    <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </Reveal>
-
-          <Reveal delay={0.08}>
-            <article className="overflow-hidden rounded-[1.5rem] border border-border/70 bg-card p-5 shadow-sm sm:p-6">
-              <h3 className="font-display text-2xl font-bold text-primary">PDF Downloads</h3>
-              <div className="mt-4 space-y-3">
-                {CERT_DOWNLOADS.map((cert) => (
-                  <a
-                    key={cert.title}
-                    href={cert.file}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block rounded-xl border border-border bg-background px-4 py-3 text-sm font-medium text-primary transition-colors hover:border-amber hover:text-amber"
-                  >
-                    {cert.title}
-                  </a>
-                ))}
+        <Reveal delay={0.08}>
+          <div className="mt-12">
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Calibrated Instruments</div>
+            <h3 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Inspection lab</h3>
+          </div>
+        </Reveal>
+        <StaggerGroup className="mt-8 grid gap-4 sm:mt-12 md:grid-cols-2">
+          {INSTRUMENTS.map((it) => (
+            <StaggerItem key={it.name}>
+              <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-6">
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-md bg-amber/15 text-amber">
+                  <Microscope className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="font-display text-base font-semibold text-primary">{it.name}</div>
+                  <div className="mt-1 font-mono text-xs text-muted-foreground">{it.spec}</div>
+                </div>
               </div>
-            </article>
-          </Reveal>
-        </div>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
       </div>
     </section>
   );

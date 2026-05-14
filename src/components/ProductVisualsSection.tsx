@@ -9,6 +9,9 @@ import {
 } from "@/components/ui/carousel";
 
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
+const COMPONENT_PHOTOS = PRODUCT_PHOTOS.filter(
+  (item) => !/(^| \/ )machines$/i.test(item.subPath) && !/machine/i.test(item.filename),
+);
 const PRODUCT_NAME_MAP: Record<string, string> = {
   "Bush.jpg": "Precision Bush",
   "Bush.webp": "Precision Bush",
@@ -69,11 +72,11 @@ export function ProductVisualsSection({
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const normalizedExtensions = allowedExtensions?.map((ext) => ext.toLowerCase());
   const filteredPhotos = allowedExtensions?.length
-    ? PRODUCT_PHOTOS.filter((item) => {
+    ? COMPONENT_PHOTOS.filter((item) => {
         const extension = item.filename.slice(item.filename.lastIndexOf(".")).toLowerCase();
         return normalizedExtensions?.includes(extension);
       })
-    : PRODUCT_PHOTOS;
+    : COMPONENT_PHOTOS;
   const visualNotes = [
     "OEM-grade finish",
     "Production-ready geometry",

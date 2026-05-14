@@ -251,7 +251,7 @@ function AboutPage() {
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
               The People Behind the Precision
             </h2>
-            <p className="mt-3 max-w-3xl text-muted-foreground">
+            <p className="mt-3 text-muted-foreground lg:whitespace-nowrap">
               Leadership shaped by hands-on manufacturing experience, operational discipline, and long-term industrial growth.
             </p>
           </Reveal>

@@ -292,7 +292,7 @@ function QualityPage() {
 
       <ProductVisualsSection variant="detailed-grid" allowedExtensions={[".webp"]} />
 
-      <section className="page-grid-surface-secondary py-14 sm:py-24">
+      {/* <section className="page-grid-surface-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Inspection Workflow</div>
@@ -337,7 +337,7 @@ function QualityPage() {
             ))}
           </StaggerGroup>
         </div>
-      </section>
+      </section> */}
 
       {/* <section className="relative overflow-hidden bg-primary py-14 text-primary-foreground sm:py-24">
         <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />

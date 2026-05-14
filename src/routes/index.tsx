@@ -12,6 +12,10 @@ import companyBannerImage from "@/assets/home-page-banner/DJI_0191.JPG";
 import officeBannerImage from "@/assets/home-page-banner/LSE.jpg";
 import ourStoryImage from "@/assets/DJI_0202.JPG";
 
+const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
+const MACHINE_PHOTOS = PRODUCT_PHOTOS.filter((item) => /(^| \/ )machines$/i.test(item.subPath) || /machine/i.test(item.filename));
+const MACHINE_CARD_IMAGES = (MACHINE_PHOTOS.length ? MACHINE_PHOTOS : PRODUCT_PHOTOS).map((item) => item.src);
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -350,25 +354,25 @@ const CAPS = [
     icon: Cog,
     title: "Precision CNC Turning",
     desc: "Multi-axis CNC lines for high-volume turned components with consistent micron tolerances.",
-    img: IMG.cnc,
+    img: MACHINE_CARD_IMAGES[0] ?? IMG.cnc,
   },
   {
     icon: Cpu,
     title: "VMC Machining",
     desc: "Vertical machining centres for complex milling, drilling and contouring on forged blanks.",
-    img: IMG.vmc,
+    img: MACHINE_CARD_IMAGES[1] ?? IMG.vmc,
   },
   {
     icon: Flame,
     title: "Induction Hardening",
     desc: "In-house induction hardening for case-depth control on shafts, gears and pins.",
-    img: IMG.hardening,
+    img: MACHINE_CARD_IMAGES[2] ?? IMG.hardening,
   },
   {
     icon: ShieldCheck,
     title: "Quality Inspection",
     desc: "Calibrated CMM, profile projectors and gauges with full traceability and documentation.",
-    img: IMG.inspection,
+    img: MACHINE_CARD_IMAGES[3] ?? IMG.inspection,
   },
 ];
 
@@ -390,11 +394,11 @@ function CapabilitiesGrid() {
           {CAPS.map((c) => (
             <StaggerItem key={c.title}>
               <div className="sheen group relative h-full overflow-hidden rounded-xl bg-card shadow-sm transition-shadow hover:shadow-[var(--shadow-elegant)]">
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative h-44 overflow-hidden bg-white">
                   <img
                     src={c.img}
                     alt={c.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="h-full w-full object-contain p-2 transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent" />
                   <div className="absolute bottom-3 left-4 flex h-10 w-10 items-center justify-center rounded-md bg-amber text-amber-foreground">
@@ -428,25 +432,27 @@ function CapabilitiesGrid() {
 }
 
 const CLIENT_LOGOS = [...assetsFromCategory("Client Logos"), ...assetsFromCategory("Client Photos")];
-const EXCLUDED_CLIENT_LOGOS = new Set(["images.png"]);
+const EXCLUDED_CLIENT_LOGOS = new Set([
+  "images.png",
+  "client-1.png",
+  "client-4.png",
+  "WhatsApp Image 2026-05-12 at 3.15.02 PM.jpeg",
+]);
 const UNIQUE_CLIENT_LOGOS = Array.from(new Map(CLIENT_LOGOS.map((item) => [item.relativePath, item])).values()).filter(
   (item) => !EXCLUDED_CLIENT_LOGOS.has(item.filename),
 );
 const CLIENT_NAME_MAP: Record<string, string> = {
-  "ADiam2018_Approved_for_external_use.png": "A Diam",
+  "ADiam2018_Approved_for_external_use.png": "A.DIAM",
   "carraro-indai.jpeg": "Carraro India",
-  "client-1.png": "Client Logo 1",
-  "client-4.png": "Client Logo 4",
   "flash.jpeg": "Flash Electronics",
-  "hendrickson-usa-l-l-c-vector-logo.png": "Hendrickson",
-  "logo-2.png": "Trinity",
+  "hendrickson-usa-l-l-c-vector-logo.png": "Hendrickson USA, L.L.C.",
+  // "logo-2.png": "Trinity",
   "logo.png": "RSB",
-  "R.jpeg": "Rane",
-  "Trinity_Logo.png": "Trinity",
+  // "R.jpeg": "Rane",
+  // "Trinity_Logo.png": "Trinity",
   "turbo-group.jpeg": "Turbo Group",
   "watson&chalin.jpeg": "Watson & Chalin",
-  "WhatsApp Image 2026-05-12 at 3.15.02 PM.jpeg": "Client Partner",
-  "york_transport_equipment_india_private_limited_logo.jpeg": "York India",
+  "york_transport_equipment_india_private_limited_logo.jpeg": "York Transport Equipment India Pvt. Ltd.",
 };
 
 function getClientName(filename: string) {
