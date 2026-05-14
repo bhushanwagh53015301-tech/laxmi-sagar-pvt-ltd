@@ -166,18 +166,16 @@ function IntroSection() {
       <div className="relative mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 md:grid-cols-2 md:gap-14 lg:gap-20 lg:px-8">
         <Reveal>
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Our story</div>
-          <h2 className="mt-4 max-w-[14ch] font-display text-4xl font-bold leading-tight text-primary sm:max-w-none sm:text-5xl">
+          <h2 className="mt-2 max-w-[14ch] font-display text-4xl font-bold leading-tight text-primary sm:max-w-none sm:text-5xl">
             Engineering trust, one component at a time.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            For over four decades, Laxmi Sagar Engineers has supplied precision-machined and forged
-            components to India's automotive, commercial vehicle, tractor, and off-highway OEMs —
-            consistently, at volume, with full traceability.
+           Established in 1997 and operating from Kuruli, Chakan — at the centre of Pune's automotive manufacturing belt — Laxmi Sagar Engineers Pvt Ltd is a specialist in heavy forging jobwork and CNC precision machining for India's leading automotive, commercial vehicle, tractor, and off-highway OEMs.
           </p>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            We take ownership of tolerances, timelines, and documentation — so your production line
-            never has to second-guess what's coming from us.
+           Our ISO 9001:2015 certified facility spans 25,000+ sq. ft., housing 25+ CNC turning centres, VMC machines, and in-house induction hardening — purpose-built for high-volume, tight-tolerance component production. From rear axle spindles and yoke sleeves to trumpet housings and custom forged components, we machine to your drawing, to your tolerance, on your timeline.
           </p>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">Built on decades of shop-floor discipline, our commitment is simple: your production line should never have to second-guess what is coming from us. Every batch leaves with full dimensional traceability, documented inspection records, and zero compromise on the specifications you gave us.</p>
           <div className="mt-8">
             <Link
               to="/about"
@@ -429,17 +427,25 @@ function CapabilitiesGrid() {
   );
 }
 
-const CLIENT_LOGOS = assetsFromCategory("Client Logos");
+const CLIENT_LOGOS = [...assetsFromCategory("Client Logos"), ...assetsFromCategory("Client Photos")];
+const EXCLUDED_CLIENT_LOGOS = new Set(["images.png"]);
+const UNIQUE_CLIENT_LOGOS = Array.from(new Map(CLIENT_LOGOS.map((item) => [item.relativePath, item])).values()).filter(
+  (item) => !EXCLUDED_CLIENT_LOGOS.has(item.filename),
+);
 const CLIENT_NAME_MAP: Record<string, string> = {
   "ADiam2018_Approved_for_external_use.png": "A Diam",
-  "client-1.png": "Client Partner 01",
-  "client-4.png": "Client Partner 04",
+  "carraro-indai.jpeg": "Carraro India",
+  "client-1.png": "Client Logo 1",
+  "client-4.png": "Client Logo 4",
+  "flash.jpeg": "Flash Electronics",
   "hendrickson-usa-l-l-c-vector-logo.png": "Hendrickson",
-  "images.png": "York Transport Equipment",
   "logo-2.png": "Trinity",
   "logo.png": "RSB",
-  "R.jpeg": "Rieter",
+  "R.jpeg": "Rane",
   "Trinity_Logo.png": "Trinity",
+  "turbo-group.jpeg": "Turbo Group",
+  "watson&chalin.jpeg": "Watson & Chalin",
+  "WhatsApp Image 2026-05-12 at 3.15.02 PM.jpeg": "Client Partner",
   "york_transport_equipment_india_private_limited_logo.jpeg": "York India",
 };
 
@@ -448,7 +454,7 @@ function getClientName(filename: string) {
 }
 
 function ClientMarquee() {
-  const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
+  const logos = [...UNIQUE_CLIENT_LOGOS, ...UNIQUE_CLIENT_LOGOS];
 
   return (
     <section className="page-grid-surface overflow-hidden border-y border-border py-16 sm:py-20">

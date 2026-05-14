@@ -16,6 +16,7 @@ export const SITE = {
   phones: ["+91 7620099185", "+91 9326846702"],
   phone: "+91 7620099185",
   whatsapp: "+917620099185",
+  whatsappLink: "https://wa.me/919326846702?text=Hello%2C+I+came+across+your+website+and+would+like+to+enquire+about+your+manufacturing+services",
   email: "laxmisagar.pvtltd@gmail.com",
   address: "Sr No 622/2, Near Saint Gobain Sekurit Ltd, Village Kuruli, Taluka Khed Pune Pune MH 410501 IN",
   workingHours: "9:00 AM - 6:00 PM",

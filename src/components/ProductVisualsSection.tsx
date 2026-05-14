@@ -25,22 +25,22 @@ const PRODUCT_NAME_MAP: Record<string, string> = {
 };
 const PRODUCT_LINES = [
   {
-    category: "Transmission Gears",
+    category: "Axle Shafts",
     materials: "SAE 8620, 16MnCr5, 20MnCr5",
     application: "CV and tractor transmission systems",
   },
   {
-    category: "Transmission Shafts",
+    category: "Hub Spindles",
     materials: "EN8, EN19, EN24",
     application: "Automotive drivetrain and industrial shafts",
   },
   {
-    category: "Machined Forgings",
+    category: "Transmission Shafts",
     materials: "Carbon and alloy steels as per drawing",
     application: "Critical load-bearing components",
   },
   {
-    category: "Precision Components",
+    category: "Yokes & Sleeve Yokes",
     materials: "EN-series and OEM-specified grades",
     application: "Safety-critical engineered assemblies",
   },

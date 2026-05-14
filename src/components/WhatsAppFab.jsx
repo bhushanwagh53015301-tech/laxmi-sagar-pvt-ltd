@@ -7,6 +7,7 @@ export function WhatsAppFab() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const number = SITE.whatsapp.replace(/\D/g, "");
+  const whatsappHref = SITE.whatsappLink || `https://wa.me/${number}`;
 
   useEffect(() => {
     const updateScrollState = () => {
@@ -46,7 +47,7 @@ export function WhatsAppFab() {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
-          href={`https://wa.me/${number}`}
+          href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"

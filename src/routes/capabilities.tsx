@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { IMG } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
+import { MagneticButton } from "@/components/MagneticButton";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import {
   type CarouselApi,
@@ -101,7 +102,7 @@ const PRODUCT_LINES = [
   {
     category: "Transmission Shafts",
     materials: "EN8, EN19, EN24",
-    size: "Dia 6-250 mm, length up to 600 mm",
+    size: "Dia 6-450 mm, Length up to 1200 mm",
     process: "Turning > milling > induction hardening > final inspection",
     application: "Automotive drivetrain and industrial shafts",
   },
@@ -133,6 +134,35 @@ const PROCESS_MATRIX = [
 const CERT_DOWNLOADS = [
   { title: "ISO 9001 Certificate", file: "/certificates/iso-certificate.pdf" },
   { title: "ZED Certificate", file: "/certificates/zed-certificate.pdf" },
+];
+
+const INSPECTION_DEPTH_STEPS = [
+  {
+    step: "Step 01",
+    title: "Incoming Verification",
+    detail: "Raw forgings are checked against heat certificate, dimensions, and visual quality before release.",
+  },
+  {
+    step: "Step 02",
+    title: "In-Process Control",
+    detail: "Critical dimensions are sampled in-line with calibrated gauges and process logs at each stage.",
+  },
+  {
+    step: "Step 03",
+    title: "Final Validation",
+    detail: "Finished parts are verified for dimensional compliance, hardness, and functional features.",
+  },
+  {
+    step: "Step 04",
+    title: "Traceability Record",
+    detail: "Batch ID, machine/shift data, inspection records, and dispatch documentation are linked and archived.",
+  },
+];
+
+const INSPECTION_LAB = [
+  "CMM and profile projector validation support",
+  "Surface roughness and hardness verification",
+  "Bore/plug gauge-based dimensional checks",
 ];
 
 const CAPABILITY_FLOW = [
@@ -172,6 +202,7 @@ const CAPABILITY_FLOW = [
       "Configured for turning, drilling, milling, and component-specific machining routes.",
       "Suitable for shafts, yokes, flanges, bushes, spindles, and similar precision parts.",
       "Machine availability is structured around throughput, dimensional control, and stable output.",
+      "Sub-contracting workload is absorbed through flexible route planning and machine readiness.",
     ],
     images: PRODUCT_PHOTOS.slice(0, 5).map((item) => ({
       src: item.src,
@@ -179,15 +210,15 @@ const CAPABILITY_FLOW = [
     })),
   },
   {
-    id: "product",
-    badge: "03 Product",
-    title: "Product Range & Certified Systems",
+    id: "quality",
+    badge: "03 Quality",
+    title: "Quality Systems & Production Confidence",
     description:
-      "Representative product coverage and certification support help show manufacturing scope, customer confidence, and reliable production readiness.",
+      "Structured inspection and certified controls are embedded in production to maintain consistency, traceability, and OEM-grade confidence.",
     notes: [
-      "Product examples highlight the range of parts supported across precision machining programs.",
-      "Certificates reinforce process discipline, consistency, and customer-facing credibility.",
-      "Visual proof of products and compliance helps present a stronger capability story.",
+      "In-process and final-stage quality checks are integrated across machining routes.",
+      "Certificate-backed systems reinforce process discipline and customer confidence.",
+      "Inspection records and batch-level traceability support reliable audits and repeat orders.",
     ],
     images: [
       {
@@ -438,49 +469,81 @@ function ProcessFlowSection() {
   );
 }
 
-function TraceabilitySection() {
+function InspectionInDepthSection() {
   return (
-    <section className="page-grid-surface overflow-x-clip pt-0 pb-8 sm:pb-12">
+    <section className="page-grid-surface-secondary overflow-x-clip pt-10 pb-12 sm:pt-16 sm:pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <article className="grid gap-5 overflow-hidden rounded-[2rem] border border-border/70 bg-card/95 p-5 shadow-[var(--shadow-elegant)] sm:p-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-8">
-            <div className="min-w-0">
-              <CapabilityImageSlider
-                images={TRACEABILITY_IMAGES}
-                title="Traceability and inspection process"
-              />
-            </div>
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Inspection in Depth</div>
+          <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">4-step inspection flow with lab support and PDF downloads.</h2>
+        </Reveal>
 
-            <div className="min-w-0">
-              <div className="inline-flex rounded-full border border-amber/30 bg-amber/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
-                Our Promise
-              </div>
-              <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-primary sm:text-4xl">
-                Full batch traceability - heat number to dispatch.
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                Every batch we run carries a unique identifier. From the supplier mill test
-                certificate through every machining op, hardening cycle and inspection record,
-                it&apos;s logged, signed and archived.
-              </p>
-              <ul className="mt-5 space-y-2.5">
-                {[
-                  "Supplier MTC linked to batch ID",
-                  "Operator + machine + shift logged at every op",
-                  "Inspection records archived for 5+ years",
-                  "Recall traceability within 30 minutes",
-                ].map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-start gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground"
-                  >
+        <StaggerGroup className="mt-8 grid gap-4 sm:mt-10 md:grid-cols-2 lg:grid-cols-4">
+          {INSPECTION_DEPTH_STEPS.map((item) => (
+            <StaggerItem key={item.step}>
+              <article className="rounded-xl border border-border bg-card p-5 shadow-sm">
+                <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">{item.step}</div>
+                <h3 className="mt-2 font-display text-lg font-semibold text-primary">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.detail}</p>
+              </article>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+
+        <div className="mt-8 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+          <Reveal>
+            <article className="overflow-hidden rounded-[1.5rem] border border-border/70 bg-card p-5 shadow-sm sm:p-6">
+              <h3 className="font-display text-2xl font-bold text-primary">Inspection Lab</h3>
+              <ul className="mt-4 space-y-2.5">
+                {INSPECTION_LAB.map((point) => (
+                  <li key={point} className="flex items-start gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground">
                     <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber" />
                     <span>{point}</span>
                   </li>
                 ))}
               </ul>
-            </div>
-          </article>
+            </article>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <article className="overflow-hidden rounded-[1.5rem] border border-border/70 bg-card p-5 shadow-sm sm:p-6">
+              <h3 className="font-display text-2xl font-bold text-primary">PDF Downloads</h3>
+              <div className="mt-4 space-y-3">
+                {CERT_DOWNLOADS.map((cert) => (
+                  <a
+                    key={cert.title}
+                    href={cert.file}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block rounded-xl border border-border bg-background px-4 py-3 text-sm font-medium text-primary transition-colors hover:border-amber hover:text-amber"
+                  >
+                    {cert.title}
+                  </a>
+                ))}
+              </div>
+            </article>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ClosingCtaBand() {
+  return (
+    <section className="relative isolate overflow-hidden bg-primary py-12 text-primary-foreground sm:py-16">
+      <div className="bp-grid pointer-events-none absolute inset-0 text-white/20" />
+      <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-4 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <Reveal className="max-w-2xl">
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Closing CTA Band</div>
+          <h2 className="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">
+            Share your drawing and target volume to start a capability review.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.12}>
+          <MagneticButton to="/contact" variant="amber">
+            Enquire Now <ArrowRight className="h-5 w-5" />
+          </MagneticButton>
         </Reveal>
       </div>
     </section>
@@ -499,9 +562,9 @@ function CapabilitiesPage() {
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
-      <ProcessFlowSection />
       <CapabilityFlowSection />
-      <TraceabilitySection />
+      <InspectionInDepthSection />
+      <ClosingCtaBand />
 
       {/* <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

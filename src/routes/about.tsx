@@ -7,6 +7,9 @@ import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import ownerPhoto from "@/assets/owner.webp";
+import dattatrayPhoto from "@/assets/Dattatray.jpeg";
+import kasturiPhoto from "@/assets/Kasturi.jpeg";
+import laxmikantPhoto from "@/assets/Laxmikant.webp";
 import ourStoryPhoto from "@/assets/Company Photos/WhatsApp Image 2026-04-08 at 6.08.05 PM (1).png";
 import isoCertificateFile from "@/assets/iso-certificate.pdf";
 import zedCertificateFile from "@/assets/zed-certificate.pdf";
@@ -47,39 +50,52 @@ const VALUES = [
 ];
 
 const MILESTONES = [
-  { year: "1980", text: "Founded as a single-shed jobwork unit in Pune by founder Mr. Sagar." },
-  { year: "1992", text: "Expanded into precision turning with the first dedicated CNC lathe." },
-  { year: "2003", text: "Onboarded as Tier-1 supplier to a leading commercial vehicle OEM." },
-  { year: "2011", text: "Added VMC and induction hardening lines — full process under one roof." },
-  { year: "2018", text: "Incorporated as Laxmi Sagar Engineers Pvt Ltd; ISO 9001 certified." },
-  { year: "2021", text: "Crossed 200,000 components per year across 50+ OEM customers." },
-  { year: "2026", text: "Modern Kuruli facility upgrade — automated inspection and traceability." },
+  {
+    year: "1980",
+    text: "Laxmi Sagar Industries established in Bhosari MIDC, Pune by Mr. Dattatray S. Rokhade � beginning a manufacturing journey rooted in mechanical discipline and shop-floor expertise.",
+  },
+  {
+    year: "1997",
+    text: "Formally registered as Laxmi Sagar Engineers, expanding into heavy forging jobwork and CNC precision machining for the automotive sector.",
+  },
+  {
+    year: "2000s",
+    text: "Long-term supply relationships established with leading domestic OEMs in commercial vehicles, tractors, and heavy equipment. ISO 9001 quality systems implemented � formalising the standards the shop floor had already been working to.",
+  },
+  {
+    year: "2020",
+    text: "Reconstituted as Laxmi Sagar Engineers Pvt Ltd � a structured new chapter of institutional growth. Fleet scaled to 25+ CNC and VMC machines at the Kuruli, Chakan plant.",
+  },
+  {
+    year: "2027-28",
+    text: "Planned expansion to 40,000+ sq. ft. with four new capability lines: Horizontal Machining Centres (HMC), Broaching Machines, Special Purpose Machines (SPM) for complex operations, and Furnace Tempering � broadening the scope of precision jobwork we can offer to OEM partners.",
+  },
 ];
 const BRIEF_DIRECTOR_MESSAGES = [
   {
-    name: "Mr. Dattatray S. Rokhade",
-    role: "Founder & Director",
-    photo: ownerPhoto,
-    message:
-      "A first-generation entrepreneur from Ranibennur who moved to Pune to build a lasting industrial enterprise. He started in maintenance at Paranjpe Engineering Foundry, then established Laxmi Sagar Industries in Bhosari in 1980. Over four decades, his hands-on expertise in operations and industrial processes has shaped the company's culture of discipline and ownership.",
-  },
-  {
-    name: "Mrs. Kasturibai Rokhade",
-    role: "Director",
-    photo: IMG.director2,
-    message:
-      "A key force behind the enterprise since its early years. She founded Reasonable Tools in Bhosari MIDC to support Pune's industrial ecosystem with tooling and consumables. Her entrepreneurial focus and operational support have played an important role in the group's diversified and stable growth.",
-  },
-  {
-    name: "Mr. Laxmikant D. Rokhade",
+    name: "Laxmikant Rokhade",
     role: "Managing Director",
     education: "Diploma in Mechanical Engineering",
-    photo: ownerPhoto,
+    photo: laxmikantPhoto,
     message:
       "With deep mechanical expertise and long shop-floor experience, he leads manufacturing operations and strategic direction. His leadership ensures each component meets strict OEM expectations. Under his guidance, the company has scaled from a small job shop into a full-fledged precision machining and forging facility.",
   },
   {
-    name: "Mr. Tejas Rokhade",
+    name: "Dattatray Rokhade",
+    role: "Founder & Director",
+    photo: dattatrayPhoto,
+    message:
+      "A first-generation entrepreneur from Ranibennur who moved to Pune to build a lasting industrial enterprise. He started in maintenance at Paranjpe Engineering Foundry, then established Laxmi Sagar Industries in Bhosari in 1980. Over four decades, his hands-on expertise in operations and industrial processes has shaped the company's culture of discipline and ownership.",
+  },
+  {
+    name: "Kasturi Rokhade",
+    role: "Director",
+    photo: kasturiPhoto,
+    message:
+      "A key force behind the enterprise since its early years. She founded Reasonable Tools in Bhosari MIDC to support Pune's industrial ecosystem with tooling and consumables. Her entrepreneurial focus and operational support have played an important role in the group's diversified and stable growth.",
+  },
+  {
+    name: "Tejas Rokhade",
     role: "Director",
     education: "MBA in Business Analytics (UK)",
     photo: IMG.team,
@@ -193,12 +209,12 @@ function AboutPage() {
           <Reveal className="text-center">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">What Drives Us</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl lg:text-5xl">
-              Mission and vision
+              Precision is the standard. 
               <br />
-              with industrial clarity.
+              Reliability is the outcome..
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              We focus on delivering dependable production today while building a manufacturing partner customers can trust for the long run.
+             Consistent output. Traceable quality. Long-term OEM partnerships – built batch by batch.
             </p>
           </Reveal>
           <StaggerGroup className="mt-14 grid gap-6 lg:grid-cols-2">
@@ -249,12 +265,13 @@ function AboutPage() {
                     className="overflow-hidden rounded-xl border border-border bg-background"
                   >
                     <div className="flex items-center gap-4 border-b border-border bg-secondary px-5 py-4">
-                      <div className="h-24 w-20 flex-shrink-0 overflow-hidden rounded-lg border border-border bg-card sm:h-28 sm:w-24">
+                      <div className="h-24 w-20 flex-shrink-0 overflow-hidden rounded-lg border border-border bg-white sm:h-28 sm:w-24">
                         <img
                           src={person.photo}
                           alt={person.name}
-                          className="h-full w-full object-cover object-center"
-                          loading="lazy"
+                          className="h-full w-full object-contain object-center"
+                          loading="eager"
+                          decoding="sync"
                         />
                       </div>
                       <div className="min-w-0">
@@ -511,3 +528,4 @@ function AboutPage() {
     </>
   );
 }
+

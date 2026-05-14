@@ -321,7 +321,7 @@ function CareersPage() {
                       <Field label="Phone" name="phone" type="tel" required />
                       <div>
                         <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
-                          Position Applying For <span className="text-amber">*</span>
+                          Department Applying For <span className="text-amber">*</span>
                         </label>
                         <select
                           name="position"

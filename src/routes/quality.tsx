@@ -77,25 +77,25 @@ const STEPS = [
 ];
 
 const INSTRUMENTS = [
-  { name: "CMM (Coordinate Measuring Machine)", spec: "Accuracy 2.5um + L/300" },
-  { name: "Profile Projector", spec: "Magnification up to 100x" },
-  { name: "Surface Roughness Tester", spec: "Ra range 0.05 - 12.5um" },
-  { name: "Hardness Tester (Rockwell + Vickers)", spec: "HRC, HRB, HV scales" },
-  { name: "Air Gauges & Plug Gauges", spec: "Calibrated, traceable to NABL" },
-  { name: "Bench Centres & V-Blocks", spec: "Run-out check, granite surface plate" },
+  { name: "Digital Height Gauges", spec: "Trimos 0–1200 mm · Mitutoyo 0–450 mm" },
+  { name: "Profile Projector", spec: "0–550 mm · Optical form & contour verification" },
+  { name: "Bench Centres & V-Blocks", spec: "1000 mm bench centre · Granite plates up to 1000×750 mm" },
+  { name: "Precision Micrometers", spec: "Mitutoyo · 0–125 mm · LC 0.010 mm" },
+  { name: "Bore Gauges", spec: "Mitutoyo · 18–160 mm range" },
+  { name: "APG with Auto Offset", spec: "Component-specific gauging built into the production process." },
 ];
 
 const COMPONENTS = [
-  { name: "Transmission Shafts", mat: "EN8 / EN24", tol: "+/-0.01mm" },
-  { name: "Crankshaft Pins", mat: "20MnCr5", tol: "+/-0.008mm" },
-  { name: "Differential Pinions", mat: "16MnCr5", tol: "+/-0.012mm" },
-  { name: "Engine Valves", mat: "SUH3", tol: "+/-0.005mm" },
-  { name: "Gear Blanks", mat: "SAE 8620", tol: "+/-0.015mm" },
-  { name: "Hub Spindles", mat: "EN19", tol: "+/-0.01mm" },
-  { name: "Wheel Studs", mat: "10B21", tol: "+/-0.008mm" },
-  { name: "King Pins", mat: "EN24", tol: "+/-0.01mm" },
-  { name: "Camshafts", mat: "SAE 1045", tol: "+/-0.012mm" },
-  { name: "Connecting Rods", mat: "C70S6", tol: "+/-0.01mm" },
+  { name: "Axle Shafts" },
+  { name: "Hub Spindles" },
+  { name: "Transmission Shafts" },
+  { name: "Yokes & Sleeve Yokes" },
+  { name: "Companion Flanges" },
+  { name: "King Pins" },
+  { name: "Gear Blanks" },
+  { name: "Differential Carriers" },
+  { name: "Equalizer Shafts" },
+  { name: "Trumpet & Axle Housings" },
 ];
 
 function ProcessFlow() {
@@ -252,18 +252,14 @@ function QualityPage() {
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> What We Make</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Component expertise</h2>
-            <p className="mt-3 max-w-2xl text-muted-foreground">Hover any tile to see typical material and tolerance band - we work to drawing.</p>
+            <p className="mt-3 max-w-2xl text-muted-foreground">Manufactured to drawing with controlled process and inspection.</p>
           </Reveal>
 
           <StaggerGroup className="mt-8 flex flex-wrap gap-3 sm:mt-12">
             {COMPONENTS.map((c) => (
               <StaggerItem key={c.name}>
-                <div className="group relative cursor-default rounded-full border border-border bg-card px-5 py-3 font-display text-sm font-semibold uppercase tracking-wide text-primary transition-all hover:-translate-y-0.5 hover:border-amber hover:bg-amber hover:text-amber-foreground hover:shadow-[var(--shadow-amber)]">
+                <div className="rounded-full border border-border bg-card px-5 py-3 font-display text-sm font-semibold uppercase tracking-wide text-primary">
                   {c.name}
-                  <div className="pointer-events-none absolute -top-16 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-primary px-3 py-2 text-left opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-amber">{c.mat}</div>
-                    <div className="font-mono text-xs text-white">Tol: {c.tol}</div>
-                  </div>
                 </div>
               </StaggerItem>
             ))}
@@ -272,8 +268,8 @@ function QualityPage() {
           <Reveal delay={0.15}>
             <div className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-3">
               {[
-                { k: "Materials", v: "EN8 / EN19 / EN24 · 16MnCr5 · 20MnCr5 · SAE 1045 / 8620 · C70S6" },
-                { k: "Size Range", v: "Dia 6 - 250 mm · length up to 600 mm" },
+                { k: "Materials", v: "EN8 / EN19 / EN24 · 42CrMo4 · 16MnCr5 · 20MnCr5 · SAE 1045 / 8620 · C70S6" },
+                { k: "Size Range", v: "Dia 6 - 450 mm · Length up to 1200 mm" },
                 { k: "Tolerances", v: "Up to +/-5 microns on critical features" },
               ].map((it) => (
                 <div key={it.k} className="rounded-xl border border-border bg-card p-6">

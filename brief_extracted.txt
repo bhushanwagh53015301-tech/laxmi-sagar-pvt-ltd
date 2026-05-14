@@ -244,7 +244,7 @@ Fields:
  Full Name (required)
  Email (required)
  Phone (required)
- Position Applying For (dropdown or text)
+ Department Applying For (dropdown or text)
  Experience (years — dropdown: 0-1, 1-3, 3-5, 5-10, 10+)
  Upload Resume (PDF/DOC, max 5MB)
  Brief Message / Cover Note (textarea, optional)
