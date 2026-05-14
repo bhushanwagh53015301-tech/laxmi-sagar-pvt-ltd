@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ClipboardCheck, Download, FileText, Microscope, ShieldCheck } from "lucide-react";
@@ -15,28 +14,6 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-
-export const Route = createFileRoute("/capabilities")({
-  head: () => ({
-    meta: [
-      { title: "Capabilities - CNC, VMC, Induction Hardening | Laxmi Sagar Engineers" },
-      {
-        name: "description",
-        content:
-          "Multi-axis CNC, VMC machining, induction hardening, facing and centering, calibrated inspection - full precision manufacturing under one roof in Pune.",
-      },
-      { property: "og:title", content: "Capabilities | Laxmi Sagar Engineers" },
-      {
-        property: "og:description",
-        content:
-          "End-to-end forging job-work: facing to CNC to VMC to hardening to inspection to dispatch. Explore our full process and equipment list.",
-      },
-      { property: "og:image", content: IMG.cnc },
-      { name: "twitter:image", content: IMG.cnc },
-    ],
-  }),
-  component: CapabilitiesPage,
-});
 
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
 const MACHINE_PHOTOS = PRODUCT_PHOTOS.filter((item) => /(^| \/ )machines$/i.test(item.subPath) || /machine/i.test(item.filename));
@@ -544,7 +521,7 @@ function ClosingCtaBand() {
   );
 }
 
-function CapabilitiesPage() {
+export default function CapabilitiesPage() {
   return (
     <>
       <PageHero

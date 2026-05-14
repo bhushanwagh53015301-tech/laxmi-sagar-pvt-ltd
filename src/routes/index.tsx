@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Cog, Cpu, Flame, ShieldCheck, ChevronRight } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
@@ -16,31 +16,6 @@ const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
 const MACHINE_PHOTOS = PRODUCT_PHOTOS.filter((item) => /(^| \/ )machines$/i.test(item.subPath) || /machine/i.test(item.filename));
 const MACHINE_CARD_IMAGES = (MACHINE_PHOTOS.length ? MACHINE_PHOTOS : PRODUCT_PHOTOS).map((item) => item.src);
 
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Laxmi Sagar Engineers — Precision Forged. Precision Machined." },
-      {
-        name: "description",
-        content:
-          "45+ years delivering forged & machined components to India's top automotive and off-highway OEMs. CNC, VMC, induction hardening, inspection — all under one roof in Pune.",
-      },
-      {
-        property: "og:title",
-        content: "Laxmi Sagar Engineers — Precision Forged. Precision Machined.",
-      },
-      {
-        property: "og:description",
-        content:
-          "Pune-based precision engineering since 1980. Forging, CNC, VMC, hardening and inspection for automotive, tractor and diesel engine OEMs.",
-      },
-      { property: "og:image", content: IMG.heroForge },
-      { name: "twitter:image", content: IMG.heroForge },
-    ],
-  }),
-  component: HomePage,
-});
 
 const HOME_BANNER_SLIDES = [
   {
@@ -534,7 +509,7 @@ function CtaBanner() {
   );
 }
 
-function HomePage() {
+export default function HomePage() {
   return (
     <div className="relative bg-background">
       <div className="relative z-10">

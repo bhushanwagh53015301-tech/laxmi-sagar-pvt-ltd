@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 
 /**
  * @param {{ to?: string, href?: string, children: any, variant?: string, className?: string }} props

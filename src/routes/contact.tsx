@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
@@ -6,29 +5,7 @@ import { IMG, SITE } from "@/lib/site";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact Laxmi Sagar Engineers - Get a Quote in 48 Hours" },
-      {
-        name: "description",
-        content:
-          "Send us your drawings, target volume and tolerances. Our engineering team responds with a feasibility note and indicative pricing within 48 hours.",
-      },
-      { property: "og:title", content: "Contact Laxmi Sagar Engineers" },
-      {
-        property: "og:description",
-        content:
-          "Reach our team in Kuruli, Pune. Phone, email, address, map and an enquiry form for new RFQs.",
-      },
-      { property: "og:image", content: IMG.contact },
-      { name: "twitter:image", content: IMG.contact },
-    ],
-  }),
-  component: ContactPage,
-});
-
-function ContactPage() {
+export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const visitAddress = "Sr No 622/2, Near Saint Gobain Sekurit Ltd, Village Kuruli, Taluka Khed, Pune 410501";
   const complianceRows = [

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useLocation } from "@tanstack/react-router";
+import { useLocation } from "react-router-dom";
 
 export function PageTransition({ children }) {
   const location = useLocation();

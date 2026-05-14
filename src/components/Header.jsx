@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NAV } from "@/lib/site";
@@ -81,24 +81,19 @@ export function Header() {
 
         <nav className="hidden items-center justify-center gap-1 lg:flex">
           {NAV.map((item) => (
-            <Link
+            <NavLink
               key={item.to}
               to={item.to}
-              activeOptions={{ exact: item.to === "/" }}
-              activeProps={{
-                className: `${scrolled ? (useLightDesktopNav ? "text-white" : "text-primary") : "text-amber"} after:scale-x-100`,
-              }}
-              inactiveProps={{
-                className: scrolled
-                  ? useLightDesktopNav
-                    ? "text-white/85 hover:text-white"
-                    : "text-foreground/80 hover:text-primary"
-                  : "text-white/85 hover:text-white",
-              }}
-              className="relative px-4 py-2 font-display text-sm font-semibold uppercase tracking-wider transition-colors after:absolute after:bottom-1 after:left-4 after:right-4 after:h-0.5 after:origin-left after:scale-x-0 after:bg-amber after:transition-transform after:duration-300 hover:after:scale-x-100"
+              className={({ isActive }) =>
+                `relative px-4 py-2 font-display text-sm font-semibold uppercase tracking-wider transition-colors after:absolute after:bottom-1 after:left-4 after:right-4 after:h-0.5 after:origin-left after:bg-amber after:transition-transform after:duration-300 ${
+                  isActive
+                    ? `${scrolled ? (useLightDesktopNav ? "text-white" : "text-primary") : "text-amber"} after:scale-x-100`
+                    : `${scrolled ? (useLightDesktopNav ? "text-white/85 hover:text-white" : "text-foreground/80 hover:text-primary") : "text-white/85 hover:text-white"} after:scale-x-0 hover:after:scale-x-100`
+                }`
+              }
             >
               {item.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 
@@ -153,14 +148,18 @@ export function Header() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 + i * 0.05 }}
                   >
-                    <Link
+                    <NavLink
                       to={item.to}
-                      activeOptions={{ exact: item.to === "/" }}
-                      activeProps={{ className: "border-amber/30 bg-white/12 text-amber" }}
-                      className="block rounded-xl border border-white/10 bg-white/5 px-4 py-4 font-display text-lg font-semibold uppercase tracking-[0.18em] text-white/95 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
+                      className={({ isActive }) =>
+                        `block rounded-xl border px-4 py-4 font-display text-lg font-semibold uppercase tracking-[0.18em] transition-colors ${
+                          isActive
+                            ? "border-amber/30 bg-white/12 text-amber"
+                            : "border-white/10 bg-white/5 text-white/95 hover:border-white/20 hover:bg-white/10 hover:text-white"
+                        }`
+                      }
                     >
                       {item.label}
-                    </Link>
+                    </NavLink>
                   </motion.div>
                 ))}
               </nav>

@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, ClipboardCheck, Microscope, FileText } from "lucide-react";
@@ -8,28 +7,6 @@ import { MagneticButton } from "@/components/MagneticButton";
 import { ProductVisualsSection } from "@/components/ProductVisualsSection";
 import { ArrowRight } from "lucide-react";
 import qualityHeroImage from "@/assets/Product Photos/Spindle.webp";
-
-export const Route = createFileRoute("/quality")({
-  head: () => ({
-    meta: [
-      { title: "Product - ISO 9001:2015 | Laxmi Sagar Engineers" },
-      {
-        name: "description",
-        content:
-          "ISO 9001:2015 certified precision manufacturer. In-process and final inspection, calibrated CMM, full traceability and OEM-grade documentation.",
-      },
-      { property: "og:title", content: "Product | Laxmi Sagar Engineers" },
-      {
-        property: "og:description",
-        content:
-          "Quality systems, calibrated inspection lab, traceability and certifications you can rely on for safety-critical components.",
-      },
-      { property: "og:image", content: qualityHeroImage },
-      { name: "twitter:image", content: qualityHeroImage },
-    ],
-  }),
-  component: QualityPage,
-});
 
 const FLOW = [
   { icon: ClipboardCheck, t: "Incoming Material", d: "Mill test certificate verification, dimensional check on raw forgings, batch tagging." },
@@ -206,7 +183,7 @@ const CERTS = [
   { name: "IEC Certificate", file: "iec.pdf" },
 ];
 
-function QualityPage() {
+export default function QualityPage() {
   return (
     <>
       <PageHero

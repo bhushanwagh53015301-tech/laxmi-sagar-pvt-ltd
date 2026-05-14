@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Briefcase, Cog, GraduationCap, HeartHandshake, ShieldCheck, TrendingUp, Upload, Wrench } from "lucide-react";
@@ -13,26 +12,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-export const Route = createFileRoute("/careers")({
-  head: () => ({
-    meta: [
-      { title: "Careers at Laxmi Sagar Engineers | Manufacturing Jobs Pune | CNC Operator Jobs" },
-      {
-        name: "description",
-        content:
-          "Join Laxmi Sagar Engineers Pvt Ltd, Pune. We are hiring skilled CNC operators, machinists, quality inspectors, and production talent.",
-      },
-      { property: "og:title", content: "Careers at Laxmi Sagar Engineers" },
-      {
-        property: "og:description",
-        content:
-          "Build your career in precision engineering with an ISO 9001:2015 certified automotive manufacturing team.",
-      },
-    ],
-  }),
-  component: CareersPage,
-});
 
 const CAREER_PERKS = [
   { icon: GraduationCap, t: "Hands-on Learning", d: "Train on multi-axis CNC, VMC and induction hardening lines from day one." },
@@ -164,7 +143,7 @@ function cleanLabel(text: string) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function CareersPage() {
+export default function CareersPage() {
   const [submitting, setSubmitting] = useState(false);
   const [testimonialApi, setTestimonialApi] = useState<CarouselApi>();
   const [activeTestimonial, setActiveTestimonial] = useState(0);

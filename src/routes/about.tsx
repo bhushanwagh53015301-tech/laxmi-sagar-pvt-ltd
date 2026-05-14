@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Target, Eye, ArrowRight } from "lucide-react";
@@ -21,28 +20,6 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About Laxmi Sagar Engineers — 45 Years of Precision" },
-      {
-        name: "description",
-        content:
-          "From a single-shed jobwork unit in 1980 to a fully-integrated precision manufacturer in Pune — meet the team and milestones behind Laxmi Sagar Engineers.",
-      },
-      { property: "og:title", content: "About Laxmi Sagar Engineers — 45 Years of Precision" },
-      {
-        property: "og:description",
-        content:
-          "Our story, leadership, certifications and the milestones that built four decades of OEM trust.",
-      },
-      { property: "og:image", content: IMG.team },
-      { name: "twitter:image", content: IMG.team },
-    ],
-  }),
-  component: AboutPage,
-});
 
 const VALUES = [
   { icon: Target, title: "Mission", text: "To deliver world-class CNC machined and forged components — on-time, within tolerance, with full documentation — so our OEM customers can build without second-guessing their supply chain." },
@@ -149,7 +126,7 @@ function cleanLabel(text: string) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function AboutPage() {
+export default function AboutPage() {
   const [teamCarouselApi, setTeamCarouselApi] = useState<CarouselApi>();
 
   useEffect(() => {
