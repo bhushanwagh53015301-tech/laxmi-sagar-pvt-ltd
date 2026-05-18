@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Target, Eye, ArrowRight } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
@@ -9,6 +9,7 @@ import ownerPhoto from "@/assets/owner.webp";
 import dattatrayPhoto from "@/assets/Dattatray.jpeg";
 import kasturiPhoto from "@/assets/Kasturi.jpeg";
 import laxmikantPhoto from "@/assets/Laxmikant.webp";
+import tejasPhoto from "@/assets/tejas.jpeg";
 import ourStoryPhoto from "@/assets/Company Photos/WhatsApp Image 2026-04-08 at 6.08.05 PM (1).png";
 import isoCertificateFile from "@/assets/iso-certificate.pdf";
 import zedCertificateFile from "@/assets/zed-certificate.pdf";
@@ -22,14 +23,14 @@ import {
 } from "@/components/ui/carousel";
 
 const VALUES = [
-  { icon: Target, title: "Mission", text: "To deliver world-class CNC machined and forged components — on-time, within tolerance, with full documentation — so our OEM customers can build without second-guessing their supply chain." },
-  { icon: Eye, title: "Vision", text: "To be the most trusted precision machining and forging jobwork partner for safety-critical automotive and industrial components in India — recognised for consistency, traceability, and zero-defect delivery." },
+  { icon: Target, title: "Mission", text: "To deliver world-class CNC machined and forged components - on-time, within tolerance, with full documentation - so our OEM customers can build without second-guessing their supply chain." },
+  { icon: Eye, title: "Vision", text: "To be the most trusted precision machining and forging jobwork partner for safety-critical automotive and industrial components in India - recognised for consistency, traceability, and zero-defect delivery." },
 ];
 
 const MILESTONES = [
   {
     year: "1980",
-    text: "Laxmi Sagar Industries established in Bhosari MIDC, Pune by Mr. Dattatray S. Rokhade � beginning a manufacturing journey rooted in mechanical discipline and shop-floor expertise.",
+    text: "Laxmi Sagar Industries established in Bhosari MIDC, Pune by Mr. Dattatray S. Rokhade - beginning a manufacturing journey rooted in mechanical discipline and shop-floor expertise.",
   },
   {
     year: "1997",
@@ -37,15 +38,15 @@ const MILESTONES = [
   },
   {
     year: "2000s",
-    text: "Long-term supply relationships established with leading domestic OEMs in commercial vehicles, tractors, and heavy equipment. ISO 9001 quality systems implemented � formalising the standards the shop floor had already been working to.",
+    text: "Long-term supply relationships established with leading domestic OEMs in commercial vehicles, tractors, and heavy equipment. ISO 9001 quality systems implemented - formalising the standards the shop floor had already been working to.",
   },
   {
     year: "2020",
-    text: "Reconstituted as Laxmi Sagar Engineers Pvt Ltd � a structured new chapter of institutional growth. Fleet scaled to 25+ CNC and VMC machines at the Kuruli, Chakan plant.",
+    text: "Reconstituted as Laxmi Sagar Engineers Pvt Ltd - a structured new chapter of institutional growth. Fleet scaled to 25+ CNC and VMC machines at the Kuruli, Chakan plant.",
   },
   {
     year: "2027-28",
-    text: "Planned expansion to 40,000+ sq. ft. with four new capability lines: Horizontal Machining Centres (HMC), Broaching Machines, Special Purpose Machines (SPM) for complex operations, and Furnace Tempering � broadening the scope of precision jobwork we can offer to OEM partners.",
+    text: "Planned expansion to 40,000+ sq. ft. with four new capability lines: Horizontal Machining Centres (HMC), Broaching Machines, Special Purpose Machines (SPM) for complex operations, and Furnace Tempering - broadening the scope of precision jobwork we can offer to OEM partners.",
   },
 ];
 const BRIEF_DIRECTOR_MESSAGES = [
@@ -59,7 +60,7 @@ const BRIEF_DIRECTOR_MESSAGES = [
   },
   {
     name: "Dattatray Rokhade",
-    role: "Founder & Director",
+    role: "Director",
     photo: dattatrayPhoto,
     message:
       "A first-generation entrepreneur from Ranibennur who moved to Pune to build a lasting industrial enterprise. He started in maintenance at Paranjpe Engineering Foundry, then established Laxmi Sagar Industries in Bhosari in 1980. Over four decades, his hands-on expertise in operations and industrial processes has shaped the company's culture of discipline and ownership.",
@@ -75,7 +76,7 @@ const BRIEF_DIRECTOR_MESSAGES = [
     name: "Tejas Rokhade",
     role: "Director",
     education: "MBA in Business Analytics (UK)",
-    photo: IMG.team,
+    photo: tejasPhoto,
     message:
       "Representing the third generation, he brings a data-driven and globally oriented approach. He is focused on technology-led efficiency, international market expansion, and positioning Laxmi Sagar Engineers as a preferred Tier-1 and Tier-2 supplier. His vision includes Industry 4.0 practices and capacity expansion toward 40,000+ sq ft.",
   },
@@ -88,7 +89,7 @@ const CERTIFICATIONS = [
 
 const DIRECTORS = [
   { name: "Mr. Rajesh Sagar", role: "Managing Director", img: IMG.director1, bio: "30+ years on the shop floor. Drives operations, customer relationships and process discipline." },
-  { name: "Mr. Amit Sagar", role: "Director — Engineering", img: IMG.director2, bio: "Mechanical engineer leading new-process induction, automation and quality systems." },
+  { name: "Mr. Amit Sagar", role: "Director - Engineering", img: IMG.director2, bio: "Mechanical engineer leading new-process induction, automation and quality systems." },
 ];
 
 const LOGO_ASSETS = assetsFromCategory("Company Logo");
@@ -162,18 +163,18 @@ export default function AboutPage() {
       {/* Story */}
       <section className="page-grid-surface py-24">
         <div className="mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
-          <Reveal>
+          <Reveal className="order-2 md:order-1">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Our Story</div>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-primary sm:text-4xl">
               Built on the floor, refined by every part we ship.
             </h2>
-            <div className="mt-6 space-y-4 text-muted-foreground">
-              <p>Laxmi Sagar Engineers Pvt Ltd traces its roots to 1980, when founder Mr. Dattatray S. Rokhade established Laxmi Sagar Industries in Bhosari, Pune — one of Maharashtra's earliest precision jobwork units serving the region's growing industrial base.</p>
-              <p>As OEM demand grew, a second unit — Laxmi Sagar Engineers — was established in Chakan, Pune in 1997, expanding capacity for CNC machining, forging jobwork, and component supply to automotive and commercial vehicle manufacturers.</p>
-              <p>In 2020, the enterprise was formally incorporated as Laxmi Sagar Engineers Pvt Ltd, marking the transition into a structured, scalable precision manufacturing company. Today, operating from a 25,000+ sq.ft. facility at Kuruli, Khed, Pune — ISO 9001:2015 certified and ZED rated — we supply safety-critical machined components to India's leading OEMs across automotive, tractor, and off-highway segments.</p>
+            <div className="mt-6 space-y-4 text-muted-foreground" style={{ textAlign: "justify" }}>
+              <p>Laxmi Sagar Engineers Pvt Ltd traces its roots to 1980, when founder Mr. Dattatray S. Rokhade established Laxmi Sagar Industries in Bhosari, Pune - one of Maharashtra's earliest precision jobwork units serving the region's growing industrial base.</p>
+              <p>As OEM demand grew, a second unit - Laxmi Sagar Engineers - was established in Chakan, Pune in 1997, expanding capacity for CNC machining, forging jobwork, and component supply to automotive and commercial vehicle manufacturers.</p>
+              <p>In 2020, the enterprise was formally incorporated as Laxmi Sagar Engineers Pvt Ltd, marking the transition into a structured, scalable precision manufacturing company. Today, operating from a 25,000+ sq.ft. facility at Kuruli, Khed, Pune - ISO 9001:2015 certified and ZED rated - we supply safety-critical machined components to India's leading OEMs across automotive, tractor, and off-highway segments.</p>
             </div>
           </Reveal>
-          <Reveal delay={0.15}>
+          <Reveal delay={0.15} className="order-1 md:order-2">
             <div className="relative">
               <div className="overflow-hidden rounded-xl shadow-[var(--shadow-elegant)]">
                 <img
@@ -200,7 +201,7 @@ export default function AboutPage() {
               Reliability is the outcome..
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-             Consistent output. Traceable quality. Long-term OEM partnerships – built batch by batch.
+             Consistent output. Traceable quality. Long-term OEM partnerships - built batch by batch.
             </p>
           </Reveal>
           <StaggerGroup className="mt-14 grid gap-6 lg:grid-cols-2">
@@ -255,7 +256,7 @@ export default function AboutPage() {
                         <img
                           src={person.photo}
                           alt={person.name}
-                          className="h-full w-full object-contain object-center"
+                          className="h-full w-full object-cover object-center"
                           loading="eager"
                           decoding="sync"
                         />
@@ -359,13 +360,13 @@ export default function AboutPage() {
 
       <section className="page-grid-surface py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Event Celebrations</div>
+          <Reveal className="order-2 md:order-1">
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Awards & Achievements</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
-              Life at Laxmi Sagar
+              Recognition at Laxmi Sagar
             </h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
-              Team celebrations and workplace moments that reflect our culture.
+              Milestones, recognitions, and proud moments from our journey.
             </p>
           </Reveal>
 
@@ -419,10 +420,10 @@ export default function AboutPage() {
         <div className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-amber/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-20 bottom-6 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
+          <Reveal className="order-2 md:order-1">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Team Members</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
-              Key Team Members
+              Meet Our Team
             </h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
               The people who drive quality, production, HR and operations every day.
@@ -543,4 +544,6 @@ export default function AboutPage() {
     </>
   );
 }
+
+
 

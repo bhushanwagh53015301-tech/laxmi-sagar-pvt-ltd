@@ -116,16 +116,27 @@ const PINNED_EVENT_PHOTOS = [
   "aa8c1453-8ff7-434e-838d-18a583bc3818.jpg",
   "b0e981c5-d480-4464-9003-1d9f11477077.JPG",
 ];
+const ABOUT_EVENT_HIGHLIGHT_FILES = new Set([
+  "APRECIATION-1",
+  "APRECIATION-2",
+  "APRECIATION-3",
+  "APRECIATION-4",
+]);
 
-const EVENT_PHOTOS = assetsFromCategory("Event Photos").sort((a, b) => {
-  const aIndex = PINNED_EVENT_PHOTOS.indexOf(a.filename);
-  const bIndex = PINNED_EVENT_PHOTOS.indexOf(b.filename);
+const EVENT_PHOTOS = assetsFromCategory("Event Photos")
+  .filter(
+    (item) =>
+      !ABOUT_EVENT_HIGHLIGHT_FILES.has(item.filename.replace(/\.[^.]+$/, "").toUpperCase()),
+  )
+  .sort((a, b) => {
+    const aIndex = PINNED_EVENT_PHOTOS.indexOf(a.filename);
+    const bIndex = PINNED_EVENT_PHOTOS.indexOf(b.filename);
 
-  if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
-  if (aIndex !== -1) return -1;
-  if (bIndex !== -1) return 1;
-  return a.relativePath.localeCompare(b.relativePath);
-});
+    if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+    if (aIndex !== -1) return -1;
+    if (bIndex !== -1) return 1;
+    return a.relativePath.localeCompare(b.relativePath);
+  });
 
 function cleanLabel(text: string) {
   return text

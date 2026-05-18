@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
@@ -32,7 +32,7 @@ const HOME_BANNER_SLIDES = [
     img: officeBannerImage,
     eyebrow: "ISO 9001:2015 CERTIFIED · AUTOMOTIVE OEM SUPPLIER",
     title: "Built For\nPrecision Output.",
-    sub: "CNC machined and forged components for automotive, commercial vehicle, and industrial OEMs — delivered to tolerance, on time, every batch.",
+    sub: "CNC machined and forged components for automotive, commercial vehicle, and industrial OEMs - delivered to tolerance, on time, every batch.",
   },
   {
     img: companyBannerImage,
@@ -151,13 +151,13 @@ function IntroSection() {
           <h2 className="mt-2 max-w-[14ch] font-display text-4xl font-bold leading-tight text-primary sm:max-w-none sm:text-5xl">
             Engineering trust, one component at a time.
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-           Established in 1997 and operating from Kuruli, Chakan — at the centre of Pune's automotive manufacturing belt — Laxmi Sagar Engineers Pvt Ltd is a specialist in heavy forging jobwork and CNC precision machining for India's leading automotive, commercial vehicle, tractor, and off-highway OEMs.
+          <p className="mt-6 text-base leading-relaxed text-muted-foreground" style={{ textAlign: "justify" }}>
+           Established in 1997 and operating from Kuruli, Chakan - at the centre of Pune's automotive manufacturing belt - Laxmi Sagar Engineers Pvt Ltd is a specialist in heavy forging jobwork and CNC precision machining for India's leading automotive, commercial vehicle, tractor, and off-highway OEMs.
           </p>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-           Our ISO 9001:2015 certified facility spans 25,000+ sq. ft., housing 25+ CNC turning centres, VMC machines, and in-house induction hardening — purpose-built for high-volume, tight-tolerance component production. From rear axle spindles and yoke sleeves to trumpet housings and custom forged components, we machine to your drawing, to your tolerance, on your timeline.
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground" style={{ textAlign: "justify" }}>
+           Our ISO 9001:2015 certified facility spans 25,000+ sq. ft., housing 25+ CNC turning centres, VMC machines, and in-house induction hardening - purpose-built for high-volume, tight-tolerance component production. From rear axle spindles and yoke sleeves to trumpet housings and custom forged components, we machine to your drawing, to your tolerance, on your timeline.
           </p>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">Built on decades of shop-floor discipline, our commitment is simple: your production line should never have to second-guess what is coming from us. Every batch leaves with full dimensional traceability, documented inspection records, and zero compromise on the specifications you gave us.</p>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground" style={{ textAlign: "justify" }}>Built on decades of shop-floor discipline, our commitment is simple: your production line should never have to second-guess what is coming from us. Every batch leaves with full dimensional traceability, documented inspection records, and zero compromise on the specifications you gave us.</p>
           <div className="mt-8">
             <Link
               to="/about"
@@ -416,7 +416,7 @@ const CLIENT_NAME_MAP: Record<string, string> = {
   "ADiam2018_Approved_for_external_use.png": "Dana Anand India Pvt Ltd",
   "carraro-indai.jpeg": "Carraro India",
   "flash.jpeg": "Flash Electronics",
-  "hendrickson-usa-l-l-c-vector-logo.png": "Hendrickson USA, L.L.C.",
+  "hendrickson-usa-l-l-c-vector-logo.png": "Hendrickson.",
   // "logo-2.png": "Trinity",
   "logo.png": "Metalyst Forgings Limited",
   // "R.jpeg": "Rane",
@@ -491,7 +491,7 @@ function CtaBanner() {
             Have a drawing? We will quote within 48 hours.
           </h2>
           <p className="mt-2 text-white/75">
-            Send your part drawing, target volume and tolerances — our engineering team will revert
+            Send your part drawing, target volume and tolerances - our engineering team will revert
             with a feasibility note and indicative pricing.
           </p>
         </Reveal>
@@ -520,3 +520,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+

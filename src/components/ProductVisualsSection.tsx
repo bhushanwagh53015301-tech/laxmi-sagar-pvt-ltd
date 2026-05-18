@@ -13,12 +13,12 @@ const COMPONENT_PHOTOS = PRODUCT_PHOTOS.filter(
   (item) => !/(^| \/ )machines$/i.test(item.subPath) && !/machine/i.test(item.filename),
 );
 const PRODUCT_NAME_MAP: Record<string, string> = {
-  "Bush.jpg": "Precision Bush",
-  "Bush.webp": "Precision Bush",
+  "Bush.jpg": " Bush",
+  "Bush.webp": " Bush",
   "Eq. Shaft.jpg": "Equalizer Shaft",
   "Eq. Shaft.webp": "Equalizer Shaft",
-  "Flange.jpg": "Machined Flange",
-  "Flange.webp": "Machined Flange",
+  "Flange.jpg": " Flange",
+  "Flange.webp": " Flange",
   "Sleeve Yoke.jpg": "Sleeve Yoke",
   "Sleeve Yoke.webp": "Sleeve Yoke",
   "Slip Yoke.jpg": "Slip Yoke",
