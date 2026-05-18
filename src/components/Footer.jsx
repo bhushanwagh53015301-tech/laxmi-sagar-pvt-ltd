@@ -14,8 +14,32 @@ export function Footer() {
               <img src={brandLogo} alt="Laxmi Sagar Engineers" className="h-12 w-auto object-contain sm:h-14" />
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
-              {SITE.tagline} with dependable machining quality for automotive and industrial OEMs.
+              Precision forged and precision machined for dependable automotive and industrial OEM applications.
             </p>
+            <div className="mt-4 flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com/company/laxmi-sagar-engineers/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/80 transition-colors hover:border-amber hover:text-amber"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+                  <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm7 0h3.83v1.64h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.13V21h-4v-5.54c0-1.32-.03-3.01-1.83-3.01-1.84 0-2.12 1.44-2.12 2.92V21h-4V9Z" />
+                </svg>
+              </a>
+              <a
+                href="https://dzicard.com/dbc/laxmi-sagar-engineers-pvt-ltd"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Save Contact"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/80 transition-colors hover:border-amber hover:text-amber"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+                  <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Zm2.5-.5a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-13Zm2 9h5v2h-5v-2Zm2.5-7a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm4.75 1h2.25v1.5h-2.25V9Zm0 3h2.25v1.5h-2.25V12Z" />
+                </svg>
+              </a>
+            </div>
           </div>
 
           <div>

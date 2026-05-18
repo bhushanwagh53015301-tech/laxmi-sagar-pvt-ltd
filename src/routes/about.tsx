@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/carousel";
 
 const VALUES = [
-  { icon: Target, title: "Mission", text: "To deliver world-class CNC machined and forged components - on-time, within tolerance, with full documentation - so our OEM customers can build without second-guessing their supply chain." },
+  { icon: Target, title: "Mission", text: "To deliver world-class machined and forged components - on-time, within tolerance, with full documentation - so our OEM customers can build without second-guessing their supply chain." },
   { icon: Eye, title: "Vision", text: "To be the most trusted precision machining and forging jobwork partner for safety-critical automotive and industrial components in India - recognised for consistency, traceability, and zero-defect delivery." },
 ];
 
@@ -78,7 +78,7 @@ const BRIEF_DIRECTOR_MESSAGES = [
     education: "MBA in Business Analytics (UK)",
     photo: tejasPhoto,
     message:
-      "Representing the third generation, he brings a data-driven and globally oriented approach. He is focused on technology-led efficiency, international market expansion, and positioning Laxmi Sagar Engineers as a preferred Tier-1 and Tier-2 supplier. His vision includes Industry 4.0 practices and capacity expansion toward 40,000+ sq ft.",
+      "Representing the third generation, he brings a data-driven and globally oriented approach. He is focused on technology-led efficiency, international market expansion, and positioning Laxmi Sagar Engineers as a preferred Tier-1 and Tier-2 supplier. His vision includes Industry 4.0 practices and capacity expansion.",
   },
 ];
 
@@ -154,7 +154,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="Since 1980"
         title="Four decades of precision."
-        subtitle="From a small Pune unit to a trusted manufacturing partner."
+        subtitle="From Pune roots to a trusted precision manufacturing partner."
         image={IMG.team}
         contentClassName="max-w-6xl"
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
@@ -166,7 +166,7 @@ export default function AboutPage() {
           <Reveal className="order-2 md:order-1">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Our Story</div>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-primary sm:text-4xl">
-              Built on the floor, refined by every part we ship.
+              Built on the floor, refined by every part we produce.
             </h2>
             <div className="mt-6 space-y-4 text-muted-foreground" style={{ textAlign: "justify" }}>
               <p>Laxmi Sagar Engineers Pvt Ltd traces its roots to 1980, when founder Mr. Dattatray S. Rokhade established Laxmi Sagar Industries in Bhosari, Pune - one of Maharashtra's earliest precision jobwork units serving the region's growing industrial base.</p>

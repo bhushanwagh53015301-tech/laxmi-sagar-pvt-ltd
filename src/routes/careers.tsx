@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Briefcase, Cog, ShieldCheck, Upload, Wrench } from "lucide-react";
+import {
+  Briefcase,
+  Cog,
+  GraduationCap,
+  HeartHandshake,
+  ShieldCheck,
+  TrendingUp,
+  Upload,
+  Wrench,
+} from "lucide-react";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { IMG } from "@/lib/site";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
@@ -116,6 +125,29 @@ const PINNED_EVENT_PHOTOS = [
   "aa8c1453-8ff7-434e-838d-18a583bc3818.jpg",
   "b0e981c5-d480-4464-9003-1d9f11477077.JPG",
 ];
+
+const WHY_WORK_POINTS = [
+  {
+    icon: GraduationCap,
+    title: "Hands-on Learning",
+    text: "Train on multi-axis CNC, VMC, and induction hardening lines from day one.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Clear Growth Path",
+    text: "Operator to setter to line lead to supervisor with defined milestones and accountability.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "OEM Program Exposure",
+    text: "Contribute to heavy forging and precision machining programs for leading automotive OEMs.",
+  },
+  {
+    icon: Briefcase,
+    title: "Process-Driven Culture",
+    text: "Work inside ISO 9001:2015 systems with traceable, auditable manufacturing workflows.",
+  },
+];
 const ABOUT_EVENT_HIGHLIGHT_FILES = new Set([
   "APRECIATION-1",
   "APRECIATION-2",
@@ -227,6 +259,35 @@ export default function CareersPage() {
               Join our precision manufacturing team in Pune.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="page-grid-surface py-14 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Why Work at Laxmi Sagar</div>
+            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">
+              A workshop that respects the craft.
+            </h2>
+          </Reveal>
+
+          <StaggerGroup className="mt-8 grid gap-5 sm:mt-10 md:grid-cols-2 xl:grid-cols-4">
+            {WHY_WORK_POINTS.map((item) => (
+              <StaggerItem key={item.title}>
+                <article className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-7">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-amber/15 text-amber">
+                    <item.icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="mt-6 font-sans text-2xl font-bold uppercase leading-tight text-primary">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                    {item.text}
+                  </p>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </div>
       </section>
 

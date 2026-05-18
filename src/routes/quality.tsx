@@ -227,6 +227,34 @@ export default function QualityPage() {
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
+      <section className="page-grid-surface py-14 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
+              Why work at Laxmi Sagar
+            </div>
+            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
+              A workshop that respects the craft.
+            </h2>
+          </Reveal>
+          <StaggerGroup className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+            {WHY_WORK_PERKS.map((perk) => (
+              <StaggerItem key={perk.t}>
+                <div className="h-full rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-amber/15 text-amber">
+                    <perk.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-bold uppercase tracking-wide text-primary">
+                    {perk.t}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{perk.d}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </section>
+
       {/* <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center">
@@ -300,34 +328,6 @@ export default function QualityPage() {
       </section>
 
       <ProductVisualsSection variant="detailed-grid" allowedExtensions={[".webp"]} />
-
-      <section className="page-grid-surface py-14 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
-              Why work at Laxmi Sagar
-            </div>
-            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
-              A workshop that respects the craft.
-            </h2>
-          </Reveal>
-          <StaggerGroup className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-14 lg:grid-cols-4">
-            {WHY_WORK_PERKS.map((perk) => (
-              <StaggerItem key={perk.t}>
-                <div className="h-full rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-amber/15 text-amber">
-                    <perk.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="mt-5 font-display text-lg font-bold uppercase tracking-wide text-primary">
-                    {perk.t}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{perk.d}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        </div>
-      </section>
 
       <section className="relative isolate overflow-hidden bg-primary py-12 text-primary-foreground sm:py-16">
         <div className="bp-grid pointer-events-none absolute inset-0 text-white/20" />

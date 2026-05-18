@@ -322,11 +322,11 @@ function CapabilityFlowSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Manufacturing Setup & Quality Flow</div>
-          <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
-            Infrastructure, machine capacity, and quality control in one clear flow.
+          <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl lg:whitespace-nowrap">
+            Infrastructure, machine capacity, & quality control in one clear flow.
           </h2>
-          <p className="mt-3 max-w-3xl text-muted-foreground">
-            Ordered the way your client asked for it: infrastructure first, machine second, and quality control third.
+          <p className="mt-3 max-w-3xl text-muted-foreground lg:whitespace-nowrap">
+            Structured in the sequence customers review most: infrastructure first, machine capacity second, and quality control third.
           </p>
         </Reveal>
 

@@ -44,7 +44,7 @@ export default function ContactPage() {
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Get in Touch</div>
             <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Reach our team</h2>
-            <p className="mt-4 text-muted-foreground">Procurement, engineering or new business - pick the channel that works for you.</p>
+            {/* <p className="mt-4 text-muted-foreground">For procurement, engineering, or new business inquiries, choose the contact channel that suits you best.</p> */}
 
             <div className="mt-10 space-y-5">
               <InfoCard
