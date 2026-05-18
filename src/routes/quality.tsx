@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, ClipboardCheck, Microscope, FileText } from "lucide-react";
+import {
+  ShieldCheck,
+  ClipboardCheck,
+  Microscope,
+  FileText,
+  GraduationCap,
+  TrendingUp,
+  HeartHandshake,
+  Briefcase,
+} from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
@@ -73,6 +82,29 @@ const COMPONENTS = [
   { name: "Differential Carriers" },
   { name: "Equalizer Shafts" },
   { name: "Trumpet & Axle Housings" },
+];
+
+const WHY_WORK_PERKS = [
+  {
+    icon: GraduationCap,
+    t: "Hands-on Learning",
+    d: "Train on multi-axis CNC, VMC, and induction hardening lines from day one.",
+  },
+  {
+    icon: TrendingUp,
+    t: "Clear Growth Path",
+    d: "Operator to setter to line lead to supervisor with defined milestones and accountability.",
+  },
+  {
+    icon: HeartHandshake,
+    t: "OEM Program Exposure",
+    d: "Contribute to heavy forging and precision machining programs for leading automotive OEMs.",
+  },
+  {
+    icon: Briefcase,
+    t: "Process-Driven Culture",
+    d: "Work inside ISO 9001:2015 systems with traceable, auditable manufacturing workflows.",
+  },
 ];
 
 function ProcessFlow() {
@@ -268,6 +300,34 @@ export default function QualityPage() {
       </section>
 
       <ProductVisualsSection variant="detailed-grid" allowedExtensions={[".webp"]} />
+
+      <section className="page-grid-surface py-14 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
+              Why work at Laxmi Sagar
+            </div>
+            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
+              A workshop that respects the craft.
+            </h2>
+          </Reveal>
+          <StaggerGroup className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+            {WHY_WORK_PERKS.map((perk) => (
+              <StaggerItem key={perk.t}>
+                <div className="h-full rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-amber/15 text-amber">
+                    <perk.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-bold uppercase tracking-wide text-primary">
+                    {perk.t}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{perk.d}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </section>
 
       <section className="relative isolate overflow-hidden bg-primary py-12 text-primary-foreground sm:py-16">
         <div className="bp-grid pointer-events-none absolute inset-0 text-white/20" />

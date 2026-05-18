@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Cog, Cpu, Flame, ShieldCheck, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
@@ -329,25 +329,21 @@ function StatsStrip() {
 
 const CAPS = [
   {
-    icon: Cog,
     title: "Precision CNC Turning",
     desc: "Multi-axis CNC lines for high-volume turned components with consistent micron tolerances.",
     img: MACHINE_CARD_IMAGES[0] ?? IMG.cnc,
   },
   {
-    icon: Cpu,
     title: "VMC Machining",
     desc: "Vertical machining centres for complex milling, drilling and contouring on forged blanks.",
     img: vmcMachineImage,
   },
   {
-    icon: Flame,
     title: "Induction Hardening",
     desc: "In-house induction hardening for case-depth control on shafts, gears and pins.",
     img: inductionMachineImage,
   },
   {
-    icon: ShieldCheck,
     title: "Quality Inspection",
     desc: "Calibrated CMM, profile projectors and gauges with full traceability and documentation.",
     img: profileProjectorImage,
@@ -379,9 +375,6 @@ function CapabilitiesGrid() {
                     className="h-full w-full object-contain p-2 transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent" />
-                  <div className="absolute bottom-3 left-4 flex h-10 w-10 items-center justify-center rounded-md bg-amber text-amber-foreground">
-                    <c.icon className="h-5 w-5" />
-                  </div>
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-lg font-bold uppercase tracking-wide text-primary">

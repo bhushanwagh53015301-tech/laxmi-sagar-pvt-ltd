@@ -116,6 +116,15 @@ const EVENT_PHOTOS = assetsFromCategory("Event Photos");
 const APPRECIATION_PHOTOS = EVENT_PHOTOS.filter((item) =>
   /apreciation|appreciation/i.test(item.subPath),
 );
+const ABOUT_EVENT_HIGHLIGHT_FILES = [
+  "APRECIATION-1",
+  "APRECIATION-2",
+  "APRECIATION-3",
+  "APRECIATION-4",
+];
+const ABOUT_EVENT_HIGHLIGHTS = EVENT_PHOTOS.filter((item) =>
+  ABOUT_EVENT_HIGHLIGHT_FILES.includes(item.filename.replace(/\.[^.]+$/, "").toUpperCase()),
+);
 
 function cleanLabel(text: string) {
   return text
@@ -342,6 +351,35 @@ export default function AboutPage() {
                     </div>
                   </div>
                 </a>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </section>
+
+      <section className="page-grid-surface py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Event Celebrations</div>
+            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
+              Life at Laxmi Sagar
+            </h2>
+            <p className="mt-3 max-w-3xl text-muted-foreground">
+              Team celebrations and workplace moments that reflect our culture.
+            </p>
+          </Reveal>
+
+          <StaggerGroup className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {ABOUT_EVENT_HIGHLIGHTS.map((photo) => (
+              <StaggerItem key={photo.relativePath}>
+                <figure className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]">
+                  <img
+                    src={photo.src}
+                    alt={`Event celebration at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`}
+                    className="h-60 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                </figure>
               </StaggerItem>
             ))}
           </StaggerGroup>

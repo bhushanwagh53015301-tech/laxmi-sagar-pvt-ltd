@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Briefcase, Cog, GraduationCap, HeartHandshake, ShieldCheck, TrendingUp, Upload, Wrench } from "lucide-react";
+import { Briefcase, Cog, ShieldCheck, Upload, Wrench } from "lucide-react";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { IMG } from "@/lib/site";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
@@ -12,13 +12,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-const CAREER_PERKS = [
-  { icon: GraduationCap, t: "Hands-on Learning", d: "Train on multi-axis CNC, VMC and induction hardening lines from day one." },
-  { icon: TrendingUp, t: "Clear Growth Path", d: "Operator -> Setter -> Line Lead -> Supervisor with defined milestones and pay bands." },
-  { icon: HeartHandshake, t: "OEM Work Exposure", d: "Contribute to heavy forging and precision machining programs for leading automobile OEMs." },
-  { icon: Briefcase, t: "Process-Driven Culture", d: "Work inside ISO 9001:2015 quality systems with traceable, auditable manufacturing processes." },
-];
 
 const ROLES = [
   {
@@ -223,28 +216,6 @@ export default function CareersPage() {
               Join our precision manufacturing team in Pune.
             </p>
           </div>
-        </div>
-      </section>
-
-      <section className="page-grid-surface py-14 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Why work at Laxmi Sagar</div>
-            <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">A workshop that respects the craft.</h2>
-          </Reveal>
-          <StaggerGroup className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {CAREER_PERKS.map((p) => (
-              <StaggerItem key={p.t}>
-                <div className="h-full rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-amber/15 text-amber">
-                    <p.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="mt-5 font-sans text-lg font-bold uppercase tracking-wide text-primary">{p.t}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
         </div>
       </section>
 
