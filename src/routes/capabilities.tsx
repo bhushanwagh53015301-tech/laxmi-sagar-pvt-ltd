@@ -207,6 +207,13 @@ const CAPABILITY_FLOW = [
   },
 ];
 
+const NEXT_MACHINES = [
+  "HMC",
+  "Broaching Machines",
+  "SPM for Special Operations",
+  "Furnace Tempering",
+];
+
 function cleanLabel(text: string) {
   return text
     .replace(/\.[^.]+$/, "")
@@ -264,6 +271,48 @@ function CapabilityImageSlider({
         </CarouselContent>
       </Carousel>
     </div>
+  );
+}
+
+function NextMachinesHighlightSection() {
+  return (
+    <section className="page-grid-surface overflow-x-clip py-12 sm:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[2rem] border border-amber/35 bg-card px-5 py-7 shadow-[0_18px_60px_rgba(245,158,11,0.18)] sm:px-8 sm:py-10">
+          <Reveal>
+            <div className="inline-flex rounded-full border border-amber/40 bg-amber/15 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
+              Growth Roadmap
+            </div>
+            <h2 className="mt-4 font-display text-3xl font-bold text-primary sm:text-4xl">
+              Our Next Machines
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base lg:whitespace-nowrap">
+              Planned capacity additions to support higher throughput, complex operations, and broader job-work capability.
+            </p>
+          </Reveal>
+
+          <StaggerGroup className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">
+            {NEXT_MACHINES.map((item, index) => (
+              <StaggerItem key={item}>
+                <article className="group rounded-2xl border border-amber/25 bg-white/80 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-amber/55 hover:shadow-[0_14px_34px_rgba(245,158,11,0.16)] sm:p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-base font-bold text-primary-foreground">
+                      {index + 1}
+                    </div>
+                    <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-amber">
+                      Planned Addition
+                    </div>
+                  </div>
+                  <div className="mt-3 font-display text-2xl font-bold text-primary sm:text-[1.9rem]">
+                    <span className="text-balance">{item}</span>
+                  </div>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -506,7 +555,7 @@ function ClosingCtaBand() {
       <div className="bp-grid pointer-events-none absolute inset-0 text-white/20" />
       <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-4 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <Reveal className="max-w-2xl">
-          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Closing CTA Band</div>
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Enquiry CTA</div>
           <h2 className="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">
             Share your drawing and target volume to start a capability review.
           </h2>
@@ -535,6 +584,7 @@ export default function CapabilitiesPage() {
 
       <CapabilityFlowSection />
       <InspectionInDepthSection />
+      <NextMachinesHighlightSection />
       <ClosingCtaBand />
 
       {/* <section className="bg-background py-14 sm:py-24">

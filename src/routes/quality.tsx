@@ -269,6 +269,33 @@ export default function QualityPage() {
 
       <ProductVisualsSection variant="detailed-grid" allowedExtensions={[".webp"]} />
 
+      <section className="relative isolate overflow-hidden bg-primary py-12 text-primary-foreground sm:py-16">
+        <div className="bp-grid pointer-events-none absolute inset-0 text-white/20" />
+        <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-4 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+          <Reveal className="max-w-2xl">
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
+              Product Enquiry
+            </div>
+            <h2 className="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">
+              Share your drawing and target quantity for a fast quote.
+            </h2>
+            <p className="mt-2 text-white/75">
+              We will review feasibility, process route, and inspection plan based on your requirement.
+            </p>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <MagneticButton to="/contact" variant="amber">
+                Enquire Now <ArrowRight className="h-5 w-5" />
+              </MagneticButton>
+              <MagneticButton to="/capabilities" variant="outline">
+                View Capabilities
+              </MagneticButton>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* <section className="page-grid-surface-secondary py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>

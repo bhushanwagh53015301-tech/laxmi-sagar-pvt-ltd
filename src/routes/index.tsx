@@ -11,6 +11,9 @@ import companyBannerVideo from "@/assets/home-page-banner/DJI_0185 (1).webm";
 import companyBannerImage from "@/assets/home-page-banner/DJI_0191.JPG";
 import officeBannerImage from "@/assets/home-page-banner/LSE.jpg";
 import ourStoryImage from "@/assets/DJI_0202.JPG";
+import vmcMachineImage from "@/assets/Product Photos/machines/machine-8.jpeg";
+import inductionMachineImage from "@/assets/Product Photos/machines/machine-4.jpeg";
+import profileProjectorImage from "@/assets/Product Photos/machines/profile projector.jpeg";
 
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
 const MACHINE_PHOTOS = PRODUCT_PHOTOS.filter((item) => /(^| \/ )machines$/i.test(item.subPath) || /machine/i.test(item.filename));
@@ -335,19 +338,19 @@ const CAPS = [
     icon: Cpu,
     title: "VMC Machining",
     desc: "Vertical machining centres for complex milling, drilling and contouring on forged blanks.",
-    img: MACHINE_CARD_IMAGES[1] ?? IMG.vmc,
+    img: vmcMachineImage,
   },
   {
     icon: Flame,
     title: "Induction Hardening",
     desc: "In-house induction hardening for case-depth control on shafts, gears and pins.",
-    img: MACHINE_CARD_IMAGES[2] ?? IMG.hardening,
+    img: inductionMachineImage,
   },
   {
     icon: ShieldCheck,
     title: "Quality Inspection",
     desc: "Calibrated CMM, profile projectors and gauges with full traceability and documentation.",
-    img: MACHINE_CARD_IMAGES[3] ?? IMG.inspection,
+    img: profileProjectorImage,
   },
 ];
 
@@ -417,14 +420,14 @@ const UNIQUE_CLIENT_LOGOS = Array.from(new Map(CLIENT_LOGOS.map((item) => [item.
   (item) => !EXCLUDED_CLIENT_LOGOS.has(item.filename),
 );
 const CLIENT_NAME_MAP: Record<string, string> = {
-  "ADiam2018_Approved_for_external_use.png": "A.DIAM",
+  "ADiam2018_Approved_for_external_use.png": "Dana Anand India Pvt Ltd",
   "carraro-indai.jpeg": "Carraro India",
   "flash.jpeg": "Flash Electronics",
   "hendrickson-usa-l-l-c-vector-logo.png": "Hendrickson USA, L.L.C.",
   // "logo-2.png": "Trinity",
-  "logo.png": "RSB",
+  "logo.png": "Metalyst Forgings Limited",
   // "R.jpeg": "Rane",
-  // "Trinity_Logo.png": "Trinity",
+  "Trinity_Logo.png": "trinity engineers pvt ltd",
   "turbo-group.jpeg": "Turbo Group",
   "watson&chalin.jpeg": "Watson & Chalin",
   "york_transport_equipment_india_private_limited_logo.jpeg": "York Transport Equipment India Pvt. Ltd.",
