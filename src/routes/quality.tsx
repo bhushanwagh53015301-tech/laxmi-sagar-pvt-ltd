@@ -227,17 +227,17 @@ export default function QualityPage() {
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
-      <section className="page-grid-surface py-14 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
+      {/* <section className="page-grid-surface py-14 sm:py-24"> */}
+        {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> */}
+          {/* <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
               Why work at Laxmi Sagar
             </div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
               A workshop that respects the craft.
             </h2>
-          </Reveal>
-          <StaggerGroup className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+          </Reveal> */}
+          {/* <StaggerGroup className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-14 lg:grid-cols-4">
             {WHY_WORK_PERKS.map((perk) => (
               <StaggerItem key={perk.t}>
                 <div className="h-full rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
@@ -251,9 +251,9 @@ export default function QualityPage() {
                 </div>
               </StaggerItem>
             ))}
-          </StaggerGroup>
-        </div>
-      </section>
+          </StaggerGroup> */}
+        {/* </div> */}
+      {/* </section> */}
 
       {/* <section className="bg-background py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

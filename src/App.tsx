@@ -5,10 +5,12 @@ import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { Preloader } from "@/components/Preloader";
 import { PageTransition } from "@/components/PageTransition";
 import { Toaster } from "@/components/ui/sonner";
+import { Seo } from "@/components/Seo";
 
 export function AppLayout() {
   return (
     <div className="relative isolate">
+      <Seo />
       <div className="site-grid-overlay pointer-events-none fixed inset-0 z-[1]" aria-hidden="true" />
       <Preloader />
       <Header />

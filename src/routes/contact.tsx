@@ -122,6 +122,18 @@ export default function ContactPage() {
                 />
               </div>
 
+              <label className="mt-5 flex items-start gap-3 text-xs text-muted-foreground">
+                <input
+                  type="checkbox"
+                  name="termsAccepted"
+                  required
+                  className="mt-0.5 h-4 w-4 rounded border-border text-amber focus:ring-amber"
+                />
+                <span>
+                  I agree to all the terms, conditions, and policies mentioned above, and confirm that the details I have provided are accurate.
+                </span>
+              </label>
+
               <button
                 type="submit"
                 disabled={submitting}

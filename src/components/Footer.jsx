@@ -106,7 +106,13 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex justify-center border-t border-white/10 pt-5 text-center text-xs text-white/50">
-          <div>© {new Date().getFullYear()} {SITE.legal}. All rights reserved.</div>
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+            <span>© {new Date().getFullYear()} {SITE.legal}. All rights reserved.</span>
+            <span className="text-white/30">|</span>
+            <a href="/sitemap.xml" className="underline-offset-4 hover:text-amber hover:underline">
+              Sitemap
+            </a>
+          </div>
         </div>
       </div>
     </footer>

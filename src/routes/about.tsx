@@ -15,6 +15,8 @@ import isoCertificateFile from "@/assets/iso-certificate.pdf";
 import zedCertificateFile from "@/assets/zed-certificate.pdf";
 import isoCertificatePreview from "@/assets/certificate/ISO Certificate_page-0001.jpg";
 import zedCertificatePreview from "@/assets/certificate/ZED Certificate_page-0001.jpg";
+import recognitionCertificateImage from "@/assets/certificate/certificate.jpeg";
+import recognitionAwardImage from "@/assets/certificate/award.jpeg";
 import {
   type CarouselApi,
   Carousel,
@@ -126,6 +128,26 @@ const ABOUT_EVENT_HIGHLIGHT_FILES = [
 const ABOUT_EVENT_HIGHLIGHTS = EVENT_PHOTOS.filter((item) =>
   ABOUT_EVENT_HIGHLIGHT_FILES.includes(item.filename.replace(/\.[^.]+$/, "").toUpperCase()),
 );
+const AWARDS_GALLERY = [
+  {
+    id: "recognition-certificate",
+    src: recognitionCertificateImage,
+    alt: "Recognition certificate at Laxmi Sagar Engineers",
+    fit: "contain" as const,
+  },
+  {
+    id: "recognition-award",
+    src: recognitionAwardImage,
+    alt: "Recognition award at Laxmi Sagar Engineers",
+    fit: "contain" as const,
+  },
+  ...ABOUT_EVENT_HIGHLIGHTS.map((photo) => ({
+    id: photo.relativePath,
+    src: photo.src,
+    alt: `Event celebration at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`,
+    fit: "cover" as const,
+  })),
+];
 
 function cleanLabel(text: string) {
   return text
@@ -138,6 +160,7 @@ function cleanLabel(text: string) {
 
 export default function AboutPage() {
   const [teamCarouselApi, setTeamCarouselApi] = useState<CarouselApi>();
+  const [awardsCarouselApi, setAwardsCarouselApi] = useState<CarouselApi>();
 
   useEffect(() => {
     if (!teamCarouselApi) return;
@@ -148,6 +171,16 @@ export default function AboutPage() {
 
     return () => clearInterval(interval);
   }, [teamCarouselApi]);
+
+  useEffect(() => {
+    if (!awardsCarouselApi) return;
+
+    const interval = setInterval(() => {
+      awardsCarouselApi.scrollNext();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [awardsCarouselApi]);
 
   return (
     <>
@@ -363,27 +396,38 @@ export default function AboutPage() {
           <Reveal className="order-2 md:order-1">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Awards & Achievements</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
-              Recognition at Laxmi Sagar
+              Laxmi Sagar Excellence Awards
             </h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
               Milestones, recognitions, and proud moments from our journey.
             </p>
           </Reveal>
 
-          <StaggerGroup className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {ABOUT_EVENT_HIGHLIGHTS.map((photo) => (
-              <StaggerItem key={photo.relativePath}>
-                <figure className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]">
-                  <img
-                    src={photo.src}
-                    alt={`Event celebration at Laxmi Sagar Engineers: ${cleanLabel(photo.filename)}`}
-                    className="h-60 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                </figure>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+          <Carousel
+            setApi={setAwardsCarouselApi}
+            opts={{ align: "start", loop: true }}
+            className="mt-10 w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {AWARDS_GALLERY.map((photo) => (
+                <CarouselItem
+                  key={photo.id}
+                  className="pl-2 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 md:pl-4"
+                >
+                  <figure className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]">
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      className={`h-60 w-full transition-transform duration-500 group-hover:scale-[1.03] ${
+                        photo.fit === "contain" ? "bg-white object-contain p-2" : "object-cover"
+                      }`}
+                      loading="lazy"
+                    />
+                  </figure>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
 

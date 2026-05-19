@@ -380,13 +380,20 @@ export default function CareersPage() {
                       </div>
                       <div>
                         <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
-                          Resume <span className="text-amber">*</span>
+                          Resume (Optional)
                         </label>
                         <label className="mt-2 flex h-11 cursor-pointer items-center gap-3 rounded-md border border-dashed border-border bg-card px-3 text-sm text-muted-foreground hover:border-amber hover:text-primary">
                           <Upload className="h-4 w-4" />
                           <span>Upload PDF / DOC</span>
-                          <input type="file" accept=".pdf,.doc,.docx" className="hidden" required />
+                          <input type="file" accept=".pdf,.doc,.docx" className="hidden" />
                         </label>
+                        <p className="mt-2 text-xs text-muted-foreground">
+                          You can also share your resume at{" "}
+                          <a className="text-primary underline hover:text-amber" href="mailto:hr@laxmisagar.in">
+                            hr@laxmisagar.in
+                          </a>
+                          .
+                        </p>
                       </div>
                     </div>
                     <button

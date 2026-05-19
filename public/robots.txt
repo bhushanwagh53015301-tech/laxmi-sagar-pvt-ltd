@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /cdn-cgi/
 
 Sitemap: https://www.laxmisagar.in/sitemap.xml
+Host: www.laxmisagar.in
