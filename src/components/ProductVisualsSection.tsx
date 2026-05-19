@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { Reveal } from "@/components/Reveal";
 import {
@@ -192,6 +194,17 @@ export function ProductVisualsSection({
             })}
           </div>
         )}
+
+        <Reveal delay={0.1}>
+          <div className="mt-8 text-center">
+            {/* <Link
+              to="/quality"
+              className="inline-flex items-center gap-2 font-display text-sm font-semibold uppercase tracking-wider text-primary hover:text-amber"
+            >
+              Explore Full Products <ArrowRight className="h-4 w-4" />
+            </Link> */}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

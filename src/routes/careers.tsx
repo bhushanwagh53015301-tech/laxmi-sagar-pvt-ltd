@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
   Briefcase,
@@ -7,7 +7,6 @@ import {
   HeartHandshake,
   ShieldCheck,
   TrendingUp,
-  Upload,
   Wrench,
 } from "lucide-react";
 import { assetsFromCategory } from "@/lib/localAssets";
@@ -295,7 +294,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section id="apply" className="page-grid-surface-secondary py-14 sm:py-24">
+      <section id="apply" className="page-grid-surface-secondary py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-[2rem] border border-border bg-card p-6 shadow-[var(--shadow-elegant)] sm:p-8 lg:p-10">
             <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-12">
@@ -384,13 +383,14 @@ export default function CareersPage() {
                       </div>
                       <div>
                         <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
-                          Resume (Optional)
+                          CV / Resume Link
                         </label>
-                        <label className="mt-2 flex h-11 cursor-pointer items-center gap-3 rounded-md border border-dashed border-border bg-card px-3 text-sm text-muted-foreground hover:border-amber hover:text-primary">
-                          <Upload className="h-4 w-4" />
-                          <span>Upload PDF / DOC</span>
-                          <input type="file" accept=".pdf,.doc,.docx" className="hidden" />
-                        </label>
+                        <input
+                          name="resumeLink"
+                          type="url"
+                          placeholder="Google Drive, Dropbox, or LinkedIn URL"
+                          className="mt-2 h-11 w-full rounded-md border border-border bg-background px-4 text-sm text-foreground outline-none transition-colors focus:border-amber"
+                        />
                         <p className="mt-2 text-xs text-muted-foreground">
                           You can also share your resume at{" "}
                           <a className="text-primary underline hover:text-amber" href="mailto:hr@laxmisagar.in">
@@ -418,7 +418,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* <section className="page-grid-surface py-14 sm:py-24">
+      {/* <section className="page-grid-surface py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Team Voices</div>
@@ -477,7 +477,7 @@ export default function CareersPage() {
         </div>
       </section> */}
 
-      <section className="page-grid-surface-secondary py-14 sm:py-24">
+      <section className="page-grid-surface-secondary py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Event Celebrations</div>
@@ -536,3 +536,4 @@ function Field({ label, name, type = "text", required }) {
     </div>
   );
 }
+

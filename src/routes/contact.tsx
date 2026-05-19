@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
@@ -39,7 +39,7 @@ export default function ContactPage() {
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
-      <section className="page-grid-surface py-14 sm:py-24">
+      <section className="page-grid-surface py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-[1fr_1.2fr] lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Get in Touch</div>
@@ -130,7 +130,8 @@ export default function ContactPage() {
                   className="mt-0.5 h-4 w-4 rounded border-border text-amber focus:ring-amber"
                 />
                 <span>
-                  I agree to all the terms, conditions, and policies mentioned above, and confirm that the details I have provided are accurate.
+                  I agree to be contacted via phone, email, or WhatsApp regarding my enquiry.
+
                 </span>
               </label>
 
@@ -150,7 +151,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="page-grid-surface-secondary py-14 sm:py-24">
+      <section className="page-grid-surface-secondary py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Find Us</div>
@@ -238,3 +239,4 @@ function Field({ label, name, type = "text", required }) {
     </div>
   );
 }
+

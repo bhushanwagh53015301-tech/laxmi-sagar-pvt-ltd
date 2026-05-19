@@ -194,7 +194,7 @@ export default function AboutPage() {
       />
 
       {/* Story */}
-      <section className="page-grid-surface py-24">
+      <section className="page-grid-surface py-16">
         <div className="mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
           <Reveal className="order-2 md:order-1">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Our Story</div>
@@ -222,7 +222,7 @@ export default function AboutPage() {
       </section>
 
       {/* Vision/Mission/Values */}
-      <section className="relative overflow-hidden page-grid-surface-secondary py-24">
+      <section className="relative overflow-hidden page-grid-surface-secondary py-10">
         <div className="pointer-events-none absolute -left-20 top-10 h-60 w-60 rounded-full bg-amber/12 blur-3xl" />
         <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -242,18 +242,18 @@ export default function AboutPage() {
               <StaggerItem key={v.title}>
                 <div className="group relative h-full overflow-hidden rounded-[2rem] border border-border/70 bg-card/95 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber/40 hover:shadow-[var(--shadow-elegant)] sm:p-10">
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber via-amber/55 to-transparent" />
-                  <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-4">
                     <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]">
                       <v.icon className="h-7 w-7" />
                     </div>
+                    <h3 className="font-display text-3xl font-bold uppercase tracking-wide text-primary">
+                      {v.title}
+                    </h3>
                     {/* <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
                       {v.title === "Mission" ? "Deliver Today" : "Build Tomorrow"}
                     </div> */}
                   </div>
-                  <h3 className="mt-8 font-display text-3xl font-bold uppercase tracking-wide text-primary">
-                    {v.title}
-                  </h3>
-                  <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">{v.text}</p>
+                  <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">{v.text}</p>
                   {/* <div className="mt-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-primary/70 transition-colors group-hover:text-primary">
                     Precision-led commitment
                     <ArrowRight className="h-4 w-4" />
@@ -317,7 +317,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="relative overflow-hidden bg-primary py-24 text-primary-foreground">
+      <section className="relative overflow-hidden bg-primary py-16 text-primary-foreground">
         <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal className="text-center">
@@ -351,7 +351,7 @@ export default function AboutPage() {
 
     
       {/* Certifications */}
-      <section className="page-grid-surface py-24">
+      <section className="page-grid-surface py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Recognised & Certified</div>
@@ -391,7 +391,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="page-grid-surface py-20 sm:py-24">
+      <section className="page-grid-surface py-20 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="order-2 md:order-1">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Awards & Achievements</div>
@@ -431,7 +431,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* <section className="bg-background py-24">
+      {/* <section className="bg-background py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Appreciation</div>
@@ -460,7 +460,7 @@ export default function AboutPage() {
       </section> */}
 
       {/* Team members */}
-      <section className="relative overflow-hidden page-grid-surface-secondary py-24">
+      <section className="relative overflow-hidden page-grid-surface-secondary py-16">
         <div className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-amber/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-20 bottom-6 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -476,13 +476,13 @@ export default function AboutPage() {
           <Carousel
             setApi={setTeamCarouselApi}
             opts={{ align: "start", loop: true }}
-            className="mt-10 w-full overflow-hidden sm:hidden"
+            className="mt-6 w-full overflow-hidden sm:hidden"
           >
             <CarouselContent className="ml-0">
               {TEAM_MEMBERS.map((member) => (
                 <CarouselItem key={member.role} className="basis-full pl-0">
                   <article className="group overflow-hidden rounded-2xl border border-border/70 bg-card/95 shadow-[var(--shadow-elegant)]">
-                    <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50">
+                    <div className="relative aspect-[1/1] overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50">
                       <img
                         src={member.image}
                         alt={member.role}
@@ -505,11 +505,11 @@ export default function AboutPage() {
             </CarouselContent>
           </Carousel>
 
-          <StaggerGroup className="mt-12 hidden gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerGroup className="mt-8 hidden gap-5 sm:grid sm:grid-cols-2 lg:grid-cols-4">
             {TEAM_MEMBERS.map((member) => (
               <StaggerItem key={member.role}>
                 <article className="group overflow-hidden rounded-2xl border border-border/70 bg-card/95 shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-1 hover:border-amber/50">
-                  <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50">
+                  <div className="relative aspect-[1/1] overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50">
                     <img
                       src={member.image}
                       alt={member.role}
@@ -534,7 +534,7 @@ export default function AboutPage() {
       </section>
 
 
-      {/* <section className="bg-secondary py-24">
+      {/* <section className="bg-secondary py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Brand & Team</div>
@@ -588,6 +588,7 @@ export default function AboutPage() {
     </>
   );
 }
+
 
 
 

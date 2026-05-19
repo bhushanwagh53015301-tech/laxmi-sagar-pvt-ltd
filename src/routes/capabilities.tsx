@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ClipboardCheck, Download, FileText, Microscope, ShieldCheck } from "lucide-react";
 import { IMG } from "@/lib/site";
@@ -119,11 +119,11 @@ const FLOW = [
 ];
 
 const INSTRUMENTS = [
-  { name: "Digital Height Gauges", spec: "Trimos 0–1200 mm · Mitutoyo 0–450 mm" },
-  { name: "Profile Projector", spec: "0–550 mm · Optical form & contour verification" },
-  { name: "Bench Centres & V-Blocks", spec: "1000 mm bench centre · Granite plates up to 1000×750 mm" },
-  { name: "Precision Micrometers", spec: "Mitutoyo · 0–125 mm · LC 0.010 mm" },
-  { name: "Bore Gauges", spec: "Mitutoyo · 18–160 mm range" },
+  { name: "Digital Height Gauges", spec: "Trimos 0â€“1200 mm Â· Mitutoyo 0â€“450 mm" },
+  { name: "Profile Projector", spec: "0â€“550 mm Â· Optical form & contour verification" },
+  { name: "Bench Centres & V-Blocks", spec: "1000 mm bench centre Â· Granite plates up to 1000Ã—750 mm" },
+  { name: "Precision Micrometers", spec: "Mitutoyo Â· 0â€“125 mm Â· LC 0.010 mm" },
+  { name: "Bore Gauges", spec: "Mitutoyo Â· 18â€“160 mm range" },
   { name: "APG with Auto Offset", spec: "Component-specific gauging built into the production process." },
 ];
 
@@ -159,12 +159,12 @@ const CAPABILITY_FLOW = [
     badge: "02 Machine",
     title: "Machine Capacity & Production Readiness",
     description:
-      "CNC, VMC, and supporting production equipment are aligned to handle forged parts with repeatable machining quality and practical job-work flexibility.",
+      "CNC, VMC, and supporting equipment handle forged parts with repeatable quality and job-work flexibility.",
     notes: [
-      "Configured for turning, drilling, milling, and component-specific machining routes.",
-      "Suitable for shafts, yokes, flanges, bushes, spindles, and similar precision parts.",
-      "Machine availability is structured around throughput, dimensional control, and stable output.",
-      "Sub-contracting workload is absorbed through flexible route planning and machine readiness.",
+      "Configured for turning, drilling, milling, and machining routes.",
+      "Suitable for shafts, yokes, flanges, bushes, spindles, and precision parts.",
+      "Machine availability supports throughput, dimensional control, and output.",
+      // "Sub-contracting workload is absorbed through flexible route planning and machine readiness.",
     ],
     download: {
       label: "Download Machinery List",
@@ -299,12 +299,9 @@ function NextMachinesHighlightSection() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-base font-bold text-primary-foreground">
                       {index + 1}
                     </div>
-                    <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-amber">
-                      Planned Addition
+                    <div className="font-display text-2xl font-bold text-primary sm:text-[1.9rem]">
+                      {item}
                     </div>
-                  </div>
-                  <div className="mt-3 font-display text-2xl font-bold text-primary sm:text-[1.9rem]">
-                    <span className="text-balance">{item}</span>
                   </div>
                 </article>
               </StaggerItem>
@@ -351,7 +348,7 @@ function CapabilityFlowSection() {
                       {item.notes.map((note) => (
                         <div
                           key={note}
-                          className="rounded-xl border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground"
+                          className="rounded-xl border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground sm:whitespace-nowrap"
                         >
                           {note}
                         </div>
@@ -387,7 +384,7 @@ function ProcessFlowSection() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   return (
-    <section className="relative overflow-x-clip bg-primary py-14 text-primary-foreground sm:py-24">
+    <section className="relative overflow-x-clip bg-primary py-14 text-primary-foreground sm:py-16">
       <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-4xl">
@@ -437,7 +434,7 @@ function ProcessFlowSection() {
                     {isActive && showAbove ? (
                       <div className="mb-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
                         <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
-                          {step.n} · {step.t}
+                          {step.n} Â· {step.t}
                         </p>
                         <p className="mt-2 text-xs leading-relaxed text-white/85">{step.info}</p>
                       </div>
@@ -475,7 +472,7 @@ function ProcessFlowSection() {
                       } ${index === PROCESS_STEPS.length - 1 ? "right-0 translate-x-0" : ""}`}
                     >
                       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
-                        {step.n} · {step.t}
+                        {step.n} Â· {step.t}
                       </p>
                       <p className="mt-2 text-xs leading-relaxed text-white/85">{step.info}</p>
                     </motion.div>
@@ -483,7 +480,7 @@ function ProcessFlowSection() {
                     {isActive && !showAbove ? (
                       <div className="mt-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
                         <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
-                          {step.n} · {step.t}
+                          {step.n} Â· {step.t}
                         </p>
                         <p className="mt-2 text-xs leading-relaxed text-white/85">{step.info}</p>
                       </div>
@@ -583,11 +580,10 @@ export default function CapabilitiesPage() {
       />
 
       <CapabilityFlowSection />
-      <InspectionInDepthSection />
       <NextMachinesHighlightSection />
       <ClosingCtaBand />
 
-      {/* <section className="bg-background py-14 sm:py-24">
+      {/* <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Product-Wise Capability</div>
@@ -657,7 +653,7 @@ export default function CapabilitiesPage() {
         </div>
       </section> */}
 
-      {/* <section className="bg-secondary py-14 sm:py-24">
+      {/* <section className="bg-secondary py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Process Capability Matrix</div>
@@ -689,7 +685,7 @@ export default function CapabilitiesPage() {
       </section> */}
 
 
-      {/* <section className="bg-background py-14 sm:py-24">
+      {/* <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Proof & Compliance</div>
@@ -719,5 +715,6 @@ export default function CapabilitiesPage() {
     </>
   );
 }
+
 
 

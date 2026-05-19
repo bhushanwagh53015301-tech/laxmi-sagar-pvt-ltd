@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ShieldCheck,
@@ -63,11 +63,11 @@ const STEPS = [
 ];
 
 const INSTRUMENTS = [
-  { name: "Digital Height Gauges", spec: "Trimos 0–1200 mm · Mitutoyo 0–450 mm" },
-  { name: "Profile Projector", spec: "0–550 mm · Optical form & contour verification" },
-  { name: "Bench Centres & V-Blocks", spec: "1000 mm bench centre · Granite plates up to 1000×750 mm" },
-  { name: "Precision Micrometers", spec: "Mitutoyo · 0–125 mm · LC 0.010 mm" },
-  { name: "Bore Gauges", spec: "Mitutoyo · 18–160 mm range" },
+  { name: "Digital Height Gauges", spec: "Trimos 0â€“1200 mm Â· Mitutoyo 0â€“450 mm" },
+  { name: "Profile Projector", spec: "0â€“550 mm Â· Optical form & contour verification" },
+  { name: "Bench Centres & V-Blocks", spec: "1000 mm bench centre Â· Granite plates up to 1000Ã—750 mm" },
+  { name: "Precision Micrometers", spec: "Mitutoyo Â· 0â€“125 mm Â· LC 0.010 mm" },
+  { name: "Bore Gauges", spec: "Mitutoyo Â· 18â€“160 mm range" },
   { name: "APG with Auto Offset", spec: "Component-specific gauging built into the production process." },
 ];
 
@@ -111,7 +111,7 @@ function ProcessFlow() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   return (
-    <section className="relative overflow-x-clip bg-primary py-14 text-primary-foreground sm:py-32">
+    <section className="relative overflow-x-clip bg-primary py-14 text-primary-foreground sm:py-20">
       <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-4xl">
@@ -150,7 +150,7 @@ function ProcessFlow() {
                     {isActive && showAbove ? (
                       <div className="mb-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
                         <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
-                          {s.n} · {s.t}
+                          {s.n} Â· {s.t}
                         </p>
                         <p className="mt-2 text-xs leading-relaxed text-white/85">{s.info}</p>
                       </div>
@@ -184,7 +184,7 @@ function ProcessFlow() {
                       } ${index === STEPS.length - 1 ? "right-0 translate-x-0" : ""}`}
                     >
                       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
-                        {s.n} · {s.t}
+                        {s.n} Â· {s.t}
                       </p>
                       <p className="mt-2 text-xs leading-relaxed text-white/85">{s.info}</p>
                     </motion.div>
@@ -192,7 +192,7 @@ function ProcessFlow() {
                     {isActive && !showAbove ? (
                       <div className="mt-3 w-full rounded-lg border border-amber/30 bg-primary/90 p-3 text-left lg:hidden">
                         <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">
-                          {s.n} · {s.t}
+                          {s.n} Â· {s.t}
                         </p>
                         <p className="mt-2 text-xs leading-relaxed text-white/85">{s.info}</p>
                       </div>
@@ -227,7 +227,7 @@ export default function QualityPage() {
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />
 
-      {/* <section className="page-grid-surface py-14 sm:py-24"> */}
+      {/* <section className="page-grid-surface py-14 sm:py-16"> */}
         {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> */}
           {/* <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
@@ -255,7 +255,7 @@ export default function QualityPage() {
         {/* </div> */}
       {/* </section> */}
 
-      {/* <section className="bg-background py-14 sm:py-24">
+      {/* <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center">
             <Reveal>
@@ -284,7 +284,7 @@ export default function QualityPage() {
         </div>
       </section> */}
 
-      <section className="page-grid-surface-secondary py-14 sm:py-24">
+      <section className="page-grid-surface-secondary py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> What We Make</div>
@@ -305,8 +305,8 @@ export default function QualityPage() {
           <Reveal delay={0.15}>
             <div className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-3">
               {[
-                { k: "Materials", v: "EN8 / EN19 / EN24 · 42CrMo4 · 16MnCr5 · 20MnCr5 · SAE 1045 / 8620 · C70S6" },
-                { k: "Size Range", v: "Dia 6 - 450 mm · Length up to 1200 mm" },
+                { k: "Materials", v: "EN8 / EN19 / EN24 Â· 42CrMo4 Â· 16MnCr5 Â· 20MnCr5 Â· SAE 1045 / 8620 Â· C70S6" },
+                { k: "Size Range", v: "Dia 6 - 450 mm Â· Length up to 1200 mm" },
                 { k: "Tolerances", v: "Up to +/-5 microns on critical features" },
               ].map((it) => (
                 <div key={it.k} className="rounded-xl border border-border bg-card p-6">
@@ -328,6 +328,29 @@ export default function QualityPage() {
       </section>
 
       <ProductVisualsSection variant="detailed-grid" allowedExtensions={[".webp"]} />
+
+      <section className="page-grid-surface-secondary py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Inspection Workflow</div>
+            <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">From incoming to dispatch - checked at every gate.</h2>
+          </Reveal>
+          <StaggerGroup className="mt-8 grid gap-6 sm:mt-14 md:grid-cols-2 lg:grid-cols-4">
+            {FLOW.map((s, i) => (
+              <StaggerItem key={s.t}>
+                <div className="group relative h-full rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
+                  <div className="font-mono text-5xl font-bold text-amber/30">0{i + 1}</div>
+                  <div className="mt-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-bold uppercase tracking-wide text-primary">{s.t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </section>
 
       <section className="relative isolate overflow-hidden bg-primary py-12 text-primary-foreground sm:py-16">
         <div className="bp-grid pointer-events-none absolute inset-0 text-white/20" />
@@ -356,7 +379,7 @@ export default function QualityPage() {
         </div>
       </section>
 
-      {/* <section className="page-grid-surface-secondary py-14 sm:py-24">
+      {/* <section className="page-grid-surface-secondary py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Inspection Workflow</div>
@@ -379,7 +402,7 @@ export default function QualityPage() {
         </div>
       </section>
 
-      <section className="page-grid-surface py-14 sm:py-24">
+      <section className="page-grid-surface py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Calibrated Instruments</div>
@@ -403,7 +426,7 @@ export default function QualityPage() {
         </div>
       </section> */}
 
-      {/* <section className="relative overflow-hidden bg-primary py-14 text-primary-foreground sm:py-24">
+      {/* <section className="relative overflow-hidden bg-primary py-14 text-primary-foreground sm:py-16">
         <div className="bp-grid pointer-events-none absolute inset-0 text-white/30" />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-2 md:items-center lg:px-8">
           <Reveal>
@@ -427,7 +450,7 @@ export default function QualityPage() {
         </div>
       </section> */}
 
-      {/* <section className="bg-background py-14 sm:py-24">
+      {/* <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">// Certifications & Registrations</div>
@@ -455,3 +478,4 @@ export default function QualityPage() {
     </>
   );
 }
+

@@ -143,7 +143,7 @@ function HeroSlider() {
 
 function IntroSection() {
   return (
-    <section className="relative page-grid-surface py-16 sm:py-32">
+    <section className="relative page-grid-surface py-16 sm:py-20">
       <div className="bp-grid-fine pointer-events-none absolute inset-0 text-primary/40" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 md:grid-cols-2 md:gap-14 lg:gap-20 lg:px-8">
         <Reveal>
@@ -353,7 +353,7 @@ const CAPS = [
 
 function CapabilitiesGrid() {
   return (
-    <section className="page-grid-surface-secondary py-16 sm:py-32">
+    <section className="page-grid-surface-secondary py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>  
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">
@@ -520,5 +520,6 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
