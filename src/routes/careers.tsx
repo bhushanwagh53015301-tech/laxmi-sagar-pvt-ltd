@@ -120,10 +120,14 @@ const EMPLOYEE_TESTIMONIALS = [
     role: "VMC Programmer",
   },
 ];
-const PINNED_EVENT_PHOTOS = [
-  "89c9adba-5550-418b-a92b-416e302377fe.JPG",
-  "aa8c1453-8ff7-434e-838d-18a583bc3818.jpg",
-  "b0e981c5-d480-4464-9003-1d9f11477077.JPG",
+const GROUP_EVENT_PHOTOS_FIRST = [
+  "WhatsApp Image 2026-04-08 at 6.07.51 PM.jpeg",
+  "WhatsApp Image 2026-04-08 at 6.06.19 PM.jpeg",
+  "WhatsApp Image 2026-04-08 at 6.06.18 PM.jpeg",
+  "WhatsApp Image 2026-04-08 at 6.08.24 PM.jpeg",
+  "WhatsApp Image 2026-04-08 at 6.07.56 PM.jpeg",
+  "WhatsApp Image 2026-04-08 at 6.07.57 PM.jpeg",
+  "WhatsApp Image 2026-04-08 at 6.08.03 PM.jpeg",
 ];
 
 const WHY_WORK_POINTS = [
@@ -161,8 +165,8 @@ const EVENT_PHOTOS = assetsFromCategory("Event Photos")
       !ABOUT_EVENT_HIGHLIGHT_FILES.has(item.filename.replace(/\.[^.]+$/, "").toUpperCase()),
   )
   .sort((a, b) => {
-    const aIndex = PINNED_EVENT_PHOTOS.indexOf(a.filename);
-    const bIndex = PINNED_EVENT_PHOTOS.indexOf(b.filename);
+    const aIndex = GROUP_EVENT_PHOTOS_FIRST.indexOf(a.filename);
+    const bIndex = GROUP_EVENT_PHOTOS_FIRST.indexOf(b.filename);
 
     if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
     if (aIndex !== -1) return -1;
