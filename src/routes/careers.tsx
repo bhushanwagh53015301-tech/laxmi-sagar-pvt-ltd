@@ -228,14 +228,35 @@ export default function CareersPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", "30670d77-83f3-466c-8da3-2bee079d3c89");
+    formData.append("subject", "New Career Application - Laxmi Sagar Engineers");
+    formData.append("from_name", String(formData.get("name") || "Laxmi Sagar Careers Page"));
+    formData.append("replyto", String(formData.get("email") || ""));
+
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      toast.success("Application received", {
-        description: "Our HR team will reach out within 5 working days.",
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (!result.success) {
+          throw new Error(result.message || "Submission failed");
+        }
+        setSubmitting(false);
+        toast.success("Application received", {
+          description: "Our HR team will reach out within 5 working days.",
+        });
+        form.reset();
+      })
+      .catch((error) => {
+        setSubmitting(false);
+        toast.error("Submission failed", {
+          description: error?.message || "Please check form setup and try again.",
+        });
       });
-      e.target.reset();
-    }, 900);
   };
 
   return (
@@ -340,6 +361,7 @@ export default function CareersPage() {
                     Do not see your role? Send a general application and we will keep your profile on file.
                   </p>
                   <form onSubmit={handleSubmit} className="mt-8 space-y-5 rounded-[1.75rem] border border-border bg-background p-6 shadow-sm sm:p-8">
+                    <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
                     <div className="grid gap-5 sm:grid-cols-2">
                       <Field label="Full Name" name="name" required />
                       <Field label="Email" name="email" type="email" required />
