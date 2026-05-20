@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Target, Eye, ArrowRight } from "lucide-react";
+import { Target, Eye, ArrowRight, Linkedin } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
@@ -83,6 +83,10 @@ const BRIEF_DIRECTOR_MESSAGES = [
       "Representing the third generation, he brings a data-driven and globally oriented approach. He is focused on technology-led efficiency, international market expansion, and positioning Laxmi Sagar Engineers as a preferred Tier-1 and Tier-2 supplier. His vision includes Industry 4.0 practices and capacity expansion.",
   },
 ];
+
+function getLinkedInSearchLink(name: string) {
+  return `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(name)}`;
+}
 
 const CERTIFICATIONS = [
   { title: "ISO 9001:2015", file: isoCertificateFile, preview: isoCertificatePreview },
@@ -294,8 +298,19 @@ export default function AboutPage() {
                           decoding="sync"
                         />
                       </div>
-                      <div className="min-w-0">
-                        <p className="truncate font-display text-2xl font-bold text-primary">{person.name}</p>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-3">
+                          <p className="truncate font-display text-2xl font-bold text-primary">{person.name}</p>
+                          <a
+                            href={getLinkedInSearchLink(person.name)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open LinkedIn profile search for ${person.name}`}
+                            className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-border bg-background text-primary transition-colors hover:border-amber hover:text-amber"
+                          >
+                            <Linkedin className="h-4 w-4" />
+                          </a>
+                        </div>
                         <p className="font-sans text-base font-semibold text-red-600">{person.role}</p>
                         {person.education ? (
                           <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">

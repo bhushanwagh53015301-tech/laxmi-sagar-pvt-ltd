@@ -327,9 +327,9 @@ export default function QualityPage() {
         </div>
       </section>
 
-      <ProductVisualsSection variant="detailed-grid" allowedExtensions={[".webp"]} />
+      <ProductVisualsSection variant="detailed-grid" allowedExtensions={[".webp"]} compactBottom />
 
-      <section className="page-grid-surface-secondary py-14 sm:py-16">
+      <section className="page-grid-surface-secondary pt-6 pb-14 sm:pt-8 sm:pb-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Inspection Workflow</div>

@@ -67,9 +67,11 @@ function getProductName(filename: string) {
 export function ProductVisualsSection({
   variant = "slider",
   allowedExtensions,
+  compactBottom = false,
 }: {
   variant?: "slider" | "detailed-grid";
   allowedExtensions?: string[];
+  compactBottom?: boolean;
 }) {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const normalizedExtensions = allowedExtensions?.map((ext) => ext.toLowerCase());
@@ -96,7 +98,11 @@ export function ProductVisualsSection({
   }, [carouselApi]);
 
   return (
-    <section className="page-grid-surface-secondary overflow-x-clip pb-14 pt-0 sm:pb-24 sm:pt-0">
+    <section
+      className={`page-grid-surface-secondary overflow-x-clip pt-0 sm:pt-0 ${
+        compactBottom ? "pb-6 sm:pb-8" : "pb-14 sm:pb-24"
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Product Visuals</div>
