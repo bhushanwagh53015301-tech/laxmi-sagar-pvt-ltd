@@ -304,9 +304,13 @@ export default function QualityPage() {
 
           <Reveal delay={0.15}>
             <div className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-3">
+              <div className="sm:col-span-3">
+                <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Key Metrics</div>
+                <h3 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">Technical Snapshot</h3>
+              </div>
               {[
-                { k: "Materials", v: "EN8 / EN19 / EN24 Â· 42CrMo4 Â· 16MnCr5 Â· 20MnCr5 Â· SAE 1045 / 8620 Â· C70S6" },
-                { k: "Size Range", v: "Dia 6 - 450 mm Â· Length up to 1200 mm" },
+                { k: "Materials", v: "EN8 / EN19 / EN24 · 42CrMo4 · 16MnCr5 · 20MnCr5 · SAE 1045 / 8620 · C70S6" },
+                { k: "Size Range", v: "Dia 6 - 450 mm · Length up to 1200 mm" },
                 { k: "Tolerances", v: "Up to +/-5 microns on critical features" },
               ].map((it) => (
                 <div key={it.k} className="rounded-xl border border-border bg-card p-6">

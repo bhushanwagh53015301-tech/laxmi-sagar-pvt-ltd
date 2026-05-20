@@ -84,8 +84,13 @@ const BRIEF_DIRECTOR_MESSAGES = [
   },
 ];
 
-function getLinkedInSearchLink(name: string) {
-  return `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(name)}`;
+const DIRECTOR_LINKEDIN: Record<string, string> = {
+  "Tejas Rokhade": "https://www.linkedin.com/in/tejasrokhade",
+  "Laxmikant Rokhade": "https://www.linkedin.com/search/results/all/?keywords=Laxmikant%20Rokhade",
+};
+
+function getLinkedInLink(name: string) {
+  return DIRECTOR_LINKEDIN[name];
 }
 
 const CERTIFICATIONS = [
@@ -301,15 +306,17 @@ export default function AboutPage() {
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center justify-between gap-3">
                           <p className="truncate font-display text-2xl font-bold text-primary">{person.name}</p>
-                          <a
-                            href={getLinkedInSearchLink(person.name)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Open LinkedIn profile search for ${person.name}`}
-                            className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-border bg-background text-primary transition-colors hover:border-amber hover:text-amber"
-                          >
-                            <Linkedin className="h-4 w-4" />
-                          </a>
+                          {getLinkedInLink(person.name) ? (
+                            <a
+                              href={getLinkedInLink(person.name)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`Open LinkedIn profile for ${person.name}`}
+                              className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-border bg-background text-primary transition-colors hover:border-amber hover:text-amber"
+                            >
+                              <Linkedin className="h-4 w-4" />
+                            </a>
+                          ) : null}
                         </div>
                         <p className="font-sans text-base font-semibold text-red-600">{person.role}</p>
                         {person.education ? (
