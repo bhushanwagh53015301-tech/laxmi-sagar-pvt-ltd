@@ -302,16 +302,16 @@ export default function CareersPage() {
                 <div>
                   <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Open Positions</div>
                   <h2 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">We're hiring</h2>
-                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground" style={{ textAlign: "justify" }}>
                     Join an ISO 9001:2015 certified manufacturing team trusted by leading automobile OEMs.
                   </p>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground" style={{ textAlign: "justify" }}>
                     We are looking for people who care about precision, process discipline, and dependable execution on the shop floor.
                   </p>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground" style={{ textAlign: "justify" }}>
                     At Laxmi Sagar Engineers, jobs are shaped around real production responsibility. Team members work on machining, inspection, and process-driven manufacturing programs where consistency, ownership, and practical skill matter every day.
                   </p>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground" style={{ textAlign: "justify" }}>
                     If you are comfortable in a factory environment, ready to learn, and serious about building a long-term career in engineering manufacturing, this is a strong place to grow.
                   </p>
                   <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -334,7 +334,7 @@ export default function CareersPage() {
 
               <Reveal delay={0.08}>
                 <div>
-                  <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Apply</div>
+                  <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber"> Apply now</div>
                   <h3 className="mt-3 font-sans text-3xl font-bold text-primary sm:text-4xl">Send us your application</h3>
                   <p className="mt-3 text-muted-foreground">
                     Do not see your role? Send a general application and we will keep your profile on file.

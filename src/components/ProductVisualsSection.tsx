@@ -68,10 +68,12 @@ export function ProductVisualsSection({
   variant = "slider",
   allowedExtensions,
   compactBottom = false,
+  showProductsCta = true,
 }: {
   variant?: "slider" | "detailed-grid";
   allowedExtensions?: string[];
   compactBottom?: boolean;
+  showProductsCta?: boolean;
 }) {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const normalizedExtensions = allowedExtensions?.map((ext) => ext.toLowerCase());
@@ -201,16 +203,18 @@ export function ProductVisualsSection({
           </div>
         )}
 
-        <Reveal delay={0.1}>
-          <div className="mt-8 text-center">
-            {/* <Link
-              to="/quality"
-              className="inline-flex items-center gap-2 font-display text-sm font-semibold uppercase tracking-wider text-primary hover:text-amber"
-            >
-              Explore Full Products <ArrowRight className="h-4 w-4" />
-            </Link> */}
-          </div>
-        </Reveal>
+        {showProductsCta ? (
+          <Reveal delay={0.1}>
+            <div className="mt-8 text-center">
+              <Link
+                to="/quality"
+                className="inline-flex items-center gap-2 font-display text-sm font-semibold uppercase tracking-wider text-primary hover:text-amber"
+              >
+                Explore Full Products <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+        ) : null}
       </div>
     </section>
   );

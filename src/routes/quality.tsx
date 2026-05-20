@@ -327,7 +327,12 @@ export default function QualityPage() {
         </div>
       </section>
 
-      <ProductVisualsSection variant="detailed-grid" allowedExtensions={[".webp"]} compactBottom />
+      <ProductVisualsSection
+        variant="detailed-grid"
+        allowedExtensions={[".webp"]}
+        compactBottom
+        showProductsCta={false}
+      />
 
       <section className="page-grid-surface-secondary pt-6 pb-14 sm:pt-8 sm:pb-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

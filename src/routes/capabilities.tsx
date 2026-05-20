@@ -322,9 +322,9 @@ function CapabilityFlowSection() {
           <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl lg:whitespace-nowrap">
             Infrastructure, machine capacity, & quality control in one clear flow.
           </h2>
-          <p className="mt-3 max-w-3xl text-muted-foreground lg:whitespace-nowrap">
+          {/* <p className="mt-3 max-w-3xl text-muted-foreground lg:whitespace-nowrap">
             Structured in the sequence customers review most: infrastructure first, machine capacity second, and quality control third.
-          </p>
+          </p> */}
         </Reveal>
 
         <div className="mt-10 space-y-8 sm:mt-14 sm:space-y-10">
@@ -348,7 +348,7 @@ function CapabilityFlowSection() {
                       {item.notes.map((note) => (
                         <div
                           key={note}
-                          className="rounded-xl border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground sm:whitespace-nowrap"
+                          className="rounded-xl border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground"
                         >
                           {note}
                         </div>

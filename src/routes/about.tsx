@@ -406,12 +406,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="page-grid-surface py-20 sm:py-16">
+      <section className="page-grid-surface py-20 sm:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="order-2 md:order-1">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Awards & Achievements</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
-              Laxmi Sagar Excellence Awards
+              Laxmi Sagar Legacy Awards
             </h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
               Milestones, recognitions, and proud moments from our journey.
