@@ -6,6 +6,10 @@ import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
 import { MagneticButton } from "@/components/MagneticButton";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
+import qualityImage1 from "@/assets/Quality-1.png";
+import qualityImage2 from "@/assets/Quality-2.png";
+import qualityImage3 from "@/assets/Quality-3.png";
+import laxmisagarImage from "@/assets/laxmisagar.jpeg";
 const instrumentListPdf = "/downloads/instrument-list.pdf";
 const machineryListPdf = "/downloads/machinery-list.pdf";
 import {
@@ -141,16 +145,9 @@ const CAPABILITY_FLOW = [
     ],
     images: [
       {
-        src: COMPANY_PHOTOS[0]?.src ?? IMG.factory,
+        src: laxmisagarImage,
         alt: "Laxmi Sagar Engineers facility exterior",
-      },
-      {
-        src: IMG.factory,
-        alt: "Manufacturing facility infrastructure overview",
-      },
-      {
-        src: IMG.heroFactory,
-        alt: "Factory layout and industrial infrastructure",
+        fullBleed: true,
       },
     ],
   },
@@ -192,16 +189,16 @@ const CAPABILITY_FLOW = [
     },
     images: [
       {
-        src: PRODUCT_PHOTOS[0]?.src ?? IMG.parts,
-        alt: "Representative machined product",
+        src: qualityImage1,
+        alt: "Quality section visual 1",
       },
       {
-        src: COMPANY_PHOTOS[1]?.src ?? COMPANY_PHOTOS[0]?.src ?? IMG.factory,
-        alt: "Manufacturing facility and company readiness",
+        src: qualityImage2,
+        alt: "Quality section visual 2",
       },
       {
-        src: IMG.inspection,
-        alt: "Inspection and quality verification setup",
+        src: qualityImage3,
+        alt: "Quality section visual 3",
       },
     ],
   },
@@ -227,7 +224,7 @@ function CapabilityImageSlider({
   images,
   title,
 }: {
-  images: Array<{ src: string; alt: string }>;
+  images: Array<{ src: string; alt: string; fullBleed?: boolean }>;
   title: string;
 }) {
   const [api, setApi] = useState<CarouselApi>();
@@ -261,7 +258,7 @@ function CapabilityImageSlider({
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="h-full w-full object-contain p-3"
+                  className={image.fullBleed ? "h-full w-full object-cover" : "h-full w-full object-contain p-3"}
                   loading="lazy"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary/20 to-transparent" />
@@ -574,7 +571,7 @@ export default function CapabilitiesPage() {
         eyebrow="Capabilities"
         title="Integrated precision machining."
         subtitle="From first cut to final inspection under one roof."
-        image={IMG.cnc}
+        image={qualityImage1}
         contentClassName="max-w-6xl"
         titleClassName="lg:whitespace-nowrap lg:text-[3.2rem]"
       />

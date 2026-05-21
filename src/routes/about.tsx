@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Target, Eye, ArrowRight, Linkedin } from "lucide-react";
+import { Target, Eye, ArrowRight, Linkedin, Mail } from "lucide-react";
 import { IMG, SITE } from "@/lib/site";
 import { assetsFromCategory } from "@/lib/localAssets";
 import { PageHero } from "@/components/PageHero";
@@ -293,7 +293,7 @@ export default function AboutPage() {
                     key={person.name}
                     className="overflow-hidden rounded-xl border border-border bg-background"
                   >
-                    <div className="flex items-center gap-4 border-b border-border bg-secondary px-5 py-4">
+                    <div className="relative flex items-center gap-4 border-b border-border bg-secondary px-5 py-4 pr-20">
                       <div className="h-24 w-20 flex-shrink-0 overflow-hidden rounded-lg border border-border bg-white sm:h-28 sm:w-24">
                         <img
                           src={person.photo}
@@ -304,25 +304,34 @@ export default function AboutPage() {
                         />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-3">
-                          <p className="truncate font-display text-2xl font-bold text-primary">{person.name}</p>
-                          {getLinkedInLink(person.name) ? (
-                            <a
-                              href={getLinkedInLink(person.name)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`Open LinkedIn profile for ${person.name}`}
-                              className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-border bg-background text-primary transition-colors hover:border-amber hover:text-amber"
-                            >
-                              <Linkedin className="h-4 w-4" />
-                            </a>
-                          ) : null}
-                        </div>
+                        <p className="truncate font-display text-2xl font-bold text-primary">{person.name}</p>
                         <p className="font-sans text-base font-semibold text-red-600">{person.role}</p>
                         {person.education ? (
                           <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
                             {person.education}
                           </p>
+                        ) : null}
+                      </div>
+                      <div className="absolute right-5 top-6 flex flex-col gap-2">
+                        {getLinkedInLink(person.name) ? (
+                          <a
+                            href={getLinkedInLink(person.name)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open LinkedIn profile for ${person.name}`}
+                            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border bg-background text-primary transition-colors hover:border-amber hover:text-amber"
+                          >
+                            <Linkedin className="h-4 w-4" />
+                          </a>
+                        ) : null}
+                        {person.name === "Laxmikant Rokhade" ? (
+                          <a
+                            href={`mailto:${SITE.email}`}
+                            aria-label={`Send email to ${person.name}`}
+                            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border bg-background text-primary transition-colors hover:border-amber hover:text-amber"
+                          >
+                            <Mail className="h-4 w-4" />
+                          </a>
                         ) : null}
                       </div>
                     </div>
@@ -418,10 +427,10 @@ export default function AboutPage() {
           <Reveal className="order-2 md:order-1">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-amber">Awards & Achievements</div>
             <h2 className="mt-3 font-display text-3xl font-bold text-primary sm:text-4xl">
-              Laxmi Sagar Legacy Awards
+              Recognitions That Inspire
             </h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">
-              Milestones, recognitions, and proud moments from our journey.
+              Memorable milestones from our journey of growth.
             </p>
           </Reveal>
 
