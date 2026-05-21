@@ -86,7 +86,6 @@ const BRIEF_DIRECTOR_MESSAGES = [
 
 const DIRECTOR_LINKEDIN: Record<string, string> = {
   "Tejas Rokhade": "https://www.linkedin.com/in/tejasrokhade",
-  "Laxmikant Rokhade": "https://www.linkedin.com/search/results/all/?keywords=Laxmikant%20Rokhade",
 };
 
 function getLinkedInLink(name: string) {
