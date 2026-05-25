@@ -229,6 +229,16 @@ export default function CareersPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
+    const phoneInput = form.elements.namedItem("phone") as HTMLInputElement | null;
+    const phoneValue = phoneInput?.value.trim() ?? "";
+    const isTenDigitPhone = /^[0-9]{10}$/.test(phoneValue);
+    if (phoneInput?.setCustomValidity) {
+      phoneInput.setCustomValidity(isTenDigitPhone ? "" : "Enter exactly 10 digits.");
+    }
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
     const formData = new FormData(form);
     formData.append("access_key", "30670d77-83f3-466c-8da3-2bee079d3c89");
     formData.append("subject", "New Career Application - Laxmi Sagar Engineers");
@@ -363,9 +373,26 @@ export default function CareersPage() {
                   <form onSubmit={handleSubmit} className="mt-8 space-y-5 rounded-[1.75rem] border border-border bg-background p-6 shadow-sm sm:p-8">
                     <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
                     <div className="grid gap-5 sm:grid-cols-2">
-                      <Field label="Full Name" name="name" required />
-                      <Field label="Email" name="email" type="email" required />
-                      <Field label="Phone" name="phone" type="tel" required />
+                      <Field label="Full Name" name="name" required minLength={2} maxLength={80} />
+                      <Field
+                        label="Email"
+                        name="email"
+                        type="email"
+                        required
+                        pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+                        title="Enter a valid email address."
+                      />
+                      <Field
+                        label="Phone"
+                        name="phone"
+                        type="tel"
+                        required
+                        minLength={10}
+                        maxLength={10}
+                        pattern="^[0-9]{10}$"
+                        title="Enter exactly 10 digits."
+                        inputMode="numeric"
+                      />
                       <div>
                         <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
                           Department Applying For <span className="text-amber">*</span>
@@ -543,7 +570,7 @@ export default function CareersPage() {
   );
 }
 
-function Field({ label, name, type = "text", required }) {
+function Field({ label, name, type = "text", required, minLength, maxLength, pattern, title, inputMode }) {
   return (
     <div>
       <label className="font-sans text-xs font-semibold uppercase tracking-wider text-primary">
@@ -553,6 +580,17 @@ function Field({ label, name, type = "text", required }) {
         name={name}
         type={type}
         required={required}
+        minLength={minLength}
+        maxLength={maxLength}
+        pattern={pattern}
+        title={title}
+        inputMode={inputMode}
+        onInput={(e) => {
+          if (name !== "phone") return;
+          const input = e.currentTarget;
+          input.value = input.value.replace(/\D/g, "").slice(0, 10);
+          input.setCustomValidity(/^[0-9]{10}$/.test(input.value) ? "" : "Enter exactly 10 digits.");
+        }}
         className="mt-2 h-11 w-full rounded-md border border-border bg-background px-4 text-sm text-foreground outline-none transition-colors focus:border-amber"
       />
     </div>

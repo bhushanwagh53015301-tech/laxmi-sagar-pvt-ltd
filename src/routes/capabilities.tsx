@@ -22,6 +22,8 @@ import {
 const PRODUCT_PHOTOS = assetsFromCategory("Product Photos");
 const MACHINE_PHOTOS = PRODUCT_PHOTOS.filter((item) => /(^| \/ )machines$/i.test(item.subPath) || /machine/i.test(item.filename));
 const COMPANY_PHOTOS = assetsFromCategory("Company Photos");
+const INFRA_DRONE_PHOTO =
+  COMPANY_PHOTOS.find((item) => /DJI_0191/i.test(item.filename)) ?? COMPANY_PHOTOS[0];
 const TRACEABILITY_IMAGES = [
   {
     src: IMG.inspection,
@@ -141,9 +143,13 @@ const CAPABILITY_FLOW = [
     notes: [
       "25,000+ sq ft operating footprint with expansion planned beyond 40,000+ sq ft.",
       "Dedicated production zones for machining, heat treatment, inspection, and packing.",
-      "Structured floor planning supports traceability, process discipline, and smoother execution.",
     ],
     images: [
+      {
+        src: INFRA_DRONE_PHOTO?.src ?? IMG.factory,
+        alt: "Laxmi Sagar Engineers facility aerial view",
+        fullBleed: true,
+      },
       {
         src: laxmisagarImage,
         alt: "Laxmi Sagar Engineers facility exterior",
