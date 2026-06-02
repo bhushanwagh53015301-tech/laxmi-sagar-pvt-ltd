@@ -8,7 +8,7 @@ import AboutPage from "./routes/about";
 import CapabilitiesPage from "./routes/capabilities";
 import QualityPage from "./routes/quality";
 import CareersPage from "./routes/careers";
-import ContactPage from "./routes/contact";
+import ContactPage from "./routes/contact-page";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
