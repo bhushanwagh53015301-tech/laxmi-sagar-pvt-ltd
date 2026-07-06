@@ -302,8 +302,10 @@ export default function AboutPage() {
                           decoding="sync"
                         />
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate font-display text-2xl font-bold text-primary">{person.name}</p>
+                      <div className="min-w-0 flex-1 pr-2">
+                        <p className="font-display text-xl font-bold leading-tight text-primary break-words sm:text-2xl">
+                          {person.name}
+                        </p>
                         <p className="font-sans text-base font-semibold text-red-600">{person.role}</p>
                         {person.education ? (
                           <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
